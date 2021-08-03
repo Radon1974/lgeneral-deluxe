@@ -1,0 +1,862 @@
+1998-04-29  Ulrich Drepper  <drepper@cygnus.com>
+
+* intl / localealias.c (read_alias_file): использовать символ без знака для
+локальные переменные. Удалите неиспользуемую переменную tp.
+* intl / l10nflist.c (_nl_normalize_codeset): использовать символ без знака *
+для типа кодировки. За потерю систем Solaris.
+* intl / loadinfo.h: Адаптировать прототип _nl_normalize_codeset.
+* intl / bindtextdom.c (BINDTEXTDOMAIN): не определять локальную переменную
+len, если не требуется.
+Патчи Джима Мейеринга.
+
+1998-04-28  Ulrich Drepper  <drepper@cygnus.com>
+
+* loadmsgcat.c (_nl_load_domain): не назначать элемент use_mmap, если
+mmap не поддерживается.
+
+* hash-string.h: не включать <values.h>.
+
+1998-04-27  Ulrich Drepper  <drepper@cygnus.com>
+
+	* textdomain.c: доступно использование strdup.
+
+* localealias.c: Определите HAVE_MEMPCPY, чтобы мы могли использовать это
+функция. Определите и используйте семафоры для защиты модификации
+глобальные объекты при компиляции для glibc. Добавьте код, чтобы разрешить
+освобождение таблицы псевдонимов.
+
+* l10nflist.c: Не думайте, что stpcpy не является макросом.
+
+* gettextP.h: Определите макросы внутренней_функции, если это еще не сделано.
+Используйте макросы подкачки байтов glibc вместо определения SWAP при компиляции
+для glibc.
+(struct loaded_domain): добавить элементы, разрешающие выгрузку.
+
+* Makefile.in (distclean): не удаляйте здесь libintl.h.
+
+* bindtextdomain.c: Перенести изменения из glibc. Используйте strdup, если
+имеется в наличии.
+
+* dcgettext.c: не думайте, что stpcpy не является макросом. Отметить внутренний
+функции. Добавьте код освобождения памяти для glibc.
+
+* dgettext.c: обновить авторские права.
+
+* explodename.c: включайте stdlib.h и string.h, только если они существуют.
+В конце концов, используйте strings.h.
+
+* finddomain.c: Отметить внутренние функции. Если возможно, используйте strdup.
+Добавьте код освобождения памяти для glibc.
+
+1997-10-10 20:00 Ульрих Дреппер <drepper@cygnus.com>
+
+* libgettext.h: исправлены макросы фиктивного textdomain и bindtextdomain.
+Они должны возвращать разумные значения.
+Об этом сообщает Том Троми <tromey@cygnus.com>.
+
+1997-09-16 03:33  Ulrich Drepper  <drepper@cygnus.com>
+
+	* libgettext.h: Определите PARAMS также для `args ', если __cplusplus определен.
+* intlh.inst.in: Точно так же.
+Об этом сообщил Жан-Марк Ласгутт <Jean-Marc.Lasgouttes@inria.fr>.
+
+* libintl.glibc: Обновление с текущей версии glibc.
+
+1997-09-06 02:10  Ulrich Drepper  <drepper@cygnus.com>
+
+	* intlh.inst.in: авторское право на переформатирование.
+
+1997-08-19 15:22 Ульрих Дреппер <drepper@cygnus.com>
+
+* dcgettext.c (DCGETTEXT): удалить неправильный комментарий.
+
+1997-08-16 00:13 Ульрих Дреппер <drepper@cygnus.com>
+
+* Makefile.in (данные установки): не менять каталог для установки.
+
+1997-08-01 14:30 Ульрих Дреппер <drepper@cygnus.com>
+
+* cat-compat.c: Исправить авторские права.
+
+* localealias.c: Не определяйте strchr, если! HAVE_STRCHR.
+
+* loadmsgcat.c: обновить авторские права. Исправляйте опечатки.
+
+* l10nflist.c: Не определяйте strchr, если! HAVE_STRCHR.
+(_nl_make_l10nflist): правильно обрабатывать спонсора и ревизию.
+
+* gettext.c: обновить авторские права.
+* gettext.h: Точно так же.
+* hash-string.h: Точно так же.
+
+* finddomain.c: Удалить мертвый код. Определите strchr, только если
+! HAVE_STRCHR.
+
+* explodename.c: включить <sys / types.h>.
+
+* explodename.c: переформатировать текст об авторских правах.
+(_nl_explode_name): исправить опечатку.
+
+* dcgettext.c: Определите и используйте __set_errno.
+(guess_category_value): не используйте setlocale, если HAVE_LC_MESSAGES
+не определен.
+
+* bindtextdom.c: Хорошая печать.
+
+1997-05-01 02:25 Ульрих Дреппер <drepper@cygnus.com>
+
+* dcgettext.c (guess_category_value): не зависит от
+HAVE_LC_MESSAGES. Макрос здесь нам не нужен.
+Патч Бруно Хейбле <haible@ilog.fr>.
+
+* cat-compat.c (текстовый домен): НЕ относиться к HAVE_SETLOCALE_NULL
+макрос. Вместо этого используйте HAVE_LOCALE_NULL и определите его при использовании
+glibc, как в dcgettext.c.
+Патч Бруно Хейбле <haible@ilog.fr>.
+
+* Makefile.in (CPPFLAGS): Новая переменная. Об этом сообщает Franc, ois
+Пинар.
+
+Пн 10 марта, 06:51:17 1997 Ульрих Дреппер <drepper@cygnus.com>
+
+* Makefile.in: Реализует обработку libtool.
+
+* gettextP.h: изменить структуры данных для использования общего низкого уровня
+i18n обработка файлов.
+
+4 декабря, среда, 20:21:18 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* textdomain.c: заключите в скобки аргументы макроса memcpy
+определение.
+* localealias.c: Точно так же.
+* l10nflist.c: Точно так же.
+* finddomain.c: Точно так же.
+* bindtextdom.c: Точно так же.
+Об этом сообщает Томас Эскен.
+
+Пн 25 ноября, 22:57:51 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* textdomain.c: переместить определение макроса memcpy вправо
+должность.
+
+Пт 22 ноября, 04:01:58 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* finddomain.c [! HAVE_STRING_H &&! _LIBC]: определить memcpy с помощью
+ bcopy, если еще не определено. Об этом сообщает Томас Эскен.
+* bindtextdom.c: Точно так же.
+* l10nflist.c: Точно так же.
+* localealias.c: Точно так же.
+* textdomain.c: Точно так же.
+
+Вт 29 окт, 11:10:27 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* Makefile.in (libdir): измените использование exec_prefix вместо
+ приставка. Об этом сообщает Knut-HеvardAksnes <etokna@eto.ericsson.se>.
+
+Сб 31 августа, 03:07:09 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* l10nflist.c (_nl_normalize_codeset): мы конвертируем в нижний регистр,
+поэтому не добавляйте заглавные буквы `ISO 'только для числовых аргументов.
+
+Пт 19 июля 00:15:46 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* l10nflist.c: переместить включение argz.h, ctype.h, stdlib.h после
+определение _GNU_SOURCE. Нашивка Роланда МакГрата.
+
+* Makefile.in (удалить): исправить еще одну ошибку с циклом `for 'и
+пустые аргументы. Патч Джима Мейеринга. Правильное название os
+удаленные файлы: префикса intl- больше нет.
+
+* Makefile.in (install-data): снова работайте с оболочками, которые
+не может обрабатывать mpty для списка. Об этом сообщает Джим Мейеринг.
+
+Сб 13 июля, 18:11:35 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* Makefile.in (установить): разделить цель. Теперь зависит от install-exec
+        и установочные данные.
+(install-exec, install-data): Новые цели. Создано из бывшего
+установить цель.
+Об этом сообщает Карл Берри.
+
+Сб, 22 июня, 04:58:14 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* Makefile.in (MKINSTALLDIRS): новая переменная. Путь к
+        mkinstalldirs сценарий.
+(установить): используйте переменную MKINSTALLDIRS или, если скрипт отсутствует
+попробуйте найти его в $ top_scrdir).
+
+Ср 19 июня 02:56:56 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* l10nflist.c: Linux libc * частично * включает функции argz_ *.
+Grr. Обойти проблему, переименовав статическую версию и используя макросы
+для переименования.
+
+Вт 18 июня 20:11:17 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* l10nflist.c: Правильные макросы проверки присутствия функций __argz_ *.
+
+* l10nflist.c: вместо этого включить <argz.h> на основе его проверки, когда
+Доступны функции __argz_ *.
+Об этом сообщает Андреас Шваб.
+
+Чт, 13 июня, 15:17:44 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* explodename.c, l10nflist.c: Определите NULL для «глупых» систем.
+
+Вт 11 июня 17:05:13 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* intlh.inst.in, libgettext.h (dcgettext): переименовать локальную переменную
+result в __result, чтобы предотвратить конфликт имен.
+
+* l10nflist.c, localealias.c, dcgettext.c: Определите _GNU_SOURCE для
+        получить прототип для stpcpy и strcasecmp.
+
+* intlh.inst.in, libgettext.h: перемещение объявления
+_nl_msg_cat_cntr вне блока __extension__ для предотвращения предупреждения
+из параметра gcc -Wnested-extern.
+
+Пт 7 июня 01:58:00 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* Makefile.in (установить): удалить комментарий.
+
+6 июня, 17:28:17 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* Makefile.in (install): устраните еще одну глупость Buglix.
+Всегда используйте закрытие else для if. Об этом сообщает Нельсон Биби.
+
+* Makefile.in (intlh.inst): исправьте опечатку в фальшивом правиле.
+Об этом сообщает Нельсон Биби.
+
+6 июня 01:49:52 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* dcgettext.c (read_alias_file): переименовать переменную alloca_list в
+block_list, как предполагают вызовы макроса.
+Патч Эрика Бэкуса.
+
+* localealias.c [! HAVE_ALLOCA]: определить alloca как макрос, используя
+        malloc.
+(read_alias_file): переименовать varriabe alloca_list в block_list как
+макросы предполагают.
+Патч Эрика Бэкуса.
+
+* l10nflist.c: Правильное условие для включения <argz.h>.
+Об этом сообщает Роланд МакГрат.
+
+* Makefile.in (все): Зависит от all- @ USE_INCLUDED_LIBINTL @, а не
+        все- @ USE_NLS @.
+
+* Makefile.in (install): intlh.inst берется из локального каталога, а не
+        $ (srcdir).
+
+* Makefile.in (intlh.inst): Специальная обработка этой цели. Если
+используется в gettext, это действительно правило для создания этого файла. Если
+используется в любом другом пакете, он определяется как правило .PHONY с
+пустое тело.
+
+* finddomain.c: Извлечь обработку информации о файле локали в
+l10nfile.c. Переименуйте локальную функцию stpcpy__ в stpcpy.
+
+* dcgettext.c (stpcpy): добавить локальное определение.
+
+* l10nflist.c: Решите некоторые проблемы с переносимостью. Частично исправляет
+Томас Эскен. Добавьте локальное определение stpcpy.
+
+Вт 4 июня 02:47:49 1996 Ульрих Дреппер <drepper@cygnus.com>
+
+* intlh.inst.in: не зависит от включения <locale.h>
+HAVE_LOCALE_H. Вместо этого configure должен перезаписать этот файл
+в зависимости от результата запуска configure.
+
+* Makefile.in (install): libintl.inst теперь называется intlh.inst.
+Добавьте правила обновления intlh.inst из intlh.
+
+* dcgettext.c (find_msg): здесь нельзя менять местами домен-> hash_size.
+
+Сб, 9 декабря 16:24:37 1995 Ульрих Дреппер <drepper @ myware>
+
+* localealias.c, libintl.inst, libgettext.h, hash-string.h,
+gettextP.h, finddomain.c, dcgettext.c, cat-compat.c:
+Используйте PARAMS вместо __P. Предложено Роландом МакГратом.
+
+Вт 5 декабря 11:39:14 1995 Ларри Швиммер <rosebud@cyclone.stanford.edu>
+
+* libgettext.h: используйте `#if! defined (_LIBINTL_H) 'вместо` #if
+! _LIBINTL_H ', потому что Solaris определяет _LIBINTL_H как пустой.
+
+Пн, 4 декабря, 15:42:07 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (install-src):
+Установите libintl.inst вместо libintl.h.install.
+
+Сб, 2 декабря 22:51:38 1995 Маркус Дэниэлс <marcus@sysc.pdx.edu>
+
+* cat-compat.c (текстовый домен):
+Обратный порядок загрузки файлов. Первый
+попробуйте локальный файл, если это не абсолютный путь.
+
+29 ноября, среда, 02:03:53 1995 Нельсон Х. Ф. Биб <beebe@math.utah.edu>
+
+* cat-compat.c (bindtextdomain): добавить отсутствующий {}.
+
+Вс 26 ноя, 18:21:41 1995 Ульрих Дреппер <drepper @ myware>
+
+* libintl.inst: добавить недостающее определение __P. Об этом сообщает Нельсон Биби.
+
+* Makefile.in:
+Добавьте фиктивные цели «all» и «dvi». Об этом сообщает Том Троми.
+
+Сб 25 ноя, 16:12:01 1995 Franc, ois Pinard <pinard@iro.umontreal.ca>
+
+* hash-string.h: использовать аргументы макросов с заглавной буквы.
+
+Сб 25 ноя, 12:01:36 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (DISTFILES): запретить имена файлов длиннее 13
+символы. libintl.h.glibc-> libintl.glibc,
+libintl.h.install-> libintl.inst. Об этом сообщает Джошуа Р. Поулсон.
+
+Сб 25 ноя, 11:31:12 1995 Эрик Бакус <ericb@lsid.hp.com>
+
+* dcgettext.c: Исправлена ??ошибка в условных выражениях препроцессора.
+
+Сб 25 ноября 02:35:27 1995 Нельсон Х. Ф. Биб <beebe@math.utah.edu>
+
+* libgettext.h: Solaris cc не понимает
+#if! SYMBOL1 &&! SYMBOL2. Печально, но факт.
+
+Чт, 23 ноября, 16:22:14 1995 Ульрих Дреппер <drepper @ myware>
+
+* hash-string.h (hash_string):
+Исправление для машины с> 32-битными беззнаковыми длинными.
+
+* dcgettext.c (DCGETTEXT):
+Исправить ужасную ошибку в цикле альтернативного перевода.
+
+Чт, 23 ноября, 01:45:29 1995 Ульрих Дреппер <drepper @ myware>
+
+* po2tbl.sed.in, linux-msg.sed, xopen-msg.sed:
+Некоторые дополнительные упрощения в генерации номеров сообщений.
+
+Пн 20 ноя, 21:08:43 1995 Ульрих Дреппер <drepper @ myware>
+
+* libintl.h.glibc: используйте __const вместо const в прототипах.
+
+* Makefile.in (install-src):
+Установите libintl.h.install вместо libintl.h. Этот
+это урезанная версия. Предложено Питером Миллером.
+
+* libintl.h.install, libintl.h.glibc: начальная версия.
+
+* localealias.c (_nl_expand_alias, read_alias_file):
+Защищайте прототипы при приведении типов с помощью __P.
+
+Вт 14 ноя, 16:43:58 1995 Ульрих Дреппер <drepper @ myware>
+
+* hash-string.h: правильный прототип для hash_string.
+
+Вс 12 ноя, 12:42:30 1995 Ульрих Дреппер <drepper @ myware>
+
+* hash-string.h (hash_string): Добавить прототип.
+
+* gettextP.h: Исправить авторские права.
+(SWAP): добавить прототип.
+
+8 ноя, среда, 22:56:33 1995 Ульрих Дреппер <drepper @ myware>
+
+* localealias.c (read_alias_file): забыл sizeof.
+Избегайте вызова функции * printf. Это приводит к большим накладным расходам.
+Нашивка Роланда МакГрата.
+
+Вт 7 ноя, 14:21:08 1995 Ульрих Дреппер <drepper @ myware>
+
+* finddomain.c, cat-compat.c: неправильный отступ в #if для stpcpy.
+
+* finddomain.c (stpcpy):
+Определите функцию подстановки local. Макрос был слишком нестабильным.
+
+* cat-compat.c: Исправить опечатку.
+
+* xopen-msg.sed, linux-msg.sed:
+При переносе номера сообщения в нужное место принимайте только цифры.
+
+* linux-msg.sed, xopen-msg.sed: теперь, когда счетчик не имеет
+ведущие нули нам не нужно их удалять. Об этом сообщает Маркус
+Дэниелс.
+
+* Makefile.in (../po/cat-id-tbl.o): используйте $ (top_srdir) в
+зависимость. Об этом сообщает Маркус Дэниелс.
+
+* cat-compat.c: (stpcpy) [! _LIBC &&! HAVE_STPCPY]: определить замену.
+Обычно для очистки используется #if вместо #ifndef.
+
+* Makefile.in: Исправьте опечатки в комментариях. Автор Franc, ois Pinard.
+
+Пн 6 ноя, 00:27:02 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (install-src): не устанавливайте libintl.h и libintl.a
+если мы используем доступную реализацию gettext.
+
+Вс 5 ноя, 22:02:08 1995 Ульрих Дреппер <drepper @ myware>
+
+* libgettext.h: Исправить опечатку: HAVE_CATGETTS -> HAVE_CATGETS. Сообщается
+пользователя Franc, ois Pinard.
+
+* libgettext.h: используйте #if вместо # ifdef / # ifndef.
+
+* finddomain.c:
+Комментарии, описывающие, что необходимо сделать, должны начинаться с FIXME.
+
+Вс 5 ноя, 19:38:01 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (DISTFILES): Разделить. Используйте DISTFILES с обычным значением.
+DISTFILES.common называет файлы, общие для обеих целей dist.
+DISTFILES.gettext - это файлы, распространяемые только в GNU gettext.
+
+Вс 5 ноя, 17:32:54 1995 Ульрих Дреппер <drepper @ myware>
+
+* dcgettext.c (DCGETTEXT): правильный поиск в производных локали.
+Это было необходимо, поскольку изменение _nl_find_msg несколько недель
+тому назад. Я действительно не знаю, что это еще не исправлено.
+
+Вс 5 ноя 12:43:12 1995 Ульрих Дреппер <drepper @ myware>
+
+* loadmsgcat.c (_nl_load_domain): проверка для FILENAME == NULL. Этот
+мог бы отметить специальный c
+
+Пт 27 окт, 22:22:51 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (libdir, includedir): новые переменные.
+(install-src): установите libintl.a и libintl.h в правильные каталоги.
+
+Пт 27 октября, 22:07:29 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (ИСТОЧНИКИ): Исправить опечатку: intrl.compat.c -> intl-compat.c.
+
+* po2tbl.sed.in: Патч для глючных самосвалов от Кристиана фон Рокеса.
+
+* localealias.c:
+Исправьте опечатку и лишний тест. Об этом сообщил Кристиан фон Рокес.
+
+Пт 6 окт, 11:52:05 1995 Ульрих Дреппер <drepper @ myware>
+
+* finddomain.c (_nl_find_domain):
+Исправьте некоторые остатки от синтаксиса до CEN. В настоящее время
+у нас больше нет постоянного числа преемников.
+
+Ср, 27 сен, 21:41:13 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (DISTFILES): добавьте libintl.h.glibc.
+
+* Makefile.in (dist-libc): Добавить цель для упаковки исходников для glibc.
+(COMSRCS, COMHDRS): разделены на отдельные источники, используемые совместно с glibc.
+
+* loadmsgcat.c: забудьте продолжить строку #if.
+
+* localealias.c:
+[_LIBC]: переименуйте strcasecmp в __strcasecmp, чтобы сохранить имя ANSI C
+пространство чистое.
+
+* dcgettext.c, finddomain.c: лучший комментарий к последнему изменению.
+
+* loadmsgcat.c:
+[_LIBC]: переименуйте fstat, open, close, read, mmap и munmap в
+__fstat, __open, __close, __read, __mmap и __munmap соответственно
+чтобы сохранить пространство имен ANSI C.
+
+* finddomain.c:
+[_LIBC]: переименуйте stpcpy в __stpcpy, чтобы сохранить пространство имен ANSI C.
+
+* dcgettext.c:
+[_LIBC]: переименуйте getced и stpcpy в __getcwd и __stpcpy соответственно на
+следите за чистотой пространства имен ANSI C.
+
+* libgettext.h:
+Включите sys / types.h для тех старых систем SysV.
+Об этом сообщает Франческо Поторти.
+
+* loadmsgcat.c (use_mmap): определить, если он скомпилирован для glibc.
+
+* bindtextdom.c: включить все эти стандартные заголовки
+безусловно, если определен _LIBC.
+
+* finddomain.c: 2 раза исправить defiend -> defined.
+
+* textdomain.c: Включите libintl.h вместо libgettext.h, когда
+компиляция для glibc. Включите все эти стандартные заголовки
+безусловно, если определен _LIBC.
+
+* localealias.c, loadmsgcat.c: подготовка к компиляции в glibc.
+
+* gettext.c:
+Включите libintl.h вместо libgettext.h при компиляции для glibc.
+Получите NULL из stddef.h, если мы компилируем для glibc.
+
+* finddomain.c: Включите libintl.h вместо libgettext.h, когда
+компиляция для glibc. Включите все эти стандартные заголовки
+безусловно, если _LIBC определен.
+
+* dcgettext.c: безоговорочно включать все эти стандартные заголовки
+если _LIBC определен.
+
+* dgettext.c: Если скомпилирован в glibc, включите libintl.h вместо
+libgettext.h.
+(locale.h): не полагайтесь на HAVE_LOCALE_H при компиляции для glibc.
+
+* dcgettext.c: Если скомпилирован в glibc, включите libintl.h вместо
+libgettext.h.
+(getcwd): не полагайтесь на HAVE_GETCWD при компиляции для glibc.
+
+* bindtextdom.c:
+Если скомпилирован в glibc, включите libintl.h вместо libgettext.h.
+
+Пн 25 сен, 22:23:06 1995 Ульрих Дреппер <drepper @ myware>
+
+* localealias.c (_nl_expand_alias): не вызывать bsearch, если NMAP <= 0.
+Об этом сообщает Маркус Дэниелс.
+
+* cat-compat.c (домен привязки):
+Строка, используемая в putenv, не подлежит повторному использованию.
+Об этом сообщает Маркус Дэниелс.
+
+* libgettext.h (__USE_GNU_GETTEXT):
+Дополнительный символ, сигнализирующий о том, что мы используем GNU gettext
+библиотека.
+
+* cat-compat.c (домен привязки):
+Исправить ошибку со странной заменой stpcpy.
+Об этом сообщает Нельсон Биби.
+
+Сб 23 сен, 08:23:51 1995 Ульрих Дреппер <drepper @ myware>
+
+* cat-compat.c: включить <string.h> для прототипа stpcpy.
+
+* localealias.c (read_alias_file):
+При расширении кода strdup временная переменная cp скрыта
+переменная более высокого уровня с тем же именем. Переименуйте в `tp '.
+
+* textdomain.c (текстовый домен):
+Избегайте предупреждения, используя временную переменную в коде strdup.
+
+* finddomain.c (_nl_find_domain): удалить неиспользуемую переменную `application '.
+
+21 сентября, 15:51:44 1995 Ульрих Дреппер <drepper @ myware>
+
+* localealias.c (alias_compare):
+Используйте strcasecmp (), только если он доступен. Другое использование
+реализация на месте.
+
+* intl-compat.c:
+Функции оболочки теперь вызывают функции * __ вместо __ *.
+
+* libgettext.h: объявляйте прототипы функций * __ вместо __ *.
+
+* cat-compat.c, loadmsgcat.c:
+Не используйте xmalloc, xstrdup и stpcpy. Эти функции не являются частью
+стандартной libc и, таким образом, предотвратить использование libintl.a
+автономный.
+
+* bindtextdom.c:
+Не используйте xmalloc, xstrdup и stpcpy. Эти функции не являются частью
+стандартной libc и, таким образом, предотвратить использование libintl.a
+автономный.
+Переименуйте в bindtextdomain__, если он не используется в библиотеке GNU C.
+
+* dgettext.c:
+Переименуйте функцию в dgettext__, если она не используется в библиотеке GNU C.
+
+* gettext.c:
+Не используйте xmalloc, xstrdup и stpcpy. Эти функции не являются частью
+стандартной libc и, таким образом, предотвратить использование libintl.a
+автономный.
+Функции теперь называются gettext__, если они не используются в библиотеке GNU C.
+
+* dcgettext.c, localealias.c, textdomain.c, finddomain.c:
+Не используйте xmalloc, xstrdup и stpcpy. Эти функции не являются частью
+стандартной libc и, таким образом, предотвратить использование libintl.a
+автономный.
+
+Вс 17 сен 23:14:49 1995 Ульрих Дреппер <drepper @ myware>
+
+* плавник
+
+Вс 13 августа, 14:40:48 1995 Ульрих Дреппер <drepper @ myware>
+
+* loadmsgcat.c (_nl_load_domain):
+Используйте mmap для загрузки, только когда функция munmap
+также доступны.
+
+* Makefile.in (install): зависит от цели "all".
+
+Ср, 9 августа, 11:04:33 1995 Ульрих Дреппер <drepper @ myware>
+
+* localealias.c (read_alias_file):
+Не перезаписывайте '\ n' при завершении строки значения псевдонима.
+
+* localealias.c (read_alias_file):
+Обрабатывайте длинные строки. Игнорируйте остальное, не вписывающееся в
+буфер после первоначального вызова `fgets '.
+
+9 августа, среда, 00:54:29 1995 Ульрих Дреппер <drepper @ myware>
+
+* gettextP.h (_nl_load_domain):
+Добавить прототип, заменив прототип на _nl_load_msg_cat.
+
+* finddomain.c (_nl_find_domain):
+Удалите ненужные переменные filename и filename_len.
+(expand_alias): удалить прототип, потому что функции не
+ существуют больше.
+
+* localealias.c (read_alias_file):
+Измените тип параметра fname_len на int.
+(xmalloc): добавить прототип.
+
+* loadmsgcat.c: лучшие прототипы для xmalloc.
+
+Вт, 8 августа, 22:30:39 1995 Ульрих Дреппер <drepper @ myware>
+
+* finddomain.c (_nl_find_domain):
+Разрешить создание псевдонима из четырех компонентов.
+
+* Makefile.in (aliaspath): новая переменная. Установите предварительное значение.
+(ИСТОЧНИКИ): Добавьте localealias.c.
+(ОБЪЕКТЫ): Добавьте localealias.o.
+
+* gettextP.h: Добавить прототип для _nl_expand_alias.
+
+* finddomain.c: Псевдонимы обрабатываются в intl / localealias.c.
+
+* localealias.c: псевдонимы для названий языков.
+
+* bindtextdom.c: лучшие прототипы для xmalloc и xstrdup.
+
+Пн 7 августа 23:47:42 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (DISTFILES): gettext.perl теперь находится в misc /.
+
+* cat-compat.c (домен привязки):
+Правильная реализация. Параметр dirname не использовался.
+Об этом сообщает Маркус Дэниелс.
+
+* gettextP.h (загруженный_домен):
+Новые поля "преемник" и "решила" для oo, lazy
+реализация обработки сообщений.
+
+* dcgettext.c:
+Применяют для oO, ленивой обработки сообщений.
+  Теперь мы можем наследовать переводы из менее специфичных языков.
+(find_msg): Новая функция.
+
+* loadmsgcat.c, finddomain.c:
+Полное переписывание. Реализуйте oo, ленивую обработку сообщений :-).
+  Теперь у нас есть дополнительная переменная окружения LANGUAGE с
+ более высокий приоритет, чем LC_ALL для локали LC_MESSAGE.
+  Здесь мы можем установить список спецификаций, разделенных двоеточиями, для каждого
+ формы `language [_territory [.codeset]] [@ modifier] '.
+
+5 августа, сб, 09:55:42 1995 Ульрих Дреппер <drepper @ myware>
+
+* finddomain.c (unistd.h):
+Включите, чтобы определить _PC_PATH_MAX в системе, в которой он есть.
+
+Пт 4 августа, 22:42:00 1995 Ульрих Дреппер <drepper @ myware>
+
+* finddomain.c (stpcpy): включить прототип.
+
+* Makefile.in (dist): удалить сообщение «вместо копирования».
+
+2 августа, среда, 18:52:03 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (ID, TAGS): не используйте $ ^.
+
+Вт 1 августа 20:07:11 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (TAGS, ID): используйте $ ^ в качестве аргумента команды.
+(TAGS): укажите параметр etags -o для записи в текущий каталог,
+ не $ (srcdir).
+(ID): используйте $ (srcdir) вместо os $ (top_srcdir) / src.
+(distclean): Удалить ID.
+
+Вс 30 июля, 11:51:46 1995 Ulrich Drepper <drepper @ myware>
+
+* Makefile.in (gnulocaledir):
+Новая переменная, всегда использующая share / для каталога данных.
+(DEFS): добавьте GNULOCALEDIR, используемый в finddomain.c.
+
+* finddomain.c (_nl_default_dirname):
+Установите GNULOCALEDIR, потому что он всегда должен указывать
+в каталог, в который его записывает библиотека GNU gettext.
+
+* intl-compat.c (textdomain, bindtextdomain):
+Отменить определение макроса перед определением функции.
+
+Сб 22 июля, 01:10:02 1995 Ульрих Дреппер <drepper @ myware>
+
+* libgettext.h (_LIBINTL_H):
+Защитить определение в случае, если этот файл включен как
+libgettext.h на машинах Solaris. Добавьте комментарий по этому поводу.
+
+19 июля, среда, 02:36:42 1995 Ульрих Дреппер <drepper @ myware>
+
+* intl-compat.c (textdomain): правильная опечатка.
+
+Ср 19 июля, 01:51:35 1995 Ульрих Дреппер <drepper @ myware>
+
+* dcgettext.c (dcgettext): функция теперь называется __dcgettext.
+
+* dgettext.c (dgettext): теперь называется __dgettext и вызывает
+ __dcgettext.
+
+* gettext.c (gettext):
+Функция теперь называется __gettext и вызывает __dgettext.
+
+* textdomain.c (textdomain): функция теперь называется __textdomain.
+
+* bindtextdom.c (bindtextdomain): теперь вызывается функция
+ __bindtextdomain.
+
+* intl-compat.c: Первоначальная редакция.
+
+* Makefile.in (ИСТОЧНИКИ): добавьте intl-compat.c.
+(ОБЪЕКТЫ): Мы всегда компилируем библиотечные функции GNU gettext.
+  OBJECTS содержит все объекты, кроме cat-compat.o, ../po/cat-if-tbl.o,
+ и intl-compat.o.
+  (GETTOBJS): теперь содержит только intl-compat.o.
+
+* libgettext.h:
+Повторное включение защиты соответствует дуалистическому характеру libgettext.h.
+Для всех функций в библиотеке GNU gettext определите часть __ counter.
+
+* finddomain.c (strchr): Определить как индекс, если он не найден в библиотеке C.
+(_nl_find_domain): для относительных путей вставьте / между ними.
+
+Вт 18 июля 16:37:45 1995 Ульрих Дреппер <drepper @ myware>
+
+* loadmsgcat.c, finddomain.c: добавить включение sys / types.h.
+
+* xopen-msg.sed: Исправлена ??ошибка со строками `msgstr" "'.
+Немного лучше комментарии.
+
+Вт 18 июл 01:18:27 1995 Ulrich Dr
+
+15 июля, суббота, 00:21:28 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (DISTFILES):
+Переименуйте libgettext.perl в gettext.perl, чтобы уместить 14 символов.
+файловые системы.
+
+* gettext.perl:
+ Переименуйте в gettext.perl, чтобы он поместился в файловую систему с 14 символами.
+
+13 июля 23:17:20 1995 Ульрих Дреппер <drepper @ myware>
+
+* cat-compat.c: Если! STDC_HEADERS попытается включить malloc.h.
+
+13 июля, 20:55:02 1995 Ульрих Дреппер <drepper @ myware>
+
+* po2tbl.sed.in: Хорошая печать.
+
+* linux-msg.sed, xopen-msg.sed:
+Исправлены ошибки с обработкой подставных флагов в ветках.
+
+* hash-string.h (hash_string):
+Старые компиляторы K&R не понимают `unsigned char '.
+
+* gettext.h (nls_uint32):
+Некоторые старые компиляторы K&R (например, HP) не понимают unsigned int.
+
+* cat-compat.c (msg_to_cat_id): прототипы De-ANSI-fy.
+
+13 июля, 01:34:33 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (ELCFILES): Новая переменная.
+(DISTFILES): добавьте elisp-comp.
+Добавить неявное правило для компиляции .el -> .elc.
+(установочные данные): установить $ ELCFILES
+(чистый): po-to-tbl и po-to-msg переименованы в po2tbl и po2msg соответственно.
+
+* elisp-comp: Первоначальная редакция
+
+Ср 12 июля, 16:14:52 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in:
+cat-id-tbl.c теперь находится в po /. Это позволяет нам использовать идентичный
+intl / во всех пакетах.
+
+* dcgettext.c (dcgettext): хеширование не работает для таблицы размером <= 2.
+
+* textdomain.c: исправить опечатку (#if def -> #if defined)
+
+Вт 11 июля 18:44:43 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in (stamp-cat-id): используйте top_srcdir для адресации исходных файлов
+(DISTFILES, distclean): переместить tupdate.perl в src /
+
+* po-to-tbl.sed.in:
+добавить дополнительный переход для снятия флажка изменения для распознавания многострочных строк
+
+Вт 11 июля 01:32:50 1995 Ульрих Дреппер <drepper @ myware>
+
+* textdomain.c: Защитить включение stdlib.h и string.h.
+
+* loadmsgcat.c: Защитить включение stdlib.h.
+
+* libgettext.h: защитить включение locale.h.
+Разрешить использование в программах на C ++.
+Определения NULL еще не произошло.
+
+* Makefile.in (DISTFILES): отправить po-to-tbl.sed.in вместо
+по-тбл.сед.
+(distclean): удалите po-to-tbl.sed и tupdate.perl.
+
+* tupdate.perl.in: заменить путь Perl даже в строке exec.
+Не включайте записи без перевода из старого файла .po.
+
+Вт 4 июля, 00:41:51 1995 Ульрих Дреппер <drepper @ myware>
+
+* tupdate.perl.in: используйте "Обновлено:" в msgid "".
+
+* cat-compat.c: Исправить опечатку (LOCALDIR -> LOCALEDIR).
+ Определите getenv, если! __ STDC__.
+
+* bindtextdom.c: Защита включения stdlib.h и string.h.
+ Определите бесплатно, если! __ STDC__.
+
+* finddomain.c: измените DEF_MSG_DOM_DIR на LOCALEDIR.
+ Определите бесплатно, если! __ STDC__.
+
+* cat-compat.c: измените DEF_MSG_DOM_DIR на LOCALEDIR.
+
+Пн 3 июля 23:56:30 1995 Ульрих Дреппер <drepper @ myware>
+
+* Makefile.in: используйте LOCALEDIR вместо DEF_MSG_DOM_DIR.
+Удалите ненужный $ (srcdir) из зависимости Makefile.in.
+
+* makelinks: добавьте авторские права и краткое описание.
+
+* po-mode.el: Последняя версия для 0.7.
+
+* tupdate.perl.in: Исправить сообщение о смерти.
+
+* dcgettext.c: Защитить включение string.h.
+
+* gettext.c: Защищает включение stdlib.h и в дальнейшем пытается получить NULL.
+
+* finddomain.c: Некоторые исправления в include.
+
+* Makefile.in (ВКЛЮЧАЕТ): Удалить из списка правильный путь к Makefile.in.
+
+* po-to-tbl.sed: Принятие нового формата файла .po.
+
+* linux-msg.sed, xopen-msg.sed: принять новый формат файла .po.
+
+Вс 2 июля 23:55:03 1995 Ульрих Дреппер <drepper @ myware>
+
+* tupdate.perl.in: Полная перезапись для нового формата файла .po.
+
+Вс, 2 июля 02:06:50 1995 Ульрих Дреппер <drepper @ myware>
+
+* Первый официальный релиз. Этот каталог содержит весь код
+необходимо для интернационализации собственных пакетов. Он предоставляет функции
+которые позволяют использовать функцию X / Open catgets с интерфейсом
+как функция gettext в Uniforum. Для системы, которая не
+не имеют ни одного из них, полная реализация не предоставляется.

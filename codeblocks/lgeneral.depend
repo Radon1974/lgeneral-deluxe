@@ -1,0 +1,2241 @@
+# depslib dependency file v1.0
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\engine.c
+	<dlfcn.h>
+	<math.h>
+	"lgeneral.h"
+	"date.h"
+	"event.h"
+	"windows.h"
+	"nation.h"
+	"unit.h"
+	"purchase_dlg.h"
+	"headquarters_dlg.h"
+	"message_dlg.h"
+	"gui.h"
+	"map.h"
+	"scenario.h"
+	"slot.h"
+	"action.h"
+	"strat_map.h"
+	"campaign.h"
+	"ai.h"
+	"engine.h"
+	"localize.h"
+	"file.h"
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\lgeneral.h
+	<SDL.h>
+	<SDL_mixer.h>
+	"audio.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"sdl.h"
+	"image.h"
+	"misc.h"
+	"list.h"
+	"config.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1326100188 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	"SDL_config_dreamcast.h"
+	"SDL_config_macos.h"
+	"SDL_config_macosx.h"
+	"SDL_config_symbian.h"
+	"SDL_config_win32.h"
+	"SDL_config_os2.h"
+	"SDL_config_minimal.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_platform.h
+
+1326100194 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_config_win32.h
+	"SDL_platform.h"
+
+1326100200 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\begin_code.h
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\close_code.h
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_keysym.h
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1258235552 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_mixer.h
+	"SDL_types.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_types.h
+	"SDL_stdinc.h"
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\audio.h
+	<SDL_mixer.h>
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\sdl.h
+	<SDL.h>
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\image.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\misc.h
+	<stdio.h>
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\list.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\config.h
+	<../config.h>
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\date.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\event.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\windows.h
+	"image.h"
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\nation.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\unit.h
+	"unit_lib.h"
+	"nation.h"
+	"player.h"
+	"terrain.h"
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\unit_lib.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\player.h
+	"list.h"
+	"unit_lib.h"
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\terrain.h
+	<SDL.h>
+	"image.h"
+	"audio.h"
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\headquarters_dlg.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\message_dlg.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\gui.h
+	"unit.h"
+	"windows.h"
+	"purchase_dlg.h"
+	"headquarters_dlg.h"
+	"message_dlg.h"
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\map.h
+	"terrain.h"
+	"nation.h"
+	"player.h"
+	"unit.h"
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\scenario.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\slot.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\action.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\strat_map.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\campaign.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\ai.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\engine.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\util\localize.h
+	<config.h>
+	<libintl.h>
+
+1115388916 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\libintl.h
+	<locale.h>
+	<stdio.h>
+	<stddef.h>
+	<stdarg.h>
+	<varargs.h>
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\file.h
+	<stdio.h>
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\action.c
+	"lgeneral.h"
+	"unit.h"
+	"action.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\ai.c
+	"lgeneral.h"
+	"date.h"
+	"unit.h"
+	"action.h"
+	"map.h"
+	"ai_tools.h"
+	"ai_group.h"
+	"ai.h"
+	"scenario.h"
+	<assert.h>
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\ai_tools.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\ai_group.h
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\ai_group.c
+	"lgeneral.h"
+	"unit.h"
+	"action.h"
+	"map.h"
+	"ai_tools.h"
+	"ai_group.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\ai_tools.c
+	"lgeneral.h"
+	"unit.h"
+	"map.h"
+	"ai_tools.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\audio.c
+	<SDL.h>
+	<SDL_mixer.h>
+	<stdio.h>
+	<stdlib.h>
+	"audio.h"
+	"misc.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\campaign.c
+	"lgeneral.h"
+	"parser.h"
+	"list.h"
+	"unit.h"
+	"date.h"
+	"scenario.h"
+	"campaign.h"
+	"localize.h"
+	"misc.h"
+	"file.h"
+	"FPGE/pgf.h"
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\parser.h
+	"list.h"
+	<stdio.h>
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pgf.h
+	<stdio.h>
+	"list.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\config.c
+	<SDL.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	"sdl.h"
+	"config.h"
+	"parser.h"
+	"localize.h"
+	"misc.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\date.c
+	<time.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"date.h"
+	"misc.h"
+	"localize.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\event.c
+	"lgeneral.h"
+	"event.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\file.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<dirent.h>
+	<sys/stat.h>
+	"misc.h"
+	"list.h"
+	"file.h"
+	"localize.h"
+	"sdl.h"
+	"config.h"
+	"campaign.h"
+	"FPGE/pgf.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pg.c
+	<stdio.h>
+	"fpge.h"
+	"pg.h"
+	"pgf.h"
+	"terrain.h"
+	"map.h"
+	"localize.h"
+	"sdl.h"
+	"misc.h"
+	"file.h"
+	"lgeneral.h"
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\fpge\fpge.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pg.h
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pgf.c
+	<stdio.h>
+	<ctype.h>
+	"fpge.h"
+	"load.h"
+	"pg.h"
+	"pgf.h"
+	"lgeneral.h"
+	"parser.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"scenario.h"
+	"localize.h"
+	"campaign.h"
+	"unit_lib.h"
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\fpge\load.h
+	<stdio.h>
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\gui.c
+	"lgeneral.h"
+	"event.h"
+	"parser.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"list.h"
+	"nation.h"
+	"unit_lib.h"
+	"player.h"
+	"slot.h"
+	"windows.h"
+	"gui.h"
+	"scenario.h"
+	"campaign.h"
+	"localize.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\image.c
+	<SDL.h>
+	<stdlib.h>
+	"sdl.h"
+	"image.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\list.c
+	<stdlib.h>
+	"list.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\main.c
+	"../config.h"
+	<assert.h>
+	<stdarg.h>
+	<unistd.h>
+	"lgeneral.h"
+	"parser.h"
+	"event.h"
+	"date.h"
+	"nation.h"
+	"list.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"scenario.h"
+	"campaign.h"
+	"engine.h"
+	"player.h"
+	"localize.h"
+	<getopt.h>
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\map.c
+	"lgeneral.h"
+	"parser.h"
+	"file.h"
+	"nation.h"
+	"unit.h"
+	"map.h"
+	"misc.h"
+	"localize.h"
+	"campaign.h"
+	"FPGE/pgf.h"
+	<assert.h>
+	<limits.h>
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\misc.c
+	"misc.h"
+	"parser.h"
+	"localize.h"
+	"paths.h"
+	"sdl.h"
+	<time.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\util\paths.h
+	<config.h>
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\nation.c
+	<SDL.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"sdl.h"
+	"list.h"
+	"misc.h"
+	"file.h"
+	"nation.h"
+	"parser.h"
+	"localize.h"
+	"config.h"
+	"FPGE/pgf.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\parser.c
+	<stdlib.h>
+	<string.h>
+	"parser.h"
+	"misc.h"
+	"localize.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\player.c
+	<dlfcn.h>
+	"lgeneral.h"
+	"list.h"
+	"nation.h"
+	"unit_lib.h"
+	"player.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.c
+	<SDL.h>
+	<stdlib.h>
+	"lgeneral.h"
+	"sdl.h"
+	"date.h"
+	"event.h"
+	"image.h"
+	"list.h"
+	"windows.h"
+	"unit.h"
+	"purchase_dlg.h"
+	"gui.h"
+	"localize.h"
+	"scenario.h"
+	"file.h"
+	"campaign.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\scenario.c
+	"lgeneral.h"
+	"parser.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"scenario.h"
+	"localize.h"
+	"campaign.h"
+	"FPGE/pgf.h"
+	<stdio.h>
+	<stdlib.h>
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\sdl.c
+	"sdl.h"
+	"SDL_image.h"
+	"misc.h"
+	<assert.h>
+	<stdlib.h>
+	<string.h>
+	"localize.h"
+
+1325774434 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\slot.c
+	<assert.h>
+	<math.h>
+	<dirent.h>
+	"lgeneral.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"player.h"
+	"map.h"
+	"misc.h"
+	"scenario.h"
+	"slot.h"
+	"campaign.h"
+	"localize.h"
+	<SDL_endian.h>
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\strat_map.c
+	<dirent.h>
+	"lgeneral.h"
+	"windows.h"
+	"unit.h"
+	"purchase_dlg.h"
+	"gui.h"
+	"nation.h"
+	"player.h"
+	"date.h"
+	"map.h"
+	"scenario.h"
+	"engine.h"
+	"strat_map.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\terrain.c
+	"lgeneral.h"
+	"parser.h"
+	"unit_lib.h"
+	"terrain.h"
+	"localize.h"
+	"file.h"
+	"FPGE/pgf.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\unit.c
+	"lgeneral.h"
+	"list.h"
+	"unit.h"
+	"localize.h"
+	"map.h"
+	"campaign.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\unit_lib.c
+	"lgeneral.h"
+	"parser.h"
+	"unit_lib.h"
+	"localize.h"
+	"nation.h"
+	"file.h"
+	"config.h"
+	"player.h"
+	"unit.h"
+	"FPGE/pgf.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\src\windows.c
+	"lgeneral.h"
+	"file.h"
+	"event.h"
+	"unit.h"
+	"windows.h"
+	"localize.h"
+	"purchase_dlg.h"
+	"gui.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\util\hashtable.c
+	"hashtable.h"
+	"hashtable_private.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\util\hashtable.h
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\util\hashtable_private.h
+	"hashtable.h"
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\util\localize.c
+	"localize.h"
+	"hashtable.h"
+	"paths.h"
+	"intl/hash-string.h"
+	<assert.h>
+	<locale.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1430590377 c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\\intl\hash-string.h
+
+1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\codeblocks\lgeneral.rc
+
+1609855289 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\action.c
+	"lgeneral.h"
+	"unit.h"
+	"action.h"
+
+1610210279 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\lgeneral.h
+	<SDL.h>
+	<SDL_mixer.h>
+	"audio.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"sdl.h"
+	"image.h"
+	"misc.h"
+	"list.h"
+	"config.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1326100188 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	"SDL_config_dreamcast.h"
+	"SDL_config_macos.h"
+	"SDL_config_macosx.h"
+	"SDL_config_symbian.h"
+	"SDL_config_win32.h"
+	"SDL_config_os2.h"
+	"SDL_config_minimal.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_platform.h
+
+1326100194 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_config_win32.h
+	"SDL_platform.h"
+
+1326100200 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\begin_code.h
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\close_code.h
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_keysym.h
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1258235552 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_mixer.h
+	"SDL_types.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_types.h
+	"SDL_stdinc.h"
+
+1610207931 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\audio.h
+	<SDL_mixer.h>
+
+1610215660 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\sdl.h
+	<SDL.h>
+
+1610209857 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\image.h
+
+1610213470 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\misc.h
+	<stdio.h>
+
+1610210276 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\list.h
+
+1623700607 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\config.h
+	<../config.h>
+
+1623618694 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\unit.h
+	"unit_lib.h"
+	"nation.h"
+	"player.h"
+	"terrain.h"
+
+1610187899 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\unit_lib.h
+
+1610213668 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\nation.h
+
+1612020516 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\player.h
+	"list.h"
+	"unit_lib.h"
+
+1612020582 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\terrain.h
+	<SDL.h>
+	"image.h"
+	"audio.h"
+
+1612020313 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\action.h
+
+1623702087 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\ai.c
+	"lgeneral.h"
+	"date.h"
+	"unit.h"
+	"action.h"
+	"map.h"
+	"ai_tools.h"
+	"ai_group.h"
+	"ai.h"
+	"scenario.h"
+	<assert.h>
+
+1610209147 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\date.h
+
+1612020516 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\map.h
+	"terrain.h"
+	"nation.h"
+	"player.h"
+	"unit.h"
+
+1612020350 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\ai_tools.h
+
+1612020350 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\ai_group.h
+
+1610207931 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\ai.h
+
+1610215563 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\scenario.h
+
+1611507957 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\ai_group.c
+	"lgeneral.h"
+	"unit.h"
+	"action.h"
+	"map.h"
+	"ai_tools.h"
+	"ai_group.h"
+
+1611508099 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\ai_tools.c
+	"lgeneral.h"
+	"unit.h"
+	"map.h"
+	"ai_tools.h"
+
+1611508332 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\audio.c
+	<SDL.h>
+	<SDL_mixer.h>
+	<stdio.h>
+	<stdlib.h>
+	"audio.h"
+	"misc.h"
+
+1611509202 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\campaign.c
+	"lgeneral.h"
+	"parser.h"
+	"list.h"
+	"unit.h"
+	"date.h"
+	"scenario.h"
+	"campaign.h"
+	"localize.h"
+	"misc.h"
+	"file.h"
+	"FPGE/pgf.h"
+
+1610213988 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\parser.h
+	"list.h"
+	<stdio.h>
+
+1610208417 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\campaign.h
+
+1610218121 c:\work\lgeneral-deluxe-lgeneral-deluxe\util\localize.h
+	<config.h>
+	<libintl.h>
+
+1610037270 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\libintl.h
+	<locale.h>
+	<stdio.h>
+	<stddef.h>
+	<stdarg.h>
+	<varargs.h>
+
+1609918749 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\file.h
+	<stdio.h>
+
+1607207038 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pgf.h
+	<stdio.h>
+	"list.h"
+
+1611509377 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\config.c
+	<SDL.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	"sdl.h"
+	"config.h"
+	"parser.h"
+	"localize.h"
+	"misc.h"
+
+1611509533 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\date.c
+	<time.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"date.h"
+	"misc.h"
+	"localize.h"
+
+1623756200 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\engine.c
+	<dlfcn.h>
+	<math.h>
+	"lgeneral.h"
+	"date.h"
+	"event.h"
+	"windows.h"
+	"nation.h"
+	"unit.h"
+	"purchase_dlg.h"
+	"headquarters_dlg.h"
+	"message_dlg.h"
+	"gui.h"
+	"map.h"
+	"scenario.h"
+	"slot.h"
+	"action.h"
+	"strat_map.h"
+	"campaign.h"
+	"ai.h"
+	"engine.h"
+	"localize.h"
+	"file.h"
+
+1610209352 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\event.h
+
+1610189375 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\windows.h
+	"image.h"
+
+1610215049 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.h
+
+1610209444 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\headquarters_dlg.h
+
+1610212727 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\message_dlg.h
+
+1609861779 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\gui.h
+	"unit.h"
+	"windows.h"
+	"purchase_dlg.h"
+	"headquarters_dlg.h"
+	"message_dlg.h"
+
+1610216093 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\slot.h
+
+1610216093 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\strat_map.h
+
+1610209251 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\engine.h
+
+1611510446 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\event.c
+	"lgeneral.h"
+	"event.h"
+
+1611510514 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\file.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<dirent.h>
+	<sys/stat.h>
+	"misc.h"
+	"list.h"
+	"file.h"
+	"localize.h"
+	"sdl.h"
+	"config.h"
+	"campaign.h"
+	"FPGE/pgf.h"
+
+1430590377 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pg.c
+	<stdio.h>
+	"fpge.h"
+	"pg.h"
+	"pgf.h"
+	"terrain.h"
+	"map.h"
+	"localize.h"
+	"sdl.h"
+	"misc.h"
+	"file.h"
+	"lgeneral.h"
+
+1610217631 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\fpge\fpge.h
+
+1430590377 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pg.h
+
+1430590377 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pgf.c
+	<stdio.h>
+	<ctype.h>
+	"fpge.h"
+	"load.h"
+	"pg.h"
+	"pgf.h"
+	"lgeneral.h"
+	"parser.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"scenario.h"
+	"localize.h"
+	"campaign.h"
+	"unit_lib.h"
+
+1430590377 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\fpge\load.h
+	<stdio.h>
+
+1623608118 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\gui.c
+	"lgeneral.h"
+	"event.h"
+	"parser.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"list.h"
+	"nation.h"
+	"unit_lib.h"
+	"player.h"
+	"slot.h"
+	"windows.h"
+	"gui.h"
+	"scenario.h"
+	"campaign.h"
+	"localize.h"
+
+1611511088 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\image.c
+	<SDL.h>
+	<stdlib.h>
+	"sdl.h"
+	"image.h"
+
+1612010325 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\list.c
+	<stdlib.h>
+	"list.h"
+
+1611511742 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\main.c
+	"../config.h"
+	<assert.h>
+	<stdarg.h>
+	<unistd.h>
+	"lgeneral.h"
+	"parser.h"
+	"event.h"
+	"date.h"
+	"nation.h"
+	"list.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"scenario.h"
+	"campaign.h"
+	"engine.h"
+	"player.h"
+	"localize.h"
+	<getopt.h>
+
+1611511825 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\map.c
+	"lgeneral.h"
+	"parser.h"
+	"file.h"
+	"nation.h"
+	"unit.h"
+	"map.h"
+	"misc.h"
+	"localize.h"
+	"campaign.h"
+	"FPGE/pgf.h"
+	<assert.h>
+	<limits.h>
+
+1611512959 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\misc.c
+	"misc.h"
+	"parser.h"
+	"localize.h"
+	"paths.h"
+	"sdl.h"
+	<time.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1430590377 c:\work\lgeneral-deluxe-lgeneral-deluxe\util\paths.h
+	<config.h>
+
+1611513200 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\nation.c
+	<SDL.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"sdl.h"
+	"list.h"
+	"misc.h"
+	"file.h"
+	"nation.h"
+	"parser.h"
+	"localize.h"
+	"config.h"
+	"FPGE/pgf.h"
+
+1611514044 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\parser.c
+	<stdlib.h>
+	<string.h>
+	"parser.h"
+	"misc.h"
+	"localize.h"
+
+1610028312 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\player.c
+	<dlfcn.h>
+	"lgeneral.h"
+	"list.h"
+	"nation.h"
+	"unit_lib.h"
+	"player.h"
+
+1623742306 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.c
+	<SDL.h>
+	<stdlib.h>
+	"lgeneral.h"
+	"sdl.h"
+	"date.h"
+	"event.h"
+	"image.h"
+	"list.h"
+	"windows.h"
+	"unit.h"
+	"purchase_dlg.h"
+	"gui.h"
+	"localize.h"
+	"scenario.h"
+	"file.h"
+	"campaign.h"
+
+1611517663 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\scenario.c
+	"lgeneral.h"
+	"parser.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"scenario.h"
+	"localize.h"
+	"campaign.h"
+	"FPGE/pgf.h"
+	<stdio.h>
+	<stdlib.h>
+
+1611561177 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\sdl.c
+	"sdl.h"
+	"SDL_image.h"
+	"misc.h"
+	<assert.h>
+	<stdlib.h>
+	<string.h>
+	"localize.h"
+
+1325774434 c:\work\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1623777042 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\slot.c
+	<assert.h>
+	<math.h>
+	<dirent.h>
+	"lgeneral.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"player.h"
+	"map.h"
+	"misc.h"
+	"scenario.h"
+	"slot.h"
+	"campaign.h"
+	"localize.h"
+	<SDL_endian.h>
+
+1611562718 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\strat_map.c
+	<dirent.h>
+	"lgeneral.h"
+	"windows.h"
+	"unit.h"
+	"purchase_dlg.h"
+	"gui.h"
+	"nation.h"
+	"player.h"
+	"date.h"
+	"map.h"
+	"scenario.h"
+	"engine.h"
+	"strat_map.h"
+
+1611601820 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\terrain.c
+	"lgeneral.h"
+	"parser.h"
+	"unit_lib.h"
+	"terrain.h"
+	"localize.h"
+	"file.h"
+	"FPGE/pgf.h"
+
+1623615890 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\unit.c
+	"lgeneral.h"
+	"list.h"
+	"unit.h"
+	"localize.h"
+	"map.h"
+	"campaign.h"
+
+1612020009 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\unit_lib.c
+	"lgeneral.h"
+	"parser.h"
+	"unit_lib.h"
+	"localize.h"
+	"nation.h"
+	"file.h"
+	"config.h"
+	"player.h"
+	"unit.h"
+	"FPGE/pgf.h"
+
+1610274098 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\windows.c
+	"lgeneral.h"
+	"file.h"
+	"event.h"
+	"unit.h"
+	"windows.h"
+	"localize.h"
+	"purchase_dlg.h"
+	"gui.h"
+
+1430590377 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\util\hashtable.c
+	"hashtable.h"
+	"hashtable_private.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+
+1610218000 c:\work\lgeneral-deluxe-lgeneral-deluxe\util\hashtable.h
+
+1430590377 c:\work\lgeneral-deluxe-lgeneral-deluxe\util\hashtable_private.h
+	"hashtable.h"
+
+1610037270 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\util\localize.c
+	"localize.h"
+	"hashtable.h"
+	"paths.h"
+	"intl/hash-string.h"
+	<assert.h>
+	<locale.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1610219569 c:\work\lgeneral-deluxe-lgeneral-deluxe\\intl\hash-string.h
+
+1430590377 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\codeblocks\lgeneral.rc
+
+1611512461 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\message_dlg.c
+	"lgeneral.h"
+	"sdl.h"
+	"image.h"
+	"list.h"
+	"windows.h"
+	"message_dlg.h"
+	"gui.h"
+	"localize.h"
+	"file.h"
+	"event.h"
+
+1611511048 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\headquarters_dlg.c
+	"lgeneral.h"
+	"sdl.h"
+	"image.h"
+	"list.h"
+	"windows.h"
+	"headquarters_dlg.h"
+	"gui.h"
+	"localize.h"
+	"file.h"
+	"engine.h"
+	"campaign.h"
+
+1609855289 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\action.c
+	"lgeneral.h"
+	"unit.h"
+	"action.h"
+
+1610210279 f:\lgeneral-deluxe-lgeneral-deluxe\src\lgeneral.h
+	<SDL.h>
+	<SDL_mixer.h>
+	"audio.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"sdl.h"
+	"image.h"
+	"misc.h"
+	"list.h"
+	"config.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1326100188 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	"SDL_config_dreamcast.h"
+	"SDL_config_macos.h"
+	"SDL_config_macosx.h"
+	"SDL_config_symbian.h"
+	"SDL_config_win32.h"
+	"SDL_config_os2.h"
+	"SDL_config_minimal.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_platform.h
+
+1326100194 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_config_win32.h
+	"SDL_platform.h"
+
+1326100200 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\begin_code.h
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\close_code.h
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_keysym.h
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1258235552 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_mixer.h
+	"SDL_types.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325727840 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_types.h
+	"SDL_stdinc.h"
+
+1610207931 f:\lgeneral-deluxe-lgeneral-deluxe\src\audio.h
+	<SDL_mixer.h>
+
+1610215660 f:\lgeneral-deluxe-lgeneral-deluxe\src\sdl.h
+	<SDL.h>
+
+1610209857 f:\lgeneral-deluxe-lgeneral-deluxe\src\image.h
+
+1610213470 f:\lgeneral-deluxe-lgeneral-deluxe\src\misc.h
+	<stdio.h>
+
+1610210276 f:\lgeneral-deluxe-lgeneral-deluxe\src\list.h
+
+1623700607 f:\lgeneral-deluxe-lgeneral-deluxe\src\config.h
+	<../config.h>
+
+1623618694 f:\lgeneral-deluxe-lgeneral-deluxe\src\unit.h
+	"unit_lib.h"
+	"nation.h"
+	"player.h"
+	"terrain.h"
+
+1626604222 f:\lgeneral-deluxe-lgeneral-deluxe\src\unit_lib.h
+
+1610213668 f:\lgeneral-deluxe-lgeneral-deluxe\src\nation.h
+
+1612020516 f:\lgeneral-deluxe-lgeneral-deluxe\src\player.h
+	"list.h"
+	"unit_lib.h"
+
+1612020582 f:\lgeneral-deluxe-lgeneral-deluxe\src\terrain.h
+	<SDL.h>
+	"image.h"
+	"audio.h"
+
+1612020313 f:\lgeneral-deluxe-lgeneral-deluxe\src\action.h
+
+1623702087 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\ai.c
+	"lgeneral.h"
+	"date.h"
+	"unit.h"
+	"action.h"
+	"map.h"
+	"ai_tools.h"
+	"ai_group.h"
+	"ai.h"
+	"scenario.h"
+	<assert.h>
+
+1610209147 f:\lgeneral-deluxe-lgeneral-deluxe\src\date.h
+
+1612020516 f:\lgeneral-deluxe-lgeneral-deluxe\src\map.h
+	"terrain.h"
+	"nation.h"
+	"player.h"
+	"unit.h"
+
+1612020350 f:\lgeneral-deluxe-lgeneral-deluxe\src\ai_tools.h
+
+1612020350 f:\lgeneral-deluxe-lgeneral-deluxe\src\ai_group.h
+
+1610207931 f:\lgeneral-deluxe-lgeneral-deluxe\src\ai.h
+
+1610215563 f:\lgeneral-deluxe-lgeneral-deluxe\src\scenario.h
+
+1611507957 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\ai_group.c
+	"lgeneral.h"
+	"unit.h"
+	"action.h"
+	"map.h"
+	"ai_tools.h"
+	"ai_group.h"
+
+1611508099 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\ai_tools.c
+	"lgeneral.h"
+	"unit.h"
+	"map.h"
+	"ai_tools.h"
+
+1611508332 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\audio.c
+	<SDL.h>
+	<SDL_mixer.h>
+	<stdio.h>
+	<stdlib.h>
+	"audio.h"
+	"misc.h"
+
+1611509202 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\campaign.c
+	"lgeneral.h"
+	"parser.h"
+	"list.h"
+	"unit.h"
+	"date.h"
+	"scenario.h"
+	"campaign.h"
+	"localize.h"
+	"misc.h"
+	"file.h"
+	"FPGE/pgf.h"
+
+1610213988 f:\lgeneral-deluxe-lgeneral-deluxe\src\parser.h
+	"list.h"
+	<stdio.h>
+
+1610208417 f:\lgeneral-deluxe-lgeneral-deluxe\src\campaign.h
+
+1610218121 f:\lgeneral-deluxe-lgeneral-deluxe\util\localize.h
+	<config.h>
+	<libintl.h>
+
+1610037270 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\libintl.h
+	<locale.h>
+	<stdio.h>
+	<stddef.h>
+	<stdarg.h>
+	<varargs.h>
+
+1609918749 f:\lgeneral-deluxe-lgeneral-deluxe\src\file.h
+	<stdio.h>
+
+1607207038 f:\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pgf.h
+	<stdio.h>
+	"list.h"
+
+1623843814 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\config.c
+	<SDL.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	"sdl.h"
+	"config.h"
+	"parser.h"
+	"localize.h"
+	"misc.h"
+
+1611509533 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\date.c
+	<time.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"date.h"
+	"misc.h"
+	"localize.h"
+
+1626602499 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\engine.c
+	<dlfcn.h>
+	<math.h>
+	"lgeneral.h"
+	"date.h"
+	"event.h"
+	"windows.h"
+	"nation.h"
+	"unit.h"
+	"purchase_dlg.h"
+	"headquarters_dlg.h"
+	"message_dlg.h"
+	"gui.h"
+	"map.h"
+	"scenario.h"
+	"slot.h"
+	"action.h"
+	"strat_map.h"
+	"campaign.h"
+	"ai.h"
+	"engine.h"
+	"localize.h"
+	"file.h"
+
+1610209352 f:\lgeneral-deluxe-lgeneral-deluxe\src\event.h
+
+1610189375 f:\lgeneral-deluxe-lgeneral-deluxe\src\windows.h
+	"image.h"
+
+1610215049 f:\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.h
+
+1610209444 f:\lgeneral-deluxe-lgeneral-deluxe\src\headquarters_dlg.h
+
+1610212727 f:\lgeneral-deluxe-lgeneral-deluxe\src\message_dlg.h
+
+1609861779 f:\lgeneral-deluxe-lgeneral-deluxe\src\gui.h
+	"unit.h"
+	"windows.h"
+	"purchase_dlg.h"
+	"headquarters_dlg.h"
+	"message_dlg.h"
+
+1610216093 f:\lgeneral-deluxe-lgeneral-deluxe\src\slot.h
+
+1610216093 f:\lgeneral-deluxe-lgeneral-deluxe\src\strat_map.h
+
+1610209251 f:\lgeneral-deluxe-lgeneral-deluxe\src\engine.h
+
+1611510446 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\event.c
+	"lgeneral.h"
+	"event.h"
+
+1623843990 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\file.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<dirent.h>
+	<sys/stat.h>
+	"misc.h"
+	"list.h"
+	"file.h"
+	"localize.h"
+	"sdl.h"
+	"config.h"
+	"campaign.h"
+	"FPGE/pgf.h"
+
+1623843814 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pg.c
+	<stdio.h>
+	"fpge.h"
+	"pg.h"
+	"pgf.h"
+	"terrain.h"
+	"map.h"
+	"localize.h"
+	"sdl.h"
+	"misc.h"
+	"file.h"
+	"lgeneral.h"
+
+1610217631 f:\lgeneral-deluxe-lgeneral-deluxe\src\fpge\fpge.h
+
+1430590377 f:\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pg.h
+
+1430590377 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\fpge\pgf.c
+	<stdio.h>
+	<ctype.h>
+	"fpge.h"
+	"load.h"
+	"pg.h"
+	"pgf.h"
+	"lgeneral.h"
+	"parser.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"scenario.h"
+	"localize.h"
+	"campaign.h"
+	"unit_lib.h"
+
+1430590377 f:\lgeneral-deluxe-lgeneral-deluxe\src\fpge\load.h
+	<stdio.h>
+
+1623608118 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\gui.c
+	"lgeneral.h"
+	"event.h"
+	"parser.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"list.h"
+	"nation.h"
+	"unit_lib.h"
+	"player.h"
+	"slot.h"
+	"windows.h"
+	"gui.h"
+	"scenario.h"
+	"campaign.h"
+	"localize.h"
+
+1611511048 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\headquarters_dlg.c
+	"lgeneral.h"
+	"sdl.h"
+	"image.h"
+	"list.h"
+	"windows.h"
+	"headquarters_dlg.h"
+	"gui.h"
+	"localize.h"
+	"file.h"
+	"engine.h"
+	"campaign.h"
+
+1611511088 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\image.c
+	<SDL.h>
+	<stdlib.h>
+	"sdl.h"
+	"image.h"
+
+1612010325 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\list.c
+	<stdlib.h>
+	"list.h"
+
+1624203753 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\main.c
+	"../config.h"
+	<assert.h>
+	<stdarg.h>
+	<unistd.h>
+	"lgeneral.h"
+	"parser.h"
+	"event.h"
+	"date.h"
+	"nation.h"
+	"list.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"scenario.h"
+	"campaign.h"
+	"engine.h"
+	"player.h"
+	"localize.h"
+	<getopt.h>
+
+1626620997 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\map.c
+	"lgeneral.h"
+	"parser.h"
+	"file.h"
+	"nation.h"
+	"unit.h"
+	"map.h"
+	"misc.h"
+	"localize.h"
+	"campaign.h"
+	"FPGE/pgf.h"
+	<assert.h>
+	<limits.h>
+
+1611512461 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\message_dlg.c
+	"lgeneral.h"
+	"sdl.h"
+	"image.h"
+	"list.h"
+	"windows.h"
+	"message_dlg.h"
+	"gui.h"
+	"localize.h"
+	"file.h"
+	"event.h"
+
+1611512959 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\misc.c
+	"misc.h"
+	"parser.h"
+	"localize.h"
+	"paths.h"
+	"sdl.h"
+	<time.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1430590377 f:\lgeneral-deluxe-lgeneral-deluxe\util\paths.h
+	<config.h>
+
+1611513200 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\nation.c
+	<SDL.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"sdl.h"
+	"list.h"
+	"misc.h"
+	"file.h"
+	"nation.h"
+	"parser.h"
+	"localize.h"
+	"config.h"
+	"FPGE/pgf.h"
+
+1623843814 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\parser.c
+	<stdlib.h>
+	<string.h>
+	"parser.h"
+	"misc.h"
+	"localize.h"
+
+1610028312 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\player.c
+	<dlfcn.h>
+	"lgeneral.h"
+	"list.h"
+	"nation.h"
+	"unit_lib.h"
+	"player.h"
+
+1623742306 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.c
+	<SDL.h>
+	<stdlib.h>
+	"lgeneral.h"
+	"sdl.h"
+	"date.h"
+	"event.h"
+	"image.h"
+	"list.h"
+	"windows.h"
+	"unit.h"
+	"purchase_dlg.h"
+	"gui.h"
+	"localize.h"
+	"scenario.h"
+	"file.h"
+	"campaign.h"
+
+1624635368 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\scenario.c
+	"lgeneral.h"
+	"parser.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"file.h"
+	"map.h"
+	"scenario.h"
+	"localize.h"
+	"campaign.h"
+	"FPGE/pgf.h"
+	<stdio.h>
+	<stdlib.h>
+
+1611561177 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\sdl.c
+	"sdl.h"
+	"SDL_image.h"
+	"misc.h"
+	<assert.h>
+	<stdlib.h>
+	<string.h>
+	"localize.h"
+
+1325774434 f:\lgeneral-deluxe-lgeneral-deluxe\dependencies\include\sdl\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1623827484 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\slot.c
+	<assert.h>
+	<math.h>
+	<dirent.h>
+	"lgeneral.h"
+	"date.h"
+	"nation.h"
+	"unit.h"
+	"player.h"
+	"map.h"
+	"misc.h"
+	"scenario.h"
+	"slot.h"
+	"campaign.h"
+	"localize.h"
+	<SDL_endian.h>
+
+1611562718 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\strat_map.c
+	<dirent.h>
+	"lgeneral.h"
+	"windows.h"
+	"unit.h"
+	"purchase_dlg.h"
+	"gui.h"
+	"nation.h"
+	"player.h"
+	"date.h"
+	"map.h"
+	"scenario.h"
+	"engine.h"
+	"strat_map.h"
+
+1624177925 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\terrain.c
+	"lgeneral.h"
+	"parser.h"
+	"unit_lib.h"
+	"terrain.h"
+	"localize.h"
+	"file.h"
+	"FPGE/pgf.h"
+
+1623615890 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\unit.c
+	"lgeneral.h"
+	"list.h"
+	"unit.h"
+	"localize.h"
+	"map.h"
+	"campaign.h"
+
+1626624477 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\unit_lib.c
+	"lgeneral.h"
+	"parser.h"
+	"unit_lib.h"
+	"localize.h"
+	"nation.h"
+	"file.h"
+	"config.h"
+	"player.h"
+	"unit.h"
+	"FPGE/pgf.h"
+
+1610274098 source:f:\lgeneral-deluxe-lgeneral-deluxe\src\windows.c
+	"lgeneral.h"
+	"file.h"
+	"event.h"
+	"unit.h"
+	"windows.h"
+	"localize.h"
+	"purchase_dlg.h"
+	"gui.h"
+
+1430590377 source:f:\lgeneral-deluxe-lgeneral-deluxe\util\hashtable.c
+	"hashtable.h"
+	"hashtable_private.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+
+1610218000 f:\lgeneral-deluxe-lgeneral-deluxe\util\hashtable.h
+
+1430590377 f:\lgeneral-deluxe-lgeneral-deluxe\util\hashtable_private.h
+	"hashtable.h"
+
+1610037270 source:f:\lgeneral-deluxe-lgeneral-deluxe\util\localize.c
+	"localize.h"
+	"hashtable.h"
+	"paths.h"
+	"intl/hash-string.h"
+	<assert.h>
+	<locale.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1610219569 f:\lgeneral-deluxe-lgeneral-deluxe\\intl\hash-string.h
+
+1430590377 source:f:\lgeneral-deluxe-lgeneral-deluxe\codeblocks\lgeneral.rc
+

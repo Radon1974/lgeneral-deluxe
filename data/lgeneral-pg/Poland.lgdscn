@@ -1,0 +1,64 @@
+# General scenario data																
+name	POLAND															
+desc	September 1, 1939: The German army crosses the Polish border with their famous blitzkrieg. In 10 days they must capture Lodz and Kutno... the gates to Warsaw.															
+authors	SSI															
+year	1939															
+month	9															
+day	1															
+turns	10															
+turns_per_day	0															
+days_per_turn	1															
+domain	pg															
+nation_db	nations.lgdndb															
+unit_db	pg.lgdudb															
+map file	map01.lgdmap															
+weather_zone	3															
+weather	fair	fair	fair	fair	fair	r	clouds	rain	fair	fair						
+																
+# Players																
+# id	name	unit_limit	core_limit	orientation	control	strategy	strength_row	air_trsp_unit	air_trsp_number	sea_trsp_unit	sea_trsp_number	ai_module								
+axis	Axis	15	15	right	human	1	0	28	0	298	0	default								
+allies	Allies	11	0	left	cpu	-1	2	353	0	290	0	default								
+																
+# Allied players																
+# player_id	allied_players_id's															
+axis																
+allies																
+																
+# Prestige allocation																
+# player_id	prestige on subsequent turns															
+axis	228	0	0	0	0	0	0	0	0	0						
+allies	240	20	20	20	20	20	20	20	20	20						
+																
+# Player nations																
+# player_id	nation_id's															
+axis	ger	aus	it	hun	bul	rum	fin	esp								
+allies	bel	lux	den	fra	gre	usa	tur	net	nor	pol	por	so	swe	swi	eng	yug
+																
+# Flags																
+# x	y	nation	objective_flag													
+2	2	pol	0													
+12	3	pol	1													
+15	6	pol	0													
+5	7	pol	0													
+12	7	pol	0													
+13	8	pol	1													
+2	13	ger	1													
+14	14	pol	0													
+																
+# Results																
+# result	message	logical_check	type	player	x	y	count	tag		
+vcond_check_type	every_turn															
+defeat	Axis Defeat															
+major	Axis Major Victory	and	control_all_hexes	axis	0	0	0	0	turns_left	0	0	0	3	0		
+minor	Axis Minor Victory	and	control_all_hexes	axis	0	0	0	0								
+																
+# Deployment hexes																
+# player_id	deploy_type	coordinates															
+axis	default															
+allies	default															
+																
+# Units																
+# unit_id	nation_id	x	y	strength	entrenchment	experience	organic_transport_id	air/sea_transport_id	core_unit_flag	tag								
+97	ger	3	12	10	0	0	85	none	1	0							
+116	pol	12	3	10	2	0	none	none	0	0							

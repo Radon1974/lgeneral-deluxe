@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="lgeneral" />
+		<Option platforms="Windows;" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Script file="lib_finder.script" />
+			<Target title="Debug">
+				<Option output="bin/Debug/lgeneral" prefix_auto="1" extension_auto="1" />
+				<Option object_output="bin/obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option='-DPACKAGE=\&quot;1.2.3.DEBUG\&quot;' />
+					<Add option='-DVERSION=\&quot;1.2.3.DEBUG\&quot;' />
+					<Add directory="../dependencies/include" />
+					<Add directory="../util" />
+					<Add directory="../dependencies/include/SDL" />
+					<Add directory="../" />
+					<Add directory="../src" />
+				</Compiler>
+				<Linker>
+					<Add option="-lmingw32 -lintl -MD -lSDLmain -lSDL -lSDL_mixer -lSDL_image" />
+					<Add directory="../dependencies/lib" />
+					<Add directory="../dependencies/lib/x86" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/lgeneral" prefix_auto="1" extension_auto="1" />
+				<Option object_output="bin/obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option='-DPACKAGE=\&quot;1.2.4\&quot;' />
+					<Add option='-DVERSION=\&quot;1.2.4\&quot;' />
+					<Add directory="../dependencies/include" />
+					<Add directory="../util" />
+					<Add directory="../dependencies/include/SDL" />
+					<Add directory="../" />
+					<Add directory="../src" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lmingw32 -lintl -MD -lSDLmain -lSDL -lSDL_mixer -lSDL_image" />
+					<Add directory="../dependencies/lib" />
+					<Add directory="../dependencies/lib/x86" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-DWITH_SOUND" />
+			<Add directory="../dependencies/include" />
+			<Add directory="../util" />
+			<Add directory="../dependencies/include/SDL" />
+			<Add directory="../" />
+			<Add directory="../src" />
+		</Compiler>
+		<Linker>
+			<Add option="-lmingw32 -lintl -MD -lSDLmain -lSDL -lSDL_mixer -lSDL_image" />
+			<Add directory="../dependencies/lib" />
+			<Add directory="../dependencies/lib/x86" />
+		</Linker>
+		<ExtraCommands>
+			<Add after="cmd /c xcopy ..\dependencies\bin\*.dll .\  /y" />
+			<Add after="cmd /c xcopy ..\dependencies\lib\*.dll .\  /y" />
+			<Add after="cmd /c xcopy ..\dependencies\lib\x86\*.dll .\ /y" />
+			<Add after="cmd /c xcopy ..\data .\ /e /y" />
+			<Mode after="always" />
+		</ExtraCommands>
+		<Unit filename="../dependencies/bin/libiconv2.dll">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/bin/libintl3.dll">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/include/libintl.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/libintl-bcc.lib">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/libintl.def">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/libintl.dll.a">
+			<Option link="0" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/libintl.lib">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/x86/._libSDL.dll.a">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/x86/._libSDL.la">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/x86/._libSDLmain.a">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/x86/SDL.dll">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/x86/SDL_image.lib">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/x86/SDL_mixer.lib">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/x86/SDL_ttf.lib">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/x86/libSDL.dll.a">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/x86/libSDL.la">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/x86/libSDLmain.a">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/lib/x86/sdlgfx.lib">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../dependencies/readme.txt">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/ChangeLog">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/Makefile.in">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/VERSION">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/bindtextdom.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/cat-compat.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/dcgettext.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/dgettext.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/explodename.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/finddomain.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/gettext.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/gettext.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/gettextP.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/hash-string.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/intl-compat.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/l10nflist.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/libgettext.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/linux-msg.sed">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/loadinfo.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/loadmsgcat.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/localealias.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/po2tbl.sed.in">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/textdomain.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../intl/xopen-msg.sed">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../src/FPGE/fpge.h" />
+		<Unit filename="../src/FPGE/load.h" />
+		<Unit filename="../src/FPGE/pg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/FPGE/pg.h" />
+		<Unit filename="../src/FPGE/pgf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/FPGE/pgf.h" />
+		<Unit filename="../src/action.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/action.h" />
+		<Unit filename="../src/ai.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/ai.h" />
+		<Unit filename="../src/ai_group.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/ai_group.h" />
+		<Unit filename="../src/ai_tools.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/ai_tools.h" />
+		<Unit filename="../src/audio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/audio.h" />
+		<Unit filename="../src/campaign.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/campaign.h" />
+		<Unit filename="../src/config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/config.h" />
+		<Unit filename="../src/date.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/date.h" />
+		<Unit filename="../src/engine.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/engine.h" />
+		<Unit filename="../src/event.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/event.h" />
+		<Unit filename="../src/file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/file.h" />
+		<Unit filename="../src/gui.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/gui.h" />
+		<Unit filename="../src/headquarters_dlg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/headquarters_dlg.h" />
+		<Unit filename="../src/image.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/image.h" />
+		<Unit filename="../src/lgeneral.h" />
+		<Unit filename="../src/list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/list.h" />
+		<Unit filename="../src/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/map.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/map.h" />
+		<Unit filename="../src/message_dlg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/message_dlg.h" />
+		<Unit filename="../src/misc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/misc.h" />
+		<Unit filename="../src/misc.h.gch" />
+		<Unit filename="../src/nation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/nation.h" />
+		<Unit filename="../src/parser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/parser.h" />
+		<Unit filename="../src/player.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/player.h" />
+		<Unit filename="../src/purchase_dlg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/purchase_dlg.h" />
+		<Unit filename="../src/scenario.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/scenario.h" />
+		<Unit filename="../src/sdl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/sdl.h" />
+		<Unit filename="../src/slot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/slot.h" />
+		<Unit filename="../src/strat_map.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/strat_map.h" />
+		<Unit filename="../src/terrain.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/terrain.h" />
+		<Unit filename="../src/unit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/unit.h" />
+		<Unit filename="../src/unit_lib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/unit_lib.h" />
+		<Unit filename="../src/windows.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/windows.h" />
+		<Unit filename="../util/hashtable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../util/hashtable.h" />
+		<Unit filename="../util/localize.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../util/localize.h" />
+		<Unit filename="lgeneral.ico" />
+		<Unit filename="lgeneral.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Extensions>
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project output_language="Russian" />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
