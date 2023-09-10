@@ -25,7 +25,6 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-
 #include "lgeneral.h"
 #include "parser.h"
 #include "event.h"
@@ -40,7 +39,6 @@
 #include "engine.h"
 #include "player.h"
 #include "localize.h"
-
 
 #ifdef _GNU_SOURCE
 #  undef _GNU_SOURCE
@@ -251,8 +249,7 @@ static void eval_cmdline(int argc, char **argv)
 
 int main(int argc, char *argv[])
 {
-
-	char window_name[MAX_NAME];
+    char window_name[MAX_NAME];
 
     locale_init(0);
 

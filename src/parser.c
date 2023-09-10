@@ -507,7 +507,7 @@ PData* parser_read_file( const char *tree_name, const char *fname )
     ParserState *st = &state;
     PData *top = 0;
     /* открыть файл */
-    if ( ( state.file = fopen( fname, "rb" ) ) == 0 ) {
+    if ( ( state.file = fopen( fname, "r" ) ) == 0 ) {
         sprintf( parser_error, tr("%s: file not found"), fname );
         return 0;
     }

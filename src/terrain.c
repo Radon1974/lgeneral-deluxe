@@ -43,15 +43,15 @@ extern Config config;
 ====================================================================
 */
 StrToFlag fct_terrain[] = {
-    { "supply_air", SUPPLY_AIR },
-    { "supply_ground", SUPPLY_GROUND },
-    { "supply_ships", SUPPLY_SHIPS },
+    { "supply_air", SUPPLY_AIR },               
+    { "supply_ground", SUPPLY_GROUND },         
+    { "supply_ships", SUPPLY_SHIPS },           
     { "river", RIVER },
-    { "no_spotting", NO_SPOTTING },
-    { "inf_close_def", INF_CLOSE_DEF },
+    { "no_spotting", NO_SPOTTING },             
+    { "inf_close_def", INF_CLOSE_DEF },         
     { "swamp", SWAMP },
     { "desert", DESERT },
-    { "X", 0}
+    { "X", 0}    
 };
 
 /*
@@ -60,11 +60,11 @@ StrToFlag fct_terrain[] = {
 ====================================================================
 */
 StrToFlag fct_weather[] = {
-    { "no_air_attack", NO_AIR_ATTACK },
-    { "double_fuel_cost", DOUBLE_FUEL_COST },
+    { "no_air_attack", NO_AIR_ATTACK },         
+    { "double_fuel_cost", DOUBLE_FUEL_COST },   
     { "cut_strength", CUT_STRENGTH },
     { "bad_sight", BAD_SIGHT },
-    { "X", 0}
+    { "X", 0}    
 };
 
 /*
@@ -190,7 +190,7 @@ int terrain_load_tdb( char *fname, char *path )
         goto failure;
     anim_hide( terrain_icons->expl2, 1 );
     /* звуки местности */
-#ifdef WITH_SOUND
+#ifdef WITH_SOUND    
     if ( parser_get_value( pd, "explosion_sound", &str, 0 ) )
     {
         search_file_name_exact( path, str, config.mod_name, "Sound" );
@@ -222,7 +222,7 @@ int terrain_load_tdb( char *fname, char *path )
         else {
             search_file_name_exact( path, str, config.mod_name, "Graphics" );
             if ( ( terrain_images->images[j] = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto parser_failure;
-            SDL_SetColorKey( terrain_images->images[j], SDL_SRCCOLORKEY,
+            SDL_SetColorKey( terrain_images->images[j], SDL_SRCCOLORKEY, 
                              get_pixel( terrain_images->images[j], 0, 0 ) );
         }
     }
@@ -313,7 +313,7 @@ int terrain_load_tdb( char *fname, char *path )
     write_line( sdl.screen, log_font, log_str, log_x, &log_y ); refresh_screen( 0, 0, 0, 0 );
     free(domain);
     return 1;
-parser_failure:
+parser_failure:        
     fprintf( stderr, "%s\n", parser_get_error() );
 failure:
     terrain_delete();
@@ -491,7 +491,7 @@ int terrain_load_lgdtdb( char *fname, char *path )
             }
 
             /* звуки местности */
-#ifdef WITH_SOUND
+#ifdef WITH_SOUND    
             if ( strcmp( tokens[0], "explosion_sound" ) == 0 )
             {
                 search_file_name_exact( path, tokens[1], config.mod_name, "Sound" );
@@ -518,7 +518,7 @@ int terrain_load_lgdtdb( char *fname, char *path )
             else {
                 search_file_name_exact( path, tokens[1], config.mod_name, "Graphics" );
                 if ( ( terrain_images->images[cur_ground_condition] = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto failure;
-                SDL_SetColorKey( terrain_images->images[cur_ground_condition], SDL_SRCCOLORKEY,
+                SDL_SetColorKey( terrain_images->images[cur_ground_condition], SDL_SRCCOLORKEY, 
                                  get_pixel( terrain_images->images[cur_ground_condition], 0, 0 ) );
             }
 
@@ -626,7 +626,7 @@ int terrain_load_lgdtdb( char *fname, char *path )
                         terrain_types[terrain_type_get_index( tokens[0][0] )].mov[j - 2 + movement_type_get_index( tokens[1] ) * weather_type_count] = atoi( tokens[j] ); /* нормальная стоимость */
             }
         }
-    }
+    }    
     fclose(inf);
     /* ЖУРНАЛ */
     write_line( sdl.screen, log_font, log_str, log_x, &log_y ); refresh_screen( 0, 0, 0, 0 );
@@ -668,7 +668,7 @@ void terrain_delete( void )
     int i, j;
     /* типы местности */
     if ( terrain_images ) {
-        for ( j = ( weather_type_count / 4 ) - 1; j >= 0; j-- )
+        for ( j = ( weather_type_count / 4 ) - 1; j >= 0; j-- ) 
             if ( terrain_images->images[j] ) {
                 if ( terrain_images->images[j] == terrain_images->images[0] )
                     if ( j > 0 )
@@ -678,12 +678,12 @@ void terrain_delete( void )
         free( terrain_images ); terrain_images = 0;
     }
     if ( terrain_types ) {
-//        for ( i = 0; i < terrain_type_count; i++ ) {
-//            if ( terrain_types[i].flags ) free( terrain_types[i].flags );
-//ОШИБКА:            if ( terrain_types[i].mov ) free( terrain_types[i].mov );
-//ОШИБКА:            if ( terrain_types[i].spt ) free( terrain_types[i].spt );
-//            if ( terrain_types[i].name ) free( terrain_types[i].name );
-//        }
+        for ( i = 0; i < terrain_type_count; i++ ) {
+            if ( terrain_types[i].flags ) free( terrain_types[i].flags );
+            if ( terrain_types[i].mov ) free( terrain_types[i].mov );
+            if ( terrain_types[i].spt ) free( terrain_types[i].spt );
+            if ( terrain_types[i].name ) free( terrain_types[i].name );
+        }
         free( terrain_types ); terrain_types = 0;
         terrain_type_count = 0;
     }

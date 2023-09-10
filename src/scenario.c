@@ -738,7 +738,7 @@ int scen_load_lgscn( const char *fname, const char *path )
             unit_base.max_str = unit_base.str;
         if ( !parser_get_int( sub, "entr", &unit_base.entr ) ) goto parser_failure;
         if ( !parser_get_int( sub, "exp", &unit_base.exp_level ) ) goto parser_failure;
-        /* транспорт */
+        /* транспортер */
         trsp_prop = 0;
         if ( parser_get_value( sub, "trsp", &str, 0 ) && !STRCMP( str, "none" ) )
             trsp_prop = unit_lib_find( str );
@@ -870,6 +870,7 @@ int scen_load_lgdscn( const char *fname, const char *path )
     scen_message[0] = 0;
 
     inf=fopen(path,"rb");
+
     if (!inf)
     {
         fprintf( stderr, "Couldn't open scenario file\n");
@@ -1375,7 +1376,7 @@ int scen_load_lgdscn( const char *fname, const char *path )
                 fprintf( stderr, tr("%s: out of map: ignored\n"), unit_base.name );
                 continue;
             }
-            /* сила, окопанность, опыт */
+            /* strength, entrenchment, experience */
             unit_base.str = atoi( tokens[4] );
             if (unit_base.str > 10 )
                 unit_base.max_str = 10;
@@ -1383,7 +1384,7 @@ int scen_load_lgdscn( const char *fname, const char *path )
                 unit_base.max_str = unit_base.str;
             unit_base.entr = atoi( tokens[5] );
             unit_base.exp_level = atoi( tokens[6] );
-            /* транспорт */
+            /* транспортер */
             trsp_prop = 0;
             land_trsp_prop = 0;
             if ( strcmp( tokens[7], "none" ) != 0 )
@@ -1429,6 +1430,10 @@ int scen_load_lgdscn( const char *fname, const char *path )
                    ( (camp_loaded != NO_CAMPAIGN) && STRCMP(camp_cur_scen->id, camp_first) && config.use_core_units ) )
             {
                 unit = unit_create( unit_prop, trsp_prop, land_trsp_prop, &unit_base );
+
+
+
+
                 /* поместите юнит в список активных или подкреплений или список доступных юнитов */
                 if ( !unit_delayed ) {
                     list_add( units, unit );
@@ -1438,7 +1443,7 @@ int scen_load_lgdscn( const char *fname, const char *path )
             }
             else if (config.purchase == NO_PURCHASE) /* нет фиксированных reinfs с включенной покупкой */
                 list_add( reinf, unit );
-            /* отрегулируйте количество транспорта */
+            /* отрегулируйте количество транспортеров */
             if ( unit->embark == EMBARK_SEA ) {
                 unit->player->sea_trsp_count++;
                 unit->player->sea_trsp_used++;
@@ -1461,9 +1466,9 @@ int scen_load_lgdscn( const char *fname, const char *path )
 
     /* переверните значки, если этого требует сценарий */
     adjust_fixed_icon_orientation();
+
     /* проверьте, какие страны могут сделать покупку для этого сценария */
     update_nations_purchase_flag();
-
     return 1;
 failure:
     terrain_delete();
@@ -1939,7 +1944,7 @@ int scen_check_result( int after_last_turn )
     char fname[MAX_PATH];
     FILE *f;
     snprintf(fname, sizeof fname, "%s/.lgames/.scenresult", getenv("HOME"));
-    f = fopen(fname, "rb");
+    f = fopen(fname, "r");
     if (f) {
         unsigned len;
         scen_result[0] = '\0';
@@ -1991,7 +1996,7 @@ int scen_check_result( int after_last_turn )
 }
 /*
 ====================================================================
-Верните истину, если сценарий выполнен.
+Верните True, если сценарий выполнен.
 ====================================================================
 */
 int scen_done()

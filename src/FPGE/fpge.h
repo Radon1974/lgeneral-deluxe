@@ -14,7 +14,7 @@
 #ifndef _FPGE_H_
 #define _FPGE_H_
 
-//my helper function
+//моЯ вспомогательнаЯ функциЯ
 #define Max(a,b) (a>b)?(a):(b)
 #define Min(a,b) (a<b)?(a):(b)
 
@@ -33,22 +33,22 @@
 #define LONG long
 #define ULONG unsigned long
 
-#define MAX_TILES_IN_PG 237  //maximum number of map tile icons in PG. Used in various automatic actions
+#define MAX_TILES_IN_PG 237  //максимальное количество значков плиток карты в PG. €спользуетсЯ в различных автоматических действиЯх
 #define STD_MATRIX_MAX_X 20
 //#define STD_MATRIX_MAX_Y 12
 
-//#define MAX_TILES 256  //maximum number of map tile icons
-#define MAX_TILES 8192  //maximum number of map tile icons
+//#define MAX_TILES 256  //максимальное количество значков плитки карты
+#define MAX_TILES 8192  //максимальное количество значков плитки карты
 
-#define MAX_UICONS 6000 //maximum number of unit icons
-#define MAX_MUICONS 2  //allways 2 for strategic map
-#define MAX_UNITS 5000  //maximum number of units in equipment file
-#define MAX_FLAGS 512   //actually PG uses 48, we need 512 to handle 256 flags due to graphics loading code
-#define MAX_MINI_VIC_HEX 2   //allways 2 for strategic map
-#define MAX_STRENGTH_IN_ROW 21   // from 0 to 20 to suite PGF
-#define MAX_STRENGTH MAX_STRENGTH_IN_ROW*4   //actually 63
-#define MAX_ICONS MAX_UICONS  //most icons that can be loaded into address
-#define MAX_SICONS 100 // stack icons
+#define MAX_UICONS 6000 //максимальное количество значков юнитов
+#define MAX_MUICONS 2  //всегда 2 длЯ стратегической карты
+#define MAX_UNITS 5000  //максимальное количество единиц в файле оборудованиЯ
+#define MAX_FLAGS 512   //на самом деле PG использует 48, нам нужно 512 длЯ обработки 256 флагов из-за кода загрузки графики
+#define MAX_MINI_VIC_HEX 2   //всегда 2 длЯ стратегической карты
+#define MAX_STRENGTH_IN_ROW 21   // от 0 до 20 длЯ набора PGF
+#define MAX_STRENGTH MAX_STRENGTH_IN_ROW*4   //на самом деле 63
+#define MAX_ICONS MAX_UICONS  //большинство значков, которые можно загрузить в address
+#define MAX_SICONS 100 // стопка значков
 
 #define MAX_VICTORY_HEXES 20
 #define MAX_DEPLOY_HEXES  255
@@ -67,14 +67,14 @@
 //#define MAX_MAP_Y 54
 #define MAX_MAP_X 1024
 #define MAX_MAP_Y 1024
-//#define MAX_DISPLAY_TILES 237  //maximum number of used tiles
+//#define MAX_DISPLAY_TILES 237  //максимальное количество используемых плиток
 #define TILES_HOT_KEY_NUMBER 9
 
 #define CLASS_NUMBER 18
 #define CLASS_NAME_LENGTH 16
 
-#define BK_COLOR 0     //transparent shp color
-#define HEADER_SIZE 24 //size of shp header
+#define BK_COLOR 0     //прозрачный цвет shp
+#define HEADER_SIZE 24 //размер заголовка shp
 #define TILE_HEIGHT 50
 #define TILE_WIDTH 45
 #define TILE_FULL_WIDTH 60
@@ -109,7 +109,7 @@
 #define SAVE_WITH_UNIT_IDS_CONVERSION 5
 #define SAVE_WITH_UNIT_IDS_HARD_CONVERSION 6
 
-#define MAX_COUNTRY 255 //was 25 as standard PG countries number
+#define MAX_COUNTRY 255 //было 25 в качестве стандартного числа стран PG
 #define MAX_COUNTRY_NAME_SIZE 21
 #define MAX_COUNTRY_SHORT_NAME_SIZE 5
 #define MAX_TERRAIN_TYPE 40
@@ -224,26 +224,26 @@
 #define AG_MODE 2
 #define PACGEN_MODE 3
 
-//мы не будем рассматривать оборудование как структуру, но будем использовать смещения в записях
+//мы не будем рассматривать оборудование как структуру, но будем использовать смещения в записЯх
 #define EQUIP_REC_SIZE 50
 
 #define NAME   0
 #define CLASS 20 //класс
-#define SA    21 //мягкая атака
-#define HA    22 //жесткая атака
-#define AA    23 //воздушная атака
-#define NA    24 //морская атака
-#define GD    25 //наземная оборона
-#define AD    26 //противовоздушная оборона
-#define CD    27 //близкая защита
-#define TARGET_TYPE    28 //тип цели 0-мягкая, 1-жесткая, 2-воздушная, 3-военно-морская, [4-подводная-PacGen]
-#define AAF   29   //1 для тактических бомбардировщиков, которые могут атаковать
+#define SA    21 //мЯгкаЯ атака
+#define HA    22 //жесткаЯ атака
+#define AA    23 //воздушнаЯ атака
+#define NA    24 //морскаЯ атака
+#define GD    25 //наземнаЯ оборона
+#define AD    26 //противовоздушнаЯ оборона
+#define CD    27 //близкаЯ защита
+#define TARGET_TYPE    28 //тип цели 0-мЯгкаЯ, 1-жесткаЯ, 2-воздушнаЯ, 3-военно-морскаЯ, [4-подводнаЯ-PacGen]
+#define AAF   29   //1 длЯ тактических бомбардировщиков, которые могут атаковать
 #define INITIATIVE   31 //инициатива
 #define RANGE   32 //спектр
-#define SPOTTING   33 //пятнистость
-#define GAF   34    //земля = 0 воздух = 1 флаг
+#define SPOTTING   33 //пЯтнистость
+#define GAF   34    //землЯ = 0 воздух = 1 флаг
 #define MOV_TYPE 35 //тип движения 0-гусеничный, 1-гусеничный, 2-колесный, 3-опорный, 4-буксируемый, 5-воздушный, 6-морской, 7-вездеходный
-                    // PGF: гусеничный амфибия (8), вездеход-амфибия (9) и гора (10)
+                    // PGF: гусеничный амфибиЯ (8), вездеход-амфибиЯ (9) и гора (10)
 #define MOV   36  //движение
 #define FUEL  37  //топливо
 #define AMMO  38 //боеприпасы
@@ -257,9 +257,9 @@
 
 #define COST_DIVISOR 12
 
-//аналогично мы будем использовать массив для хранения сценария
+//аналогично мы будем использовать массив длЯ хранениЯ сценариЯ
 #define MAX_SCN_SIZE 5000
-// Это смещения или начальные адреса в файле сценария.
+// ќто смещениЯ или начальные адреса в файле сценариЯ.
 #define ORIENTATION 12 //2bytes
 #define AXIS_STANCE 14
 #define ALLIED_STANCE 15
@@ -285,7 +285,7 @@
 #define ALLIED_UNITS  34
 #define AUX_UNITS     35
 #define AUX_ALLIED_UNITS  36
-#define VIC_HEXES     37    //до 20 оканчиваются на -1
+#define VIC_HEXES     37    //до 20 оканчиваютсЯ на -1
 #define DEPLOY_TABLE  117
 #define DEPLOY_TO_UNITS 0x87
 
@@ -312,7 +312,7 @@
 #define FRG_X_SIZE 9
 #define FRG_Y_SIZE 9
 
-// смещения в s4_buffer
+// смещениЯ в s4_buffer
 #define AXIS_PRESTIGE   0
 #define ALLIED_PRESTIGE 2
 #define AXIS_AIR_NUMBER 4

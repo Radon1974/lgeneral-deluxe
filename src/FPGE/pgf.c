@@ -39,7 +39,7 @@ extern Font *log_font;
 extern List *unit_lib;
 extern Config config;
 extern Setup setup;
-extern int log_x, log_y;       /* position where to draw log info */
+extern int log_x, log_y;       /* позиция, где рисовать информацию журнала */
 extern Scen_Info *scen_info;
 extern List *players;
 extern Player *player;
@@ -55,23 +55,23 @@ extern StrToFlag fct_units[];
 extern int *weather;
 extern int map_w, map_h;
 extern Map_Tile **map;
-extern List *units;        /* active units */
-extern List *vis_units;    /* all units spotted by current player */
-extern List *avail_units;  /* available units for current player to deploy */
+extern List *units;        /* активные юниты */
+extern List *vis_units;    /* все юниты, обнаруженные текущим игроком */
+extern List *avail_units;  /* доступные юниты для развертывания текущего игрока */
 extern List *reinf;
 extern VCond *vconds;
 extern int vcond_count;
-extern int *casualties; /* sum of casualties grouped by unit class and player */
+extern int *casualties; /* сумма потерь, сгруппированная по классам юнитов и игрокам */
 extern int deploy_turn;
-extern char scen_result[64];  /* the scenario result is saved here */
-extern char scen_message[128]; /* the final scenario message is saved here */
+extern char scen_result[64];  /* результат сценария сохраняется здесь */
+extern char scen_message[128]; /* последнее сообщение сценария сохраняется здесь */
 extern int vcond_check_type;
 extern int camp_loaded;
 extern char *camp_fname;
 extern char *camp_name;
 extern char *camp_desc;
 extern char *camp_authors;
-extern List *camp_entries; /* scenario entries */
+extern List *camp_entries; /* записи сценариев */
 extern Camp_Entry *camp_cur_scen;
 extern char *camp_first;
 
@@ -82,17 +82,17 @@ unsigned short allies_move_first;
 
 /*
 ====================================================================
-Campaign scenario entry.
+Запись сценария кампании.
 ====================================================================
 */
 typedef struct {
-    char *id;       /* scenario id */
-    char *fname;    /* scenario file name */
+    char *id;       /* идентификатор сценария */
+    char *fname;    /* имя файла сценария */
 } Scen_Entry;
 
 /*
 ====================================================================
-Delete scenario entry.
+Удалить запись сценария.
 ====================================================================
 */
 void scen_entry_delete( void *ptr )
@@ -112,7 +112,7 @@ int read_utf16_line_convert_to_utf8(FILE *inf, char *line){
 	unsigned short u1, u2;
 	short digit;
 
-	//we expect 2 bytes per char
+	//мы ожидаем 2 байта на символ
 	while(!eol){
 		eof=fread(&digit,sizeof(digit),1,inf);
 		if (digit == 0x0d) continue; //ignore 0d
@@ -128,9 +128,9 @@ int read_utf16_line_convert_to_utf8(FILE *inf, char *line){
 			line[gcursor]=(unsigned char)digit;
 			gcursor++;
 		}
-		//big char
+		//большой персонаж
 		if (digit>=0x80 && digit<0x7ff){
-			//we encode to UTF-8
+			//мы кодируем в UTF-8
 			u1 = (digit & 0x03F) | 0x80;
 			u2 = ((digit & 0x007C0) | 0x3000) >> 6;
 			line[gcursor]=(unsigned char)u2;
@@ -152,20 +152,20 @@ int read_utf8_line_convert_to_utf8(FILE *inf, char *line){
 	int eol=0,eof=0;
 	unsigned char digit;
 
-	//we expect 2 bytes per char
+	//мы ожидаем 2 байта на символ
 	while(!eol){
 		eof=fread(&digit,sizeof(digit),1,inf);
 		if (digit == 0x0d) continue; //ignore 0d
 		if (digit == 0x0a || eof==0) {
 			line[gcursor]=0;
 			eol=1;
-			if (gcursor==0) eof-=1;// eof may be 1 or 0 -> 0 or -1
+			if (gcursor==0) eof-=1;// eof может быть 1 или 0 -> 0 или -1
 			return eof;
 		}
 //		if (digit==59) digit=9; //convert ; to tabs
-		//normal char
+		//нормальный персонаж
 		//if (digit>=0 && digit<=0xFF) {
-		  //protect from longlines
+		  //защищать от ярусов
 		line[gcursor]=(unsigned char)digit;
 		gcursor++;
 		//}
@@ -265,10 +265,10 @@ int load_pgf_victory_conditions( const char *full_name, const char *scenario_nam
 
     while (read_utf16_line_convert_to_utf8(inf,line)>=0)
     {
-        //count lines so error can be displayed with line number
+        //подсчитайте строки, чтобы ошибка могла отображаться с номером строки
         lines++;
 
-        //strip comments
+        //удалить комментарии
         for(i=0;i<strlen(line);i++)
             if (line[i]==0x23) { line[i]=0; break; }
         if (strlen(line)>0 && last_line_length==0)
@@ -294,22 +294,22 @@ int load_pgf_victory_conditions( const char *full_name, const char *scenario_nam
         tokens[token][cursor]=0;
         token++;
 
-        //Block#3 outcomes
+        //Блок#3 результаты 
         if (block == 3 && token > 1)
         {
             snprintf( outcomes[current_outcome], 256, "%s", tokens[0] );
             current_outcome++;
         }
 
-        //Block#4 scenario entries
+        //Блок#3 записи сценария
         if (block == 4 && token > 1)
         {
             if ( strcmp( scenario_name, tokens[1] ) == 0 )
             {
-                /* create conditions */
+                /* создать условия */
                 if ( vconds == 0 )
                 {
-                    /* victory conditions */
+                    /* условия победы */
                     scen_result[0] = 0;
                     scen_message[0] = 0;
                     sprintf( log_str, tr("Loading Victory Conditions") );
@@ -317,7 +317,7 @@ int load_pgf_victory_conditions( const char *full_name, const char *scenario_nam
 
                     vcond_count = current_outcome;
                     vconds = calloc( vcond_count, sizeof( VCond ) );
-                    /* check type */
+                    /* тип чека */
                     vcond_check_type = VCOND_CHECK_EVERY_TURN;
                     if ( atoi(tokens[2]) == 0 )
                     {
@@ -331,7 +331,7 @@ int load_pgf_victory_conditions( const char *full_name, const char *scenario_nam
                         strcpy_lt( vconds[i].result, outcomes[i - 1], 63 );
                         strcpy_lt( vconds[i].message, outcomes[i - 1], 127 );
                         vconds[i].sub_and_count = count_characters( tokens[3 * i + 1], '(' ) +  + 1;
-                        /* create subconditions */
+                        /* создавать подусловия */
                         vconds[i].subconds_and = calloc( vconds[i].sub_and_count, sizeof( VSubCond ) );
                         j = 0;
                         vconds[i].subconds_and[j].type = VSUBCOND_CTRL_HEX_NUM;
@@ -353,7 +353,7 @@ int load_pgf_victory_conditions( const char *full_name, const char *scenario_nam
                         strcpy_lt( vconds[i].result, outcomes[i - 1], 63 );
                         strcpy_lt( vconds[i].message, outcomes[i - 1], 127 );
                         vconds[i].sub_and_count = 2;
-                        /* create subconditions */
+                        /* создавать подусловия */
                         vconds[i].subconds_and = calloc( vconds[i].sub_and_count, sizeof( VSubCond ) );
                         vconds[i].subconds_and[0].type = VSUBCOND_CTRL_ALL_HEXES;
                         vconds[i].subconds_and[0].player = player_get_by_index( 0 );
@@ -361,14 +361,14 @@ int load_pgf_victory_conditions( const char *full_name, const char *scenario_nam
                         vconds[i].subconds_and[1].count = atoi( tokens[3 * i - 1] );
                     }
                 }
-                /* else condition (used if no other condition is fullfilled and scenario ends) */
+                /* условие иначе (используется, если никакое другое условие не выполнено и сценарий завершается) */
                 strcpy( vconds[0].result, outcomes[i - 1] );
                 strcpy( vconds[0].message, outcomes[i - 1] );
             }
             vcond_counter++;
         }
     }
-    //end node
+    //конечный узел
     fclose(inf);
     return 1;
 }
@@ -390,7 +390,7 @@ int load_pgf_equipment(char *fullName){
     }
     lines=0;
 
-    //probe for UTF16 file magic bytes
+    //проверка магических байтов файла UTF16
     fread(&file_type_probe, 2, 1, inf);
     if (UCS2_header==file_type_probe) { utf16=1;}
     fseek(inf,0,SEEK_SET);
@@ -401,7 +401,7 @@ int load_pgf_equipment(char *fullName){
 
     while (load_line(inf,line,utf16)>=0)
     {
-        //count lines so error can be displayed with line number
+        //подсчитайте строки, чтобы ошибка могла отображаться с номером строки
         lines++;
 
         for(i=0;i<strlen(line);i++)
@@ -410,11 +410,11 @@ int load_pgf_equipment(char *fullName){
                 line[i]=0;
                 break;
             }
-            //tokenize
+            //токенизировать
         token=0;
         cursor=0;
         for (i = 0; i < strlen(line); i++)
-            // 'tab' and 'comma' delimiters
+            // разделители «табуляция» и «запятая»
             if (line[i] == 0x09 || line[i] == 0x2c)
             {
                 tokens[token][cursor] = 0;
@@ -429,10 +429,10 @@ int load_pgf_equipment(char *fullName){
         tokens[token][cursor]=0;
         token++;
 
-        //remove quoting
+        //удалить цитирование
         if (tokens[1][0]==0x22)
         {
-            //check ending quote
+            //проверьте конечную цитату
             token_len=strlen(tokens[1]);
 
             if (tokens[1][token_len-1]!=0x22)
@@ -440,12 +440,12 @@ int load_pgf_equipment(char *fullName){
                 printf("Error. Line %d. Check quotation mark in name >%s<. Line skipped.\n",lines,tokens[1]);
                 continue;
             }
-            //remove start/end quotation marks
+            //удалить начальные/конечные кавычки
             for (i=1;i<token_len-1;i++)
                 tokens[1][i-1]=tokens[1][i];
             tokens[1][token_len-2]=0;
-            //remove double quote
-            // get new length
+            //удалить двойную кавычку
+            // получить новую длину
             token_len=strlen(tokens[1]);
             token_write=0;
             for (i=0;i<token_len+1;i++)
@@ -454,68 +454,68 @@ int load_pgf_equipment(char *fullName){
                 if (tokens[1][i]==0x22 && tokens[1][i+1]==0x22) i++; //skip next char
                 token_write++;
             }
-            //all done
+            //все сделано
         }
         if (token==33)
         {
-            /* read unit entry */
+            /* прочитать запись о юните */
             unit = calloc( 1, sizeof( Unit_Lib_Entry ) );
-            /* identification */
+            /* идентификация */
             unit->id = strdup( tokens[0] );
-            /* name */
+            /* имя */
             unit->name = strdup(tokens[1]);
-            /* nation (if not found or 'none' unit can't be purchased) */
-            unit->nation = -1; /* undefined */
-            /* class id */
+            /* нация (если не найдена или единица «нет» не может быть куплена) */
+            unit->nation = -1; /* неопределенный */
+            /* ID класса */
             for ( i = 0; i < unit_class_count; i++ )
                 if ( STRCMP( tokens[2], unit_classes[i].id ) ) {
                     unit->class = i;
                     break;
                 }
-            //attack
+            //атака
             for ( i = 0; i < trgt_type_count; i++ )
                 unit->atks[i] = atoi(tokens[i + 3]);
-            /* attack count */
+            /* количество атак */
             unit->atk_count = 1;
-            /* ground defense */
+            /* наземная оборона */
             unit->def_grnd = atoi(tokens[7]);
-            /* air defense */
+            /* ПВО */
             unit->def_air = atoi(tokens[8]);
-            /* close defense */
+            /* тесная защита */
             unit->def_cls = atoi(tokens[9]);
-            /* move type id */
+            /* идентификатор типа перемещения */
             unit->mov_type = 0;
             for ( i = 0; i < mov_type_count; i++ )
                 if ( STRCMP( tokens[10], mov_types[i].id ) ) {
                     unit->mov_type = i;
                     break;
                 }
-            /* initiative */
+            /* инициатива */
             unit->ini = atoi(tokens[11]);
-            /* range */
+            /* диапазон */
             unit->rng = atoi(tokens[12]);
-            /* spotting */
+            /* обнаружение */
             unit->spt = atoi(tokens[13]);
-            /* target type id */
+            /* идентификатор типа цели */
             unit->trgt_type = 0;
             for ( i = 0; i < trgt_type_count; i++ )
                 if ( STRCMP( tokens[14], trgt_types[i].id ) ) {
                     unit->trgt_type = i;
                     break;
                 }
-            /* movement */
+            /* движение */
             unit->mov = atoi(tokens[15]);
-            /* fuel */
+            /* топливо */
             unit->fuel = atoi(tokens[16]);
-            /* ammo */
+            /* боеприпасы */
             unit->ammo = atoi(tokens[17]);
-            /* cost of unit (0 == cannot be purchased) */
+            /* стоимость единицы (0 == нельзя купить) */
             unit->cost = atoi(tokens[18]);
-            /* icon id */
+            /* идентификатор значка */
             icon_id = atoi(tokens[19]);
             /* icon_type */
             unit->icon_type = icon_type;
-            /* set small and large icons */
+            /* установить маленькие и большие значки */
             lib_entry_set_icons( icon_id, unit );
             /* time period of usage (0 == cannot be purchased) */
             unit->start_month = atoi(tokens[21]);
@@ -1071,10 +1071,10 @@ int load_pgf_pgscn(char *fname, char *fullName, int scenNumber){
                     if ( player->sea_trsp != 0 )
                         player->sea_trsp->nation = nation_get_index( player->nations[0] );
                 }
-                /* flip icons if scenario demands it */
+                /* переворачивайте значки, если этого требует сценарий */
                 adjust_fixed_icon_orientation();
 
-                /* map and weather */
+                /* карта и погода */
                 search_file_name_exact( SET_file, STM_file, config.mod_name, "Scenario" );
                 sprintf( log_str, tr("Loading Map '%s'"), SET_file );
                 write_line( sdl.screen, log_font, log_str, log_x, &log_y ); refresh_screen( 0, 0, 0, 0 );
@@ -1235,7 +1235,7 @@ int load_pgf_pgscn(char *fname, char *fullName, int scenNumber){
                 }
                 if ( !unit_delayed && ( unit_base.x <= 0 || unit_base.y <= 0 || unit_base.x >= map_w - 1 || unit_base.y >= map_h - 1 ) ) {
                     fprintf( stderr, tr("%s: out of map: ignored\n"), unit_base.name );
-                    continue;  
+                    continue;
                 }
                 /* strength, entrenchment, experience */
                 unit_base.str = atoi(tokens[6]);
@@ -1265,7 +1265,7 @@ int load_pgf_pgscn(char *fname, char *fullName, int scenNumber){
                 /* tag if set */
                 unit_base.tag[0] = 0;
                 /* actual unit */
-                if ( !(unit_base.player->ctrl == PLAYER_CTRL_HUMAN && auxiliary_units_count >= 
+                if ( !(unit_base.player->ctrl == PLAYER_CTRL_HUMAN && auxiliary_units_count >=
                        unit_base.player->unit_limit - unit_base.player->core_limit) ||
                        ( (camp_loaded != NO_CAMPAIGN) && STRCMP(camp_cur_scen->id, camp_first) && config.use_core_units ) )
                 {
@@ -1636,11 +1636,11 @@ int parse_pgcam( const char *fname, const char *full_name, const char *info_entr
             list_reset( final_entry->nexts );
             while ( (next = list_next( final_entry->nexts )) )
             {
-                ptr = strchr( next, '>' ); 
-                if ( ptr ) 
+                ptr = strchr( next, '>' );
+                if ( ptr )
                 {
 //fprintf(stderr, "%s\n", next );
-                    ptr++; 
+                    ptr++;
                     list_reset( temp_list );
                     while ( ( centry = list_next( temp_list ) ) )
                         if ( strcmp( ptr, centry->id ) == 0 )
@@ -1803,7 +1803,7 @@ char *parse_pgbrf( const char *path )
                     str_idx++;
                     break;
                 }
-            default:  
+            default:
                 if ( state == 3 )
                 {
                     str[str_idx]=(char)buf;

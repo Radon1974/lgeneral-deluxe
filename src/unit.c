@@ -460,6 +460,8 @@ void unit_set_generic_name( Unit *unit, int number, const char *stem )
 */
 void unit_adjust_icon( Unit *unit )
 {
+    //unit->icon_offset = unit->prop.icon_w * unit->orient;
+    //unit->icon_tiny_offset = unit->prop.icon_tiny_w * unit->orient;
     unit->icon_offset = unit->sel_prop->icon_w * unit->orient;
     unit->icon_tiny_offset = unit->sel_prop->icon_tiny_w * unit->orient;
 }
@@ -474,6 +476,8 @@ void unit_adjust_orient( Unit *unit, int x, int y )
     if ( unit->prop.icon_type != UNIT_ICON_ALL_DIRS ) {
         if ( x < unit->x )  {
             unit->orient = UNIT_ORIENT_LEFT;
+            //unit->icon_offset = unit->prop.icon_w;
+            //unit->icon_tiny_offset = unit->prop.icon_tiny_w;
             unit->icon_offset = unit->sel_prop->icon_w;
             unit->icon_tiny_offset = unit->sel_prop->icon_tiny_w;
         }

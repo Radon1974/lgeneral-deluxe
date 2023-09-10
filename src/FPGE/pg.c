@@ -34,7 +34,7 @@ extern Config config;
 extern int map_w, map_h;
 extern Map_Tile **map;
 extern Mask_Tile **mask;
-extern int log_x, log_y;       /* position where to draw log info */
+extern int log_x, log_y;       /* положение, в котором следует отображать информацию журнала */
 extern Terrain_Type *terrain_types;
 extern int terrain_type_count;
 extern int hex_w, hex_h, terrain_columns;
@@ -61,7 +61,7 @@ char tile_type[] = {
     'c', '@', 'F', 'F', 'F', 'm', 'm', 'd', 'm', 'm', 'd',
     'm', 'm', 'm', 'd', 'm', 'm', 'm', 'd', 'd', 'm', 'm',
     'm', 'm', 'D', 'D', 'D', 'D', 'D', 't', 'F', 
-    /* ??? -- really mountains ??? */
+    /* ??? -- действительно горы ??? */
     'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm',
     'm', 'm', 'm', 'm', 'm', 'm',
     /* ??? */
@@ -71,7 +71,7 @@ char tile_type[] = {
 
 /*
 ====================================================================
-Read map tile name with that id to buf
+Прочитать имя фрагмента карты с этим идентификатором в buf.
 ====================================================================
 */
 static void tile_get_name( FILE *file, int id, char *buf )
@@ -91,27 +91,27 @@ int parse_set_file(FILE *inf, int offset)
     FILE *name_file;
     char path[MAX_PATH];
     int x,y,c=0,i;
-    /* log info */
+    /* информация журнала */
     char log_str[128], name_buf[24];
  
-    //get the map size
+    //получить размер карты
     fseek(inf, offset+MAP_X_ADDR, SEEK_SET);
     fread(&map_w, 2, 1, inf);
     fseek(inf, offset+MAP_Y_ADDR, SEEK_SET);
     fread(&map_h, 2, 1, inf);
     ++map_w;
-    ++map_h; //PG sets this to one less than size i.e. last index
+    ++map_h; //PG устанавливает это значение на единицу меньше размера, т.е. последнего индекса.
     if ( !terrain_load( "terrain.lgdtdb" ) )
     {
         map_delete();
         return 0;
     }
     search_file_name_exact( path, "mapnames.str", config.mod_name, "Scenario" );
-    if ( (name_file = fopen( path, "rb" )) == NULL )
+    if ( (name_file = fopen( path, "r" )) == NULL )
     {
         return 0;
     }
-    /* allocate map memory */
+    /* выделить память карты */
     map = calloc( map_w, sizeof( Map_Tile* ) );
     for ( i = 0; i < map_w; i++ )
         map[i] = calloc( map_h, sizeof( Map_Tile ) );
@@ -131,24 +131,24 @@ int parse_set_file(FILE *inf, int offset)
     for (y = 0; y < map_h; ++y)
         for (x = 0; x < map_w; ++x)
         {
-            /* default is no flag */
+            /* по умолчанию нет флага */
             map[x][y].nation = 0;
             map[x][y].player = 0;
             map[x][y].deploy_center = 0;
-            /* default is no mil target */
+            /* по умолчанию не задана цель в милах */
             map[x][y].obj = 0;
             c+=fread(&(map[x][y].terrain_id[0]), 2, 1, inf);
-            /* check image id -- set offset */
+            /* проверить идентификатор изображения — установить смещение */
             map[x][y].image_offset_x = ( map[x][y].terrain_id[0] ) % terrain_columns * hex_w;
             map[x][y].image_offset_y = ( map[x][y].terrain_id[0] ) / terrain_columns * hex_h;
             map[x][y].terrain_id[0] = tile_type[map[x][y].terrain_id[0]];
-            /* clear units on this tile */
+            /* очистить юниты на этой плитке */
             map[x][y].g_unit = 0;
             map[x][y].a_unit = 0;
         }
     if (c!=map_w*map_h)
         fprintf(stderr, "WARNING: SET file too short !\n");
-    //get the country(flag) info
+    //получить информацию о стране (флаге)
     fseek(inf, offset+MAP_LAYERS_START + 3 * map_w * map_h, SEEK_SET);
     for (y = 0; y < map_h; ++y)
     {
@@ -168,7 +168,7 @@ int parse_set_file(FILE *inf, int offset)
         }
 //        fprintf(stderr, "\n");
     }
-    //get the names
+    //получить имена
     fseek(inf, offset+MAP_LAYERS_START + 0 * map_w * map_h, SEEK_SET);
 
     for (y = 0; y < map_h; ++y)
@@ -181,7 +181,7 @@ int parse_set_file(FILE *inf, int offset)
             map[x][y].name = strdup( name_buf );
         }
 
-    //get the road connectivity
+    //получить дорожное определение
     fseek(inf,offset+MAP_LAYERS_START + 2 * map_w * map_h, SEEK_SET);
     for (y = 0; y < map_h; ++y)
         for (x = 0; x < map_w; ++x){
@@ -195,7 +195,7 @@ int parse_set_file(FILE *inf, int offset)
     return 1;
 }
 
-// read SET and STM files
+// читать файлы SET и STM
 int load_map_pg(char *fullName) {
     FILE *inf;
     int error=0;

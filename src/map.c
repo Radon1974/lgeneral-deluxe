@@ -96,9 +96,9 @@ static void map_get_next_unit_point( Unit *unit, int x, int y, int *next_x, int 
         if ( get_close_hex_pos( x, y, i, next_x, next_y ) ) {
             if ( mask[*next_x][*next_y].in_range > mask[high_x][high_y].in_range ) {
                 /* проверить зоны контроля */
-                /* ОШИБКА: Временно закоментированы строки 100, 101, 104 - выдают ошибку сегментации */
-                //if ( !( config.zones_of_control && ( ( unit_has_flag( unit->sel_prop, "flying" ) && mask[*next_x][*next_y].vis_air_infl > 0 ) ||
-                //                                       ( !unit_has_flag( unit->sel_prop, "flying" ) &&  mask[*next_x][*next_y].vis_infl > 0 ) ) ) ) {
+                /* Временно закоментированы строки 100, 101, 104 - выдают ошибку сегментации
+                /*if ( !( config.zones_of_control && ( ( unit_has_flag( unit->sel_prop, "flying" ) && mask[*next_x][*next_y].vis_air_infl > 0 ) ||
+                                                       ( !unit_has_flag( unit->sel_prop, "flying" ) &&  mask[*next_x][*next_y].vis_infl > 0 ) ) ) ) { */
                     high_x = *next_x;
                     high_y = *next_y;
                 //}
@@ -1277,15 +1277,15 @@ void map_draw_terrain( SDL_Surface *surf, int map_x, int map_y, int x, int y )
 */
 void map_draw_units( SDL_Surface *surf, int map_x, int map_y, int x, int y, int ground, int select )
 {
-    Unit *unit = 0;
+	Unit *unit = 0;
     Map_Tile *tile;
     if ( map_x < 0 || map_y < 0 || map_x >= map_w || map_y >= map_h ) return;
     tile = &map[map_x][map_y];
     /* юниты */
     if ( MAP_CHECK_VIS( map_x, map_y ) ) {
-        if ( tile->g_unit ) {
-            if ( ground || tile->a_unit == 0 ) {
-                /* большой наземный юнит */
+        if ( tile->g_unit ) {   //если наземный блок
+            if ( ground || tile->a_unit == 0 ) {    //если наземный блок основной и не имеет над собой воздушного блока
+                /* большой наземный блок */
                 DEST( surf,
                       x + ( (hex_w - tile->g_unit->sel_prop->icon_w) >> 1 ),
                       y + ( ( hex_h - tile->g_unit->sel_prop->icon_h ) >> 1 ),
@@ -1295,7 +1295,7 @@ void map_draw_units( SDL_Surface *surf, int map_x, int map_y, int x, int y, int 
                 unit = tile->g_unit;
             }
             else {
-                /* небольшой наземный юнит */
+                /* небольшой наземный блок */
                 DEST( surf,
                       x + ( (hex_w - tile->g_unit->sel_prop->icon_tiny_w) >> 1 ),
                       y + ( ( hex_h - tile->g_unit->sel_prop->icon_tiny_h ) >> 1 ) + 4,
@@ -1305,41 +1305,42 @@ void map_draw_units( SDL_Surface *surf, int map_x, int map_y, int x, int y, int 
                 unit = tile->a_unit;
             }
         }
-        if ( tile->a_unit ) {
+        if ( tile->a_unit ) {   //если воздушный блок
             if ( !ground || tile->g_unit == 0 ) {
-               /* большой воздушный юнит */
-                if ( tile->a_unit->sel_prop->icon_type == UNIT_ICON_FIXED )
+                /* большой воздушный юнит */
+                if ( tile->a_unit->sel_prop->icon_type == UNIT_ICON_FIXED ) {
                     DEST( surf,
-                         x,
+                          x,
                           y - 10,
                           tile->a_unit->sel_prop->icon_w, tile->a_unit->sel_prop->icon_h )
-                else
+               } else {
                     DEST( surf,
                           x + ( (hex_w - tile->a_unit->sel_prop->icon_w) >> 1 ),
                           y + 6,
                           tile->a_unit->sel_prop->icon_w, tile->a_unit->sel_prop->icon_h )
+               }
                 SOURCE( tile->a_unit->sel_prop->icon, tile->a_unit->icon_offset, 0 );
                 blit_surf();
                 unit = tile->a_unit;
             }
             else {
-                /* небольшой воздушный юнит */
-                if ( tile->a_unit->sel_prop->icon_type == UNIT_ICON_FIXED )
+				/* небольшой воздушный юнит */
+                if ( tile->a_unit->sel_prop->icon_type == UNIT_ICON_FIXED ) {
                     DEST( surf,
                           x + ( (hex_w - tile->a_unit->sel_prop->icon_tiny_w) >> 1 ),
                           y - 6,
                           tile->a_unit->sel_prop->icon_tiny_w, tile->a_unit->sel_prop->icon_tiny_h )
-                else
+               } else {
                     DEST( surf,
                           x + ( (hex_w - tile->a_unit->sel_prop->icon_tiny_w) >> 1 ),
                           y + 6,
                           tile->a_unit->sel_prop->icon_tiny_w, tile->a_unit->sel_prop->icon_tiny_h )
+               }
                 SOURCE( tile->a_unit->sel_prop->icon_tiny, tile->a_unit->icon_tiny_offset, 0 );
                 blit_surf();
                 unit = tile->g_unit;
             }
         }
-
         /* значки информации об объекте */
         if ( unit && config.show_bar ) {
             /* сила */
@@ -2078,6 +2079,10 @@ void map_get_deploy_mask( Player *player, Unit *unit, int init )
                 } else {
                     if (map[x][y].g_unit&&(!init||!map_check_unit_embark(unit,x,y,EMBARK_AIR,1)))
                         mask[x][y].deploy = 0;
+                    /* мы можем двигаться по плитке? (не уходи в океан ...)
+                	 * если только начальное развертывание */
+                	if (!init && terrain_get_mov(terrain_type_find( map[x][y].terrain_id[0] ),unit->prop.mov_type,cur_weather) == 0)
+                		mask[x][y].deploy = 0;
                 }
     }
 }

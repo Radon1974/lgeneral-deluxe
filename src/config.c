@@ -79,7 +79,7 @@ void reset_config()
     config.show_cpu_turn = 1;
     config.deploy_turn = 1;
     config.purchase = DELAYED_PURCHASE;
-    config.ai_debug = 0;
+    config.ai_debug = 1; /* 0 - не выводить; 1 - вывод сообщений отладки */
     config.merge_replacements = 1; /* 0 - объединить; 1 - замены */
     config.use_core_units = 0;
     config.all_equipment = 0;
@@ -139,7 +139,7 @@ void save_config( )
     char file_name[MAX_PATH];
 
     sprintf( file_name, "%s/%s", config.dir_name, "lgeneral.conf" );
-    if ( ( file = fopen( file_name, "wb" ) ) == 0 )
+    if ( ( file = fopen( file_name, "w" ) ) == 0 )
         fprintf( stderr, tr("Cannot access config file '%s' to save settings\n"), file_name );
     else {
         fprintf( file, "@\n" );

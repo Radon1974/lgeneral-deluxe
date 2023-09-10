@@ -37,7 +37,7 @@ extern Sdl sdl;
 extern int log_x, log_y;
 extern Font *log_font;
 extern Config config;
-
+extern List *units; //список активных юнитов
 /*
 ====================================================================
 Типы целей, типы движения, классы юнитов
@@ -77,23 +77,23 @@ List *unit_lib = 0;
 ====================================================================
 */
 StrToFlag fct_units[] = {
-    { "swimming", SWIMMING },           
-    { "flying", FLYING },               
-    { "diving", DIVING },               
-    { "parachute", PARACHUTE },         
-    { "transporter", TRANSPORTER },     
-    { "recon", RECON },                 
-    { "artillery", ARTILLERY },         
-    { "interceptor", INTERCEPTOR },     
-    { "air_defense", AIR_DEFENSE },     
-    { "bridge_eng", BRIDGE_ENG },       
-    { "infantry", INFANTRY },           
-    { "air_trsp_ok", AIR_TRSP_OK },     
-    { "destroyer", DESTROYER },         
-    { "ignore_entr", IGNORE_ENTR },     
-    { "carrier", CARRIER },             
-    { "carrier_ok", CARRIER_OK },       
-    { "bomber", BOMBER },               
+    { "swimming", SWIMMING },
+    { "flying", FLYING },
+    { "diving", DIVING },
+    { "parachute", PARACHUTE },
+    { "transporter", TRANSPORTER },
+    { "recon", RECON },
+    { "artillery", ARTILLERY },
+    { "interceptor", INTERCEPTOR },
+    { "air_defense", AIR_DEFENSE },
+    { "bridge_eng", BRIDGE_ENG },
+    { "infantry", INFANTRY },
+    { "air_trsp_ok", AIR_TRSP_OK },
+    { "destroyer", DESTROYER },
+    { "ignore_entr", IGNORE_ENTR },
+    { "carrier", CARRIER },
+    { "carrier_ok", CARRIER_OK },
+    { "bomber", BOMBER },
     { "attack_first", ATTACK_FIRST },
     { "low_entr_rate", LOW_ENTR_RATE },
     { "tank", TANK },
@@ -172,7 +172,7 @@ void unit_lib_delete_entry( void *ptr )
     if ( entry->icon ) SDL_FreeSurface( entry->icon );
     if ( entry->icon_tiny ) SDL_FreeSurface( entry->icon_tiny );
 #ifdef WITH_SOUND
-    if ( entry->wav_alloc && entry->wav_move ) 
+    if ( entry->wav_alloc && entry->wav_move )
         wav_free( entry->wav_move );
 #endif
     free( entry );
@@ -261,7 +261,7 @@ int unit_lib_load_udb( char *fname, char *path, int main )
         main = UNIT_LIB_ADD;
     }
     /* анализировать файл */
-    
+
     sprintf( log_str, tr("  Parsing '%s'"), fname );
     write_line( sdl.screen, log_font, log_str, log_x, &log_y ); refresh_screen( 0, 0, 0, 0 );
     if ( ( pd = parser_read_file( fname, path ) ) == 0 ) goto parser_failure;
@@ -294,13 +294,13 @@ int unit_lib_load_udb( char *fname, char *path, int main )
             mov_types[mov_type_count].id = strdup( sub->name );
             if ( !parser_get_value( sub, "name", &str, 0 ) ) goto parser_failure;
             mov_types[mov_type_count].name = strdup(trd(domain, str));
-#ifdef WITH_SOUND                
+#ifdef WITH_SOUND
             if ( parser_get_value( sub, "sound", &str, 0 ) )
             {
                 search_file_name_exact( path, str, config.mod_name, "Sound" );
                 mov_types[mov_type_count].wav_move = wav_load( path, 0 );
             }
-#endif            
+#endif
             mov_type_count++;
         }
         /* классы юнитов */
@@ -330,19 +330,19 @@ int unit_lib_load_udb( char *fname, char *path, int main )
         if ( !parser_get_int( pd, "strength_icon_width", &outside_icon_width ) ) goto parser_failure;
         if ( !parser_get_int( pd, "strength_icon_height", &outside_icon_height ) ) goto parser_failure;
         if ( ( unit_info_icons->str = load_surf( path, SDL_SWSURFACE, outside_icon_width, outside_icon_height,
-                                                 unit_info_icons->str_w, unit_info_icons->str_h ) ) == 0 ) goto failure; 
+                                                 unit_info_icons->str_w, unit_info_icons->str_h ) ) == 0 ) goto failure;
         if ( !parser_get_value( pd, "attack_icon", &str, 0 ) ) goto parser_failure;
         search_file_name_exact( path, str, config.mod_name, "Theme" );
-        if ( ( unit_info_icons->atk = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto failure; 
+        if ( ( unit_info_icons->atk = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto failure;
         if ( !parser_get_value( pd, "move_icon", &str, 0 ) ) goto parser_failure;
         search_file_name_exact( path, str, config.mod_name, "Theme" );
-        if ( ( unit_info_icons->mov = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto failure; 
+        if ( ( unit_info_icons->mov = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto failure;
         if ( !parser_get_value( pd, "guard_icon", &str, 0 ) )
         {
             search_file_name( str, 0, "pg_guard", "", "", 'i' );
         }
         search_file_name_exact( path, str, config.mod_name, "Theme" );
-        if ( ( unit_info_icons->guard = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto failure; 
+        if ( ( unit_info_icons->guard = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto failure;
     }
     /* icons */
     if ( !parser_get_value( pd, "icon_type", &str, 0 ) ) goto parser_failure;
@@ -358,7 +358,7 @@ int unit_lib_load_udb( char *fname, char *path, int main )
     if ( !parser_get_int( pd, "icon_width", &icon_width ) ) goto parser_failure;
     if ( !parser_get_int( pd, "icon_height", &icon_height ) ) goto parser_failure;
     if ( !parser_get_int( pd, "icon_columns", &icon_columns ) ) goto parser_failure;
-    if ( ( icons = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto failure; 
+    if ( ( icons = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto failure;
     if ( main != UNIT_LIB_BASE_DATA ) {
         /* записи библиотеки юнитов */
         if ( !parser_get_entries( pd, "unit_lib", &entries ) ) goto parser_failure;
@@ -433,7 +433,7 @@ int unit_lib_load_udb( char *fname, char *path, int main )
             if ( !parser_get_int( sub, "def_close", &unit->def_cls ) ) goto parser_failure;
             /* флаги */
             if ( parser_get_values( sub, "flags", &flags ) ) {
-                list_reset( flags ); 
+                list_reset( flags );
                 while ( ( flag = list_next( flags ) ) ) {
                     int NumberInArray, Flag;
                     Flag = check_flag( flag, fct_units, &NumberInArray );
@@ -479,7 +479,7 @@ int unit_lib_load_udb( char *fname, char *path, int main )
                 unit->wav_move = mov_types[unit->mov_type].wav_move;
                 unit->wav_alloc = 0;
             }
-#endif      
+#endif
             /* добавить объект в базу данных */
             list_add( unit_lib, unit );
             /* абсолютная оценка */
@@ -507,7 +507,7 @@ int unit_lib_load_udb( char *fname, char *path, int main )
     if ( main != UNIT_LIB_BASE_DATA )
         SDL_FreeSurface(icons);
     return 1;
-parser_failure:        
+parser_failure:
     fprintf( stderr, "%s\n", parser_get_error() );
 failure:
     unit_lib_delete();
@@ -661,7 +661,7 @@ int unit_lib_load_lgdudb( char *fname, char *path )
             {
                 search_file_name_exact( path, tokens[1], config.mod_name, "Graphics" );
                 write_line( sdl.screen, log_font, tr("  Loading Tactical Icons"), log_x, &log_y ); refresh_screen( 0, 0, 0, 0 );
-                if ( ( icons = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto failure; 
+                if ( ( icons = load_surf( path, SDL_SWSURFACE, 0, 0, 0, 0 ) ) == 0 ) goto failure;
             }
             if ( strcmp( tokens[0], "strength_icon_width" ) == 0 )
             {
@@ -675,7 +675,7 @@ int unit_lib_load_lgdudb( char *fname, char *path )
             {
                 search_file_name_exact( path, tokens[1], config.mod_name, "Graphics" );
                 if ( ( unit_info_icons->str = load_surf( path, SDL_SWSURFACE, outside_icon_width, outside_icon_height,
-                                                         unit_info_icons->str_w, unit_info_icons->str_h ) ) == 0 ) goto failure; 
+                                                         unit_info_icons->str_w, unit_info_icons->str_h ) ) == 0 ) goto failure;
             }
             if ( strcmp( tokens[0], "attack_icon" ) == 0 )
             {
@@ -835,13 +835,13 @@ int unit_lib_load_lgdudb( char *fname, char *path )
                 unit->wav_move = mov_types[unit->mov_type].wav_move;
                 unit->wav_alloc = 0;
             }
-#endif      
+#endif
             /* добавить юнит в базу данных */
             list_add( unit_lib, unit );
             /* абсолютная оценка */
             unit_lib_eval_unit( unit );
         }
-    }    
+    }
     fclose(inf);
     /* ЖУРНАЛ */
     relative_evaluate_units();
@@ -891,7 +891,7 @@ void unit_lib_delete( void )
 {
     int i;
     if ( unit_lib ) {
-        list_delete( unit_lib ); 
+        list_delete( unit_lib );
         unit_lib = 0;
     }
     if ( trgt_types ) {
@@ -909,7 +909,7 @@ void unit_lib_delete( void )
 #ifdef WITH_SOUND
             if ( mov_types[i].wav_move )
                 wav_free( mov_types[i].wav_move );
-#endif            
+#endif
         }
         free( mov_types );
         mov_types = 0; mov_type_count = 0;
@@ -955,8 +955,10 @@ Unit_Lib_Entry* unit_lib_find( char *id )
 */
 void lib_entry_set_icons( int icon_id, Unit_Lib_Entry *unit )
 {
+    int i, j;
     int width, height, offset;
     Uint32 color_key;
+    float scale;
     if ( icon_width == 0 || icon_height == 0 )
         unit_get_icon_geometry( icon_id, &width, &height, &offset, &color_key );
     /* изображение сначала копируется из unit_pics
@@ -994,6 +996,17 @@ void lib_entry_set_icons( int icon_id, Unit_Lib_Entry *unit )
             set_pixel( unit->icon, unit->icon_w - 1, 0, color_key );
             /* установить прозрачность */
             SDL_SetColorKey( unit->icon, SDL_SRCCOLORKEY, color_key );
+            /* установить маленькие иконки */
+            color_key = get_pixel( unit->icon, 0, 0 );
+            scale = 1.5;
+            unit->icon_tiny = create_surf( unit->icon->w * ( 1.0 / scale ), unit->icon->h * ( 1.0 / scale ), SDL_SWSURFACE );
+            unit->icon_tiny_w = unit->icon_w * ( 1.0 / scale );
+            unit->icon_tiny_h = unit->icon_h * ( 1.0 / scale );
+            for ( j = 0; j < unit->icon_tiny->h; j++ ) {
+                for ( i = 0; i < unit->icon_tiny->w; i++ ) {
+                    set_pixel( unit->icon_tiny, i, j, get_pixel( unit->icon, scale * i, scale * j ) );
+                }
+            }
         }
         else
         {
@@ -1025,6 +1038,7 @@ void adjust_fixed_icon_orientation()
     Unit_Lib_Entry *unit;
     float scale;
     Uint32 color_key;
+    Unit *unit_scen;    //активные юниты в сценарии
 
     list_reset( unit_lib );
     while ( ( unit = list_next( unit_lib ) ) )
@@ -1085,7 +1099,7 @@ void adjust_fixed_icon_orientation()
                 }
             }
             else
-                if ( strspn( unit->name, "AF" ) >= 2 )
+                if ( strspn( unit->name, "AD" ) >= 2 ) //Была у бункеров неправильная ориентация (стояло AF)
                 {
                     /* изображение на листе изображений обращено влево - скопируйте его вправо */
                     DEST( unit->icon, unit->icon->w / 2, 0, unit->icon->w, unit->icon->h );
@@ -1135,19 +1149,36 @@ void adjust_fixed_icon_orientation()
                     }
                     SDL_SetColorKey( unit->icon, SDL_SRCCOLORKEY, get_pixel( unit->icon, 0, 0 ) );
                 }
+
             color_key = get_pixel( unit->icon, 0, 0 );
             scale = 1.5;
-			unit->icon_tiny = create_surf( unit->icon->w * ( 1.0 / scale ), unit->icon->h * ( 1.0 / scale ), SDL_SWSURFACE );
-            unit->icon_tiny_w = unit->icon_w * ( 1.0 / scale ); unit->icon_tiny_h = unit->icon_h * ( 1.0 / scale );
+            unit->icon_tiny = create_surf( unit->icon->w * ( 1.0 / scale ), unit->icon->h * ( 1.0 / scale ), SDL_SWSURFACE );
+            unit->icon_tiny_w = unit->icon_w * ( 1.0 / scale );
+            unit->icon_tiny_h = unit->icon_h * ( 1.0 / scale );
             for ( j = 0; j < unit->icon_tiny->h; j++ ) {
-                for ( i = 0; i < unit->icon_tiny->w; i++ )
-                    set_pixel( unit->icon_tiny,
-                               i, j, 
-                               get_pixel( unit->icon, scale * i, scale * j ) );
-            }			
-			
+                for ( i = 0; i < unit->icon_tiny->w; i++ ) {
+                    set_pixel( unit->icon_tiny, i, j, get_pixel( unit->icon, scale * i, scale * j ) );
+                }
+            }
             /* использовать цветовой ключ «большого» изображения */
             SDL_SetColorKey( unit->icon_tiny, SDL_SRCCOLORKEY, color_key );
+
+            //Передача маленьких иконок активным юнитам в сценарии
+            list_reset( units );
+            while ( ( unit_scen = list_next( units ) ) )
+            {
+                if ( unit_scen->prop.id == unit->id ) {
+                    unit_scen->prop.icon_tiny = unit->icon_tiny;
+                    unit_scen->prop.icon_tiny_w = unit->icon_tiny_w;
+                    unit_scen->prop.icon_tiny_h = unit->icon_tiny_h;
+                }
+                if ( unit_scen->trsp_prop.id == unit->id ) {
+                    unit_scen->trsp_prop.icon_tiny = unit->icon_tiny;
+                    unit_scen->trsp_prop.icon_tiny_w = unit->icon_tiny_w;
+                    unit_scen->trsp_prop.icon_tiny_h = unit->icon_tiny_h;
+                }
+            }
+
         }
     }
 }

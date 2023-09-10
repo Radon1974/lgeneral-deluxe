@@ -95,7 +95,7 @@ static void delete_name_entry( void *ptr )
 static List *file_get_order_list( const char *orderfile )
 {
     List *l = 0;
-    FILE *f = fopen( orderfile, "rb" );
+    FILE *f = fopen( orderfile, "r" );
     if (!f) {
         fprintf( stderr, tr("%s cannot be opened\n"), orderfile );
         return 0;
@@ -273,7 +273,7 @@ List* dir_get_entries( const char *path, const char *root, int file_type, int em
         /* проверить обычный файл */
         if ( S_ISREG( fstat.st_mode ) && !dir_only ) {
             /* Проверь это */
-            if ( ( file = fopen( file_name, "rb" ) ) == 0 ) continue;
+            if ( ( file = fopen( file_name, "r" ) ) == 0 ) continue;
             fclose( file );
             /* проверьте, имеет ли этот файл правильное расширение */
             if ( ext_limit != 0 )
@@ -461,7 +461,7 @@ int file_exists( char *path )
 {
     char full_path[MAX_PATH];
     get_full_bmp_path( full_path, path );
-    FILE *f = fopen_ic( full_path, "rb" );
+    FILE *f = fopen_ic( full_path, "r" );
     if ( f )
     {
         fclose(f);
