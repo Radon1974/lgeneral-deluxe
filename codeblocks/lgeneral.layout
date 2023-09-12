@@ -2,14 +2,14 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="..\src\FPGE\pg.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\src\unit.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="5302" topLine="113" />
+			<Cursor1 position="1601" topLine="23" />
 		</Cursor>
 	</File>
-	<File name="..\src\map.c" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\src\terrain.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="92187" topLine="2076" />
+			<Cursor1 position="31512" topLine="702" />
 		</Cursor>
 	</File>
 	<File name="..\src\unit_lib.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -17,10 +17,75 @@
 			<Cursor1 position="41819" topLine="955" />
 		</Cursor>
 	</File>
+	<File name="..\src\map.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="36662" topLine="881" />
+		</Cursor>
+	</File>
+	<File name="..\src\action.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4923" topLine="84" />
+		</Cursor>
+	</File>
+	<File name="..\src\engine.c" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="222126" topLine="4537" />
+		</Cursor>
+	</File>
 	<File name="..\src\scenario.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="159" />
 		</Cursor>
 	</File>
-	<EditorTabsLayout layout="081fe0b064fdd20c00001a2500000002=0;lgeneral:..\src\scenario.c,1;lgeneral:..\src\unit_lib.c,*2;lgeneral:..\src\map.c,3;lgeneral:..\src\FPGE\pg.c@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=856;besth=336;minw=856;minh=336;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=081fe0b064fdd20c00001a2500000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=202|" />
+	<File name="..\src\map.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="11529" topLine="181" />
+		</Cursor>
+	</File>
+	<File name="..\src\gui.h" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7705" topLine="229" />
+		</Cursor>
+	</File>
+	<File name="..\src\gui.c" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12340" topLine="1647" />
+		</Cursor>
+	</File>
+	<File name="..\src\player.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="195" />
+		</Cursor>
+	</File>
+	<File name="..\src\FPGE\pg.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5302" topLine="113" />
+		</Cursor>
+	</File>
+	<File name="..\src\misc.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7242" topLine="158" />
+		</Cursor>
+	</File>
+	<File name="..\src\terrain.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3472" topLine="50" />
+		</Cursor>
+	</File>
+	<File name="..\src\ai.c" open="1" top="1" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12078" topLine="216" />
+		</Cursor>
+	</File>
+	<File name="..\src\action.c" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5805" topLine="157" />
+		</Cursor>
+	</File>
+	<File name="..\src\ai_group.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="19548" topLine="406" />
+		</Cursor>
+	</File>
+	<EditorTabsLayout layout="081d08c06500b03200001ce900000002=0;lgeneral:..\src\scenario.c,1;lgeneral:..\src\unit_lib.c,2;lgeneral:..\src\map.c,3;lgeneral:..\src\FPGE\pg.c,4;lgeneral:..\src\unit.h,5;lgeneral:..\src\terrain.h,6;lgeneral:..\src\terrain.c,7;lgeneral:..\src\misc.h,8;lgeneral:..\src\map.h,9;lgeneral:..\src\ai_group.c,10;lgeneral:..\src\engine.c,11;lgeneral:..\src\gui.c,12;lgeneral:..\src\action.c,13;lgeneral:..\src\action.h,14;lgeneral:..\src\gui.h,*15;lgeneral:..\src\ai.c@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=856;besth=328;minw=856;minh=328;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=081d08c06500b03200001ce900000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=202|" />
 </CodeBlocks_layout_file>

@@ -817,7 +817,7 @@ int unit_can_enter_hex( Unit *unit, int x, int y, int is_close, int points, int 
 }
 /*
 ====================================================================
-Проверить, достижим ли шестнадцатеричный (x, y) юнит. "расстояние" - это
+Проверить, достижим ли шестнадцатеричный (x, y) юнит. "distance" - это
 расстояние до гекса, на котором стоит юнит. 'points' - это число
 очков, оставшихся у объекта до попытки входа (x, y).
 «установленный» означает повторную проверку с подвижной маской транспортера.
@@ -879,6 +879,21 @@ void map_add_unit_move_mask_rec( Unit *unit, int x, int y, int distance, int poi
                 mask[next_x][next_y].sea_embark = 1;
                 continue;
             }
+            //не всегда можно было высадится в порту (закоментировано)
+            //map_add_unit_move_mask_rec( unit, next_x, next_y, distance+1, points, mounted, FinishMove, i );
+        }
+
+    for ( i = 0; i < 6; i++ )
+        if ( get_close_hex_pos( x, y, i, &next_x, &next_y ) )
+        {
+            if ( distance==0 && map_check_unit_embark( unit, next_x, next_y, EMBARK_SEA, 0 ) ) {
+                /* установка может погрузиться на морской транспортер */
+                continue;
+            }
+            if ( distance==0 && map_check_unit_debark( unit, next_x, next_y, EMBARK_SEA, 0 ) ) {
+                /* установка может высадиться с морского транспортера */
+                continue;
+            }
             map_add_unit_move_mask_rec( unit, next_x, next_y, distance+1, points, mounted, FinishMove, i );
         }
 }
@@ -924,6 +939,7 @@ void map_get_unit_move_mask( Unit *unit )
         FinishMove = 0;
         map_add_unit_move_mask_rec(unit,unit->x,unit->y,0,unit->cur_mov,0, FinishMove, -1);
     }
+
     for (x=0;x<map_w;x++) for(y=0;y<map_h;y++)
         mask[x][y].in_range++;
 }
@@ -1667,12 +1683,10 @@ int map_check_unit_embark( Unit *unit, int x, int y, int type, int init )
         if ( unit->player->sea_trsp_used >= unit->player->sea_trsp_count ) return 0;
         if ( !init && !unit->unused ) return 0;
         if ( terrain_get_mov( terrain_type_find( map[x][y].terrain_id[0] ), unit->player->sea_trsp->mov_type, cur_weather ) == 0 ) return 0;
-        /* в основном мы должны быть близко к гавани, но город просто
-           у воды тоже нормально, иначе было бы тоже
-           ограничительный. */
+        // в основном мы должны быть близко к гавани, но город просто у воды тоже нормально, иначе было бы тоже ограничительный.
         if ( !init ) {
             if ( terrain_type_find( map[x][y].terrain_id[0] )->flags[cur_weather] & SUPPLY_GROUND )
-                return 1;
+                return 1;   //при движении на гекс гавань не садится в морской транспорт (садится только когда находишься на гексе гавань)
             for ( i = 0; i < 6; i++ )
                 if ( get_close_hex_pos( x, y, i, &nx, &ny ) )
                     if ( terrain_type_find( map[nx][ny].terrain_id[0] )->flags[cur_weather] & SUPPLY_GROUND )
@@ -1689,6 +1703,9 @@ int map_check_unit_debark( Unit *unit, int x, int y, int type, int init )
         if ( unit->embark != EMBARK_SEA ) return 0;
         if ( !init && map[x][y].g_unit ) return 0;
         if ( !init && !unit->unused ) return 0;
+        /*if ( terrain_type_find( map[x][y].terrain_id[0] )->flags[cur_weather] & SUPPLY_GROUND ) {
+            return 1; //высадка десанта в порт
+        }*/
         if ( !init && terrain_get_mov( terrain_type_find( map[x][y].terrain_id[0] ), unit->prop.mov_type, cur_weather ) == 0 ) return 0;
         return 1;
     }
@@ -1697,8 +1714,7 @@ int map_check_unit_debark( Unit *unit, int x, int y, int type, int init )
         if ( !init && map[x][y].g_unit ) return 0;
         if ( !init && !unit->unused ) return 0;
         if ( !init && terrain_get_mov( terrain_type_find( map[x][y].terrain_id[0] ), unit->prop.mov_type, cur_weather ) == 0 ) return 0;
-        if ( !init && !( terrain_type_find( map[x][y].terrain_id[0] )->flags[cur_weather] & SUPPLY_AIR ) && !unit_has_flag( &unit->prop, "parachute" ) )
-            return 0;
+        if ( !init && !( terrain_type_find( map[x][y].terrain_id[0] )->flags[cur_weather] & SUPPLY_AIR ) && !unit_has_flag( &unit->prop, "parachute" ) ) return 0;
         return 1;
     }
     return 0;

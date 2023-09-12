@@ -1855,6 +1855,9 @@ static void engine_update_info( int mx, int my, int region )
                     gui_set_cursor( CURSOR_STD );
             break;
         default:
+            if ( mx == 21 && my == 41 ) {
+                mx = 21;//остановка для отладки
+            }
             if ( cur_unit ) {
                 if ( cur_unit->x == mx && cur_unit->y == my && engine_get_prim_unit( mx, my, region ) == cur_unit )
                      gui_set_cursor( CURSOR_STD );
