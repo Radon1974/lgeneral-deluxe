@@ -97,14 +97,14 @@ void reset_config()
 void load_config( )
 {
     char file_name[MAX_PATH];   //MAX_PATH = 512
-    PData *pd;  //создание древовидной структуры PData
+    PData *pd;
     /* установите значение по умолчанию */
     check_config_dir_name();    //проверьте, существует ли каталог config; если нет, создайте его и установите config_dir
     reset_config(); //установить конфиг по умолчанию
     /* загрузить конфигурацию */
     sprintf( file_name, "%s/%s", config.dir_name, "lgeneral.conf" );    //вывести имя и путь "lgeneral.conf"
     if ( ( pd = parser_read_file( "config", file_name ) ) == 0 ) {
-        fprintf( stderr, "%s\n", parser_get_error() );  //вывести ошибку, если файл пустой
+        fprintf( stderr, "%s\n", parser_get_error() );
         return;
     }
     /* назначить */
@@ -129,7 +129,7 @@ void load_config( )
     parser_get_int( pd, "music_on", &config.music_on );
     parser_get_int( pd, "music_volume", &config.music_volume );
     parser_get_string( pd, "mod_name", &config.mod_name );
-    parser_free( &pd ); //эта функция освобождает древовидную структуру PData
+    parser_free( &pd );
 }
 
 /* сохранить конфигурацию */

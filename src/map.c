@@ -866,7 +866,7 @@ void map_add_unit_move_mask_rec( Unit *unit, int x, int y, int distance, int poi
     /* все очки израсходованы? если так, мы не можем идти дальше */
     if ( points==0 || FinishMove ) return;
     /* проверьте, близки ли гексы в диапазоне */
-    for ( i = 0; i < 6; i++ )
+    for ( i = 0; i < 6; i++ )   //проверка высадки на сушу на дистанции 1 и запись в sea_embark
         if ( get_close_hex_pos( x, y, i, &next_x, &next_y ) )
         {
             if ( distance==0 && map_check_unit_embark( unit, next_x, next_y, EMBARK_SEA, 0 ) ) {
@@ -879,11 +879,9 @@ void map_add_unit_move_mask_rec( Unit *unit, int x, int y, int distance, int poi
                 mask[next_x][next_y].sea_embark = 1;
                 continue;
             }
-            //не всегда можно было высадится в порту (закоментировано)
-            //map_add_unit_move_mask_rec( unit, next_x, next_y, distance+1, points, mounted, FinishMove, i );
         }
 
-    for ( i = 0; i < 6; i++ )
+    for ( i = 0; i < 6; i++ )   //проверка остальных гексов (кроме гексов высадки) для хода по морю  (дистанции), суша - запрет хода
         if ( get_close_hex_pos( x, y, i, &next_x, &next_y ) )
         {
             if ( distance==0 && map_check_unit_embark( unit, next_x, next_y, EMBARK_SEA, 0 ) ) {

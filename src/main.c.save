@@ -268,7 +268,7 @@ int main(int argc, char *argv[])
     set_video_mode( 640, 480, 0 );
     sprintf( window_name, tr("LGeneral Deluxe %s"), VERSION );
     SDL_WM_SetCaption( window_name, 0 );    //устанавливает плитку окна и название значка.
-    event_enable_filter();  //включение фильтрации событий мыши и клавиатуры
+    event_enable_filter();  //включение/выключение фильтрации событий мыши и клавиатуры
 
     /* показать название lgd */
     if (!suppress_title) show_title();
@@ -297,7 +297,7 @@ int main(int argc, char *argv[])
     /* сохранить настройки */
     save_config();
 
-    event_disable_filter();  //выключение фильтрации событий мыши и клавиатуры
+    event_disable_filter();  //включенивыключение фильтрации событий мыши и клавиатуры
 
     if (player_control) list_delete(player_control);
     return 0;

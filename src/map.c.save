@@ -880,7 +880,7 @@ void map_add_unit_move_mask_rec( Unit *unit, int x, int y, int distance, int poi
                 continue;
             }
             //не всегда можно было высадится в порту (закоментировано)
-            //map_add_unit_move_mask_rec( unit, next_x, next_y, distance+1, points, mounted, FinishMove, i );   
+            //map_add_unit_move_mask_rec( unit, next_x, next_y, distance+1, points, mounted, FinishMove, i );
         }
 
     for ( i = 0; i < 6; i++ )
@@ -896,6 +896,10 @@ void map_add_unit_move_mask_rec( Unit *unit, int x, int y, int distance, int poi
             }
             map_add_unit_move_mask_rec( unit, next_x, next_y, distance+1, points, mounted, FinishMove, i );
         }
+        
+        for ( i_x = 0; i_x < map_w - 2; i_x++ )
+        fprintf(stderr, "%s ", map[x][y].player->name);
+        
 }
 void map_get_unit_move_mask( Unit *unit )
 {
