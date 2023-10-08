@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<BrowseTracker_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="..\src\parser.h" open="0" top="0" tabpos="26">
+		<Cursor position="6356" topLine="97" />
+	</File>
+	<File name="..\src\action.h" open="0" top="0" tabpos="14">
+		<Cursor position="4923" topLine="84" />
+	</File>
+	<File name="..\src\gui.h" open="0" top="0" tabpos="14">
+		<Cursor position="11928" topLine="315" />
+	</File>
+	<File name="..\src\action.c" open="0" top="0" tabpos="13">
+		<Cursor position="5805" topLine="157" />
+	</File>
+	<File name="..\src\sdl.h" open="0" top="0" tabpos="13">
+		<Cursor position="1900" topLine="60" />
+	</File>
+	<File name="..\src\scenario.h" open="0" top="0" tabpos="5">
+		<Cursor position="2377" topLine="29" />
+	</File>
+	<File name="..\util\localize.c" open="0" top="0" tabpos="21">
+		<Cursor position="6296" topLine="195" />
+	</File>
+	<File name="..\src\config.c" open="0" top="0" tabpos="24">
+		<Cursor position="3623" topLine="91" />
+	</File>
+	<File name="..\src\scenario.c" open="0" top="0" tabpos="9">
+		<Cursor position="86365" topLine="1924" />
+	</File>
+	<File name="..\src\terrain.c" open="0" top="0" tabpos="7">
+		<Cursor position="31512" topLine="699" />
+	</File>
+	<File name="..\src\misc.c" open="0" top="0" tabpos="23">
+		<Cursor position="5173" topLine="144" />
+	</File>
+	<File name="..\src\ai.h" open="0" top="0" tabpos="11">
+		<Cursor position="1205" topLine="11" />
+	</File>
+	<File name="..\src\player.c" open="0" top="0" tabpos="7">
+		<Cursor position="5010" topLine="134" />
+	</File>
+	<File name="..\src\engine.h" open="0" top="0" tabpos="0">
+		<Cursor position="2416" topLine="15" />
+	</File>
+	<File name="..\src\main.c" open="0" top="0" tabpos="2">
+		<Cursor position="2153" topLine="58" />
+	</File>
+	<File name="..\src\audio.c" open="0" top="0" tabpos="15">
+		<Cursor position="4239" topLine="115" />
+	</File>
+	<File name="..\src\campaign.h" open="0" top="0" tabpos="8">
+		<Cursor position="1197" topLine="6" />
+	</File>
+	<File name="..\src\map.c" open="0" top="0" tabpos="3">
+		<Cursor position="36942" topLine="887" />
+	</File>
+	<File name="..\src\ai.c" open="0" top="0" tabpos="10">
+		<Cursor position="32234" topLine="720" />
+	</File>
+	<File name="..\src\gui.c" open="0" top="0" tabpos="3">
+		<Cursor position="43436" topLine="883" />
+	</File>
+	<File name="..\src\list.c" open="0" top="0" tabpos="19">
+		<Cursor position="10328" topLine="253" />
+	</File>
+	<File name="..\src\unit_lib.c" open="0" top="0" tabpos="2">
+		<Cursor position="41819" topLine="955" />
+	</File>
+	<File name="..\src\engine.c" open="1" top="0" tabpos="1">
+		<Cursor position="137705" topLine="2878" />
+		<BrowseMarks positions="" />
+	</File>
+	<File name="..\src\sdl.c" open="0" top="0" tabpos="4">
+		<Cursor position="11774" topLine="961" />
+	</File>
+	<File name="..\util\localize.h" open="0" top="0" tabpos="22">
+		<Cursor position="3280" topLine="36" />
+	</File>
+	<File name="..\src\FPGE\pg.c" open="0" top="0" tabpos="4">
+		<Cursor position="5929" topLine="147" />
+	</File>
+	<File name="..\src\ai_group.c" open="0" top="0" tabpos="10">
+		<Cursor position="19548" topLine="406" />
+	</File>
+	<File name="..\src\slot.c" open="1" top="1" tabpos="2">
+		<Cursor position="5962" topLine="123" />
+		<BrowseMarks positions="" />
+	</File>
+	<File name="..\src\misc.h" open="0" top="0" tabpos="8">
+		<Cursor position="1375" topLine="20" />
+	</File>
+	<File name="..\src\map.h" open="0" top="0" tabpos="9">
+		<Cursor position="11529" topLine="181" />
+	</File>
+	<File name="..\src\unit.h" open="0" top="0" tabpos="5">
+		<Cursor position="1601" topLine="23" />
+	</File>
+	<File name="..\src\parser.c" open="0" top="0" tabpos="27">
+		<Cursor position="23034" topLine="553" />
+	</File>
+	<File name="..\src\event.h" open="0" top="0" tabpos="16">
+		<Cursor position="2143" topLine="42" />
+		<BrowseMarks positions="" />
+	</File>
+	<File name="..\src\config.h" open="0" top="0" tabpos="12">
+		<Cursor position="2798" topLine="40" />
+	</File>
+	<File name="..\src\event.c" open="0" top="0" tabpos="6">
+		<Cursor position="5191" topLine="130" />
+	</File>
+	<File name="..\src\terrain.h" open="0" top="0" tabpos="6">
+		<Cursor position="3472" topLine="50" />
+	</File>
+	<File name="..\dependencies\include\libintl.h" open="0" top="0" tabpos="17">
+		<Cursor position="11444" topLine="290" />
+	</File>
+</BrowseTracker_layout_file>

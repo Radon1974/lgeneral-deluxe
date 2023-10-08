@@ -165,7 +165,7 @@ enum {
                                   установить этот статус */
     STATUS_MOVE,               /* переместить юнит по "пути" */
     STATUS_ATTACK,             /* юнит атакует cur_target (включая защитный огонь) */
-    STATUS_MERGE,              /* человек может сливаться с партнерами */
+    STATUS_MERGE,              /* человек может сливаться с юнитами */
     STATUS_SPLIT,              /* человек хочет разделить юнит */
     STATUS_DEPLOY,             /* человек может развернуть юниты */
     STATUS_DROP,               /* выбрать зону сброса парашютистов */
@@ -774,8 +774,8 @@ static void engine_show_turn_info()
     int text_x, text_y;
     int time_factor;
     char text[400];
-    FULL_DEST( sdl.screen );
-    fill_surf( 0x0 );
+    FULL_DEST( sdl.screen );    //рисовать регион
+    fill_surf( 0x0 );   //заполнить поверхность цветом
 #if 0
 #  define i time_factor
     gui->font_std->align = ALIGN_X_LEFT | ALIGN_Y_TOP;
@@ -1091,20 +1091,20 @@ static void engine_begin_turn( Player *forced_player, int skip_unit_prep )
     Player *player = 0;
     /* очистите различные вещи, которые все еще могут быть установлены с последнего хода */
     group_set_active( gui->confirm, ID_OK, 1 );
-    engine_hide_unit_menu();
-    engine_hide_game_menu();
+    engine_hide_unit_menu();    //скрыть меню юнита
+    engine_hide_game_menu();    //скрыть игровое меню
     /* очистить отменить */
     engine_clear_backup();
     /* понятно, отвратительных кликов */
-    if ( !deploy_turn && cur_ctrl == PLAYER_CTRL_HUMAN ) event_wait_until_no_input();
+    if ( !deploy_turn && cur_ctrl == PLAYER_CTRL_HUMAN ) event_wait_until_no_input();   //если нет очереди развертывания и управляет игрок подождите, пока не будет нажата ни клавиша, ни кнопка
     /* получить игрока */
     if ( forced_player == 0 ) {
         /* следующий игрок и ход */
         player = players_get_next( &new_turn );
-        if ( new_turn )  {
+        if ( new_turn )  {  //если новый ход увеличить счетчик ходов
             turn++;
         }
-        if ( turn == scen_info->turn_limit ) {
+        if ( turn == scen_info->turn_limit ) {  //если достигнут лимит ходов в сценарии
             /* использовать другой состоянии, в результате сценарий  */
             /* и взгляните в последний раз */
             if (camp_loaded == FIRST_SCENARIO)
@@ -1122,55 +1122,55 @@ static void engine_begin_turn( Player *forced_player, int skip_unit_prep )
         }
         else {
             cur_weather = scen_get_weather();
-            engine_select_player( player, skip_unit_prep );
+            engine_select_player( player, skip_unit_prep ); //подготовьте ход игрока
         }
     }
     else {
-        engine_select_player( forced_player, skip_unit_prep );
-        players_set_current( player_get_index( forced_player ) );
+        engine_select_player( forced_player, skip_unit_prep ); //подготовьте ход игрока
+        players_set_current( player_get_index( forced_player ) );   //установить и получить игрока как текущий по индексу
     }
 
     /* Добавить престиж для регулярного начала хода (skip_unit_prep означает, что игра была
      * загружено). */
-    if (!deploy_turn && !skip_unit_prep)
-        cur_player->cur_prestige += cur_player->prestige_per_turn[turn];
+    if (!deploy_turn && !skip_unit_prep)    //если нет очереди развертывания и нет пропуска игрока
+        cur_player->cur_prestige += cur_player->prestige_per_turn[turn];    //добавить престиж перед началом хода
 
-    if ( scen_check_result(0) ) {
-        engine_finish_scenario();
-        end_scen = 1;
+    if ( scen_check_result(0) ) {   //проверьте, полностью ли выполнены условия победы
+        engine_finish_scenario();   //завершите сценарий и отобразите последнее сообщение
+        end_scen = 1;               //конец сценария
         return;
     }
 
     /* инициализация хода ИИ, если таковой имеется */
     if ( cur_player && cur_player->ctrl == PLAYER_CTRL_CPU )
-        (cur_player->ai_init)();
+        (cur_player->ai_init)();    //инициировать ход ИИ
     /* информация о ходе */
-    engine_show_turn_info();
-    engine_set_status( deploy_turn ? STATUS_DEPLOY : STATUS_NONE );
-    phase = PHASE_NONE;
+    engine_show_turn_info();    //показать информацию о ходе
+    engine_set_status( deploy_turn ? STATUS_DEPLOY : STATUS_NONE ); //установить желаемый статус
+    phase = PHASE_NONE; //конец фазы
     /* экран обновления */
-    if ( cur_ctrl != PLAYER_CTRL_CPU || config.show_cpu_turn ) {
+    if ( cur_ctrl != PLAYER_CTRL_CPU || config.show_cpu_turn ) {    //если не ИИ или ...
         if ( cur_ctrl == PLAYER_CTRL_CPU )
-            engine_update_info( 0, 0, 0 );
+            engine_update_info( 0, 0, 0 );  //обновите краткую информацию об объекте и информацию о фрагменте карты
         else {
             image_hide( gui->cursors, 0 );
         }
-        engine_draw_map();
-        refresh_screen( 0, 0, 0, 0 );
-        blind_cpu_turn = 0;
+        engine_draw_map();     //обновить полную карту
+        refresh_screen( 0, 0, 0, 0 );   //обновить прямоугольник (0,0,0,0) -> полноэкранный режим
+        blind_cpu_turn = 0;    //если это правда, все движения скрыты
     }
     else {
-        engine_update_info( 0, 0, 0 );
-        draw_map = 0;
-        FULL_DEST( sdl.screen );
-        fill_surf( 0x0 );
+        engine_update_info( 0, 0, 0 );  //обновите краткую информацию об объекте и информацию о фрагменте карты
+        draw_map = 0;   //если этот флаг истинен, engine_update () вызывает engine_draw_map ()
+        FULL_DEST( sdl.screen );    //рисовать регион
+        fill_surf( 0x0 );   //заполнить поверхность цветом
         gui->font_turn_info->align = ALIGN_X_CENTER | ALIGN_Y_CENTER;
-        sprintf( text, tr("CPU thinks...") );
+        sprintf( text, tr("CPU thinks...") );   //центральный процессор думает
         write_text( gui->font_turn_info, sdl.screen, sdl.screen->w >> 1, sdl.screen->h >> 1, text, OPAQUE );
         sprintf( text, tr("( Enable option 'Show Cpu Turn' if you want to see what it is doing. )") );
         write_text( gui->font_turn_info, sdl.screen, sdl.screen->w >> 1, ( sdl.screen->h >> 1 )+ 20, text, OPAQUE );
-        refresh_screen( 0, 0, 0, 0 );
-        blind_cpu_turn = 1;
+        refresh_screen( 0, 0, 0, 0 );   //обновить прямоугольник (0,0,0,0) -> полноэкранный режим
+        blind_cpu_turn = 1;    //если это правда, все движения скрыты
     }
 }
 
@@ -1855,9 +1855,6 @@ static void engine_update_info( int mx, int my, int region )
                     gui_set_cursor( CURSOR_STD );
             break;
         default:
-            if ( mx == 21 && my == 41 ) {
-                mx = 21;//остановка для отладки
-            }
             if ( cur_unit ) {
                 if ( cur_unit->x == mx && cur_unit->y == my && engine_get_prim_unit( mx, my, region ) == cur_unit )
                      gui_set_cursor( CURSOR_STD );
@@ -2543,13 +2540,13 @@ static void engine_check_events(int *reinit)
             (cur_player->ai_run)();
     }
     else {
-        if ( event_get_motion( &cx, &cy ) ) {
-            if ( setup.type == SETUP_RUN_TITLE )
+        if ( event_get_motion( &cx, &cy ) ) {   //проверьте, произошло ли событие движения с момента последнего вызова
+            if ( setup.type == SETUP_RUN_TITLE )    //показать титульный экран и запустить меню
                 ;
-            else if (status == STATUS_CAMP_BRIEFING) {
+            else if (status == STATUS_CAMP_BRIEFING) {  //запустить информационный диалог кампании
                 gui_handle_message_pane_event(camp_pane, cx, cy, BUTTON_NONE, 0);
             } else {
-                if ( status == STATUS_DEPLOY || status == STATUS_DEPLOY_INFO ) {
+                if ( status == STATUS_DEPLOY || status == STATUS_DEPLOY_INFO ) {    //человек может развернуть юниты или полная информация об юните при развертывании
                     gui_handle_deploy_motion( cx, cy, &unit );
                     if ( unit ) {
                         if ( status == STATUS_DEPLOY_INFO )
@@ -2563,42 +2560,42 @@ static void engine_check_events(int *reinit)
                     /* движение мыши */
                     if ( mx != old_mx || my != old_my || region != old_region ) {
                         old_mx = mx; old_my = my, old_region = region;
-                        engine_update_info( mx, my, region );
+                        engine_update_info( mx, my, region );   //обновите краткую информацию об объекте и информацию о фрагменте карты
                     }
                 }
             }
-            gui_handle_motion( cx, cy );
+            gui_handle_motion( cx, cy );    //обрабатывать события меню
         }
-        if ( event_get_buttondown( &button, &cx, &cy ) ) {
+        if ( event_get_buttondown( &button, &cx, &cy ) ) {  //проверьте, была ли нажата кнопка, и верните ее значение
             /* щелкнуть мышью */
-            if ( gui_handle_button( button, cx, cy, &last_button ) ) {
-                engine_handle_button( last_button->id );
+            if ( gui_handle_button( button, cx, cy, &last_button ) ) {  //обрабатывать события меню (по кнопке)
+                engine_handle_button( last_button->id );    //Обработайте кнопку, которая была нажата
 #ifdef WITH_SOUND
-                wav_play( gui->wav_click );
+                wav_play( gui->wav_click ); //выдать звук нажатой кнопки
 #endif
             }
             else {
                 switch ( status ) {
-                    case STATUS_TITLE:
+                    case STATUS_TITLE:  //показать фон
                         /* меню заголовков */
                         if ( button == BUTTON_RIGHT )
                             engine_show_game_menu( cx, cy );
                         break;
-                    case STATUS_TITLE_MENU:
+                    case STATUS_TITLE_MENU: //запустить меню заголовков
                         if ( button == BUTTON_RIGHT )
                             engine_hide_game_menu();
                         break;
-                    case STATUS_SAVE_MENU:
+                    case STATUS_SAVE_MENU:  //запуск меню сохранения
                         if ( button == BUTTON_RIGHT )
                             engine_show_game_menu( cx, cy );
                         break;
-                    case STATUS_CAMP_BRIEFING:
+                    case STATUS_CAMP_BRIEFING:  //запустить информационный диалог кампании
                         gui_handle_message_pane_event(camp_pane, cx, cy, button, 1);
                         break;
                     default:
-                        if ( setup.type == SETUP_RUN_TITLE ) break;
+                        if ( setup.type == SETUP_RUN_TITLE ) break; //показать титульный экран и запустить меню
                         /* проверка колеса мыши */
-                        if ( status == STATUS_NONE ) {
+                        if ( status == STATUS_NONE ) {  //действия, которые разделены на разные фазы
                             if( button == WHEEL_UP ) {
                                 scroll_vert = SCROLL_UP;
                                 engine_check_scroll( SC_BY_WHEEL );
@@ -2609,7 +2606,7 @@ static void engine_check_events(int *reinit)
                             }
                         }
                         /* выберите юнит из окна развертывания */
-                        if ( status == STATUS_DEPLOY) {
+                        if ( status == STATUS_DEPLOY) {     //человек может развернуть юниты
                             if ( gui_handle_deploy_click(button, cx, cy) ) {
                                 if ( button == BUTTON_RIGHT ) {
                                     engine_show_deploy_unit_info( deploy_unit );
@@ -2623,7 +2620,7 @@ static void engine_check_events(int *reinit)
                         /* выбор только с карты */
                         if ( !engine_get_map_pos( cx, cy, &mx, &my, &region ) ) break;
                         switch ( status ) {
-                            case STATUS_STRAT_MAP:
+                            case STATUS_STRAT_MAP:  //показывая стратегическую карту
                                 /* переключиться со стратегической карты на тактическую */
                                 if ( button == BUTTON_LEFT )
                                     engine_focus( mx, my, 0 );
@@ -2633,16 +2630,16 @@ static void engine_check_events(int *reinit)
                                 SDL_FillRect( sdl.screen, 0, 0x0 );
                                 draw_map = 1;
                                 break;
-                            case STATUS_GAME_MENU:
+                            case STATUS_GAME_MENU:  //игровое меню
                                 if ( button == BUTTON_RIGHT )
                                     engine_hide_game_menu();
                                 break;
-                            case STATUS_DEPLOY_INFO:
+                            case STATUS_DEPLOY_INFO:    //полная информация об юните при развертывании
                                 engine_hide_deploy_unit_info();
                                 break;
-                            case STATUS_DEPLOY:
+                            case STATUS_DEPLOY:     //человек может развернуть юниты
                                 /* развернуть / свернуть */
-                                if ( button == BUTTON_LEFT ) {
+                                if ( button == BUTTON_LEFT ) {  //левая кнопка мыши
                                     /* развернуть, но проверить, явно ли мы находимся на неразвертываемом модуле */
                                     if ((unit=map_get_undeploy_unit(mx,my,region==REGION_AIR)))
                                     {}
@@ -2688,7 +2685,7 @@ static void engine_check_events(int *reinit)
 //                                    if (deploy_turn)
 //                                        group_set_active(gui->deploy_window,ID_APPLY_DEPLOY,(left_deploy_units->count>0)?0:1);
                                 }
-                                else if ( button == BUTTON_RIGHT )
+                                else if ( button == BUTTON_RIGHT )  //правая кнопка мыши
                                 {
                                     if ( mask[mx][my].spot && ( unit = engine_get_prim_unit( mx, my, region ) ) ) {
                                        /* информация */
@@ -2696,8 +2693,8 @@ static void engine_check_events(int *reinit)
                                     }
                                 }
                                 break;
-                            case STATUS_DROP:
-                                if ( button == BUTTON_RIGHT ) {
+                            case STATUS_DROP:   //выбрать зону сброса парашютистов
+                                if ( button == BUTTON_RIGHT ) {  //правая кнопка мыши
                                     /* очистить статус */
                                     engine_set_status( STATUS_NONE );
                                     gui_set_cursor(CURSOR_STD);
@@ -2706,7 +2703,7 @@ static void engine_check_events(int *reinit)
                                     draw_map = 1;
                                 }
                                 else
-                                    if ( button == BUTTON_LEFT )
+                                    if ( button == BUTTON_LEFT )  //левая кнопка мыши
                                         if ( mask[mx][my].deploy ) {
                                             action_queue_debark_air( cur_unit, mx, my, 0 );
                                             map_set_fog( F_SPOT );
@@ -2715,8 +2712,8 @@ static void engine_check_events(int *reinit)
                                             draw_map = 1;
                                         }
                                 break;
-                            case STATUS_MERGE:
-                                if ( button == BUTTON_RIGHT ) {
+                            case STATUS_MERGE:  //человек может сливаться с юнитами
+                                if ( button == BUTTON_RIGHT ) {  //правая кнопка мыши
                                     /* очистить статус */
                                     engine_set_status( STATUS_NONE );
                                     gui_set_cursor(CURSOR_STD);
@@ -2725,7 +2722,7 @@ static void engine_check_events(int *reinit)
                                     draw_map = 1;
                                 }
                                 else
-                                    if ( button == BUTTON_LEFT )
+                                    if ( button == BUTTON_LEFT )  //левая кнопка мыши
                                         if ( mask[mx][my].merge_unit ) {
                                             action_queue_merge( cur_unit, mask[mx][my].merge_unit );
                                             map_set_fog( F_SPOT );
@@ -2734,8 +2731,8 @@ static void engine_check_events(int *reinit)
                                             draw_map = 1;
                                         }
                                 break;
-                            case STATUS_SPLIT:
-                                if ( button == BUTTON_RIGHT ) {
+                            case STATUS_SPLIT:  //человек хочет разделить юнит
+                                if ( button == BUTTON_RIGHT ) {  //правая кнопка мыши
                                     /* очистить статус */
                                     engine_set_status( STATUS_NONE );
                                     gui_set_cursor(CURSOR_STD);
@@ -2744,7 +2741,7 @@ static void engine_check_events(int *reinit)
                                     draw_map = 1;
                                 }
                                 else
-                                    if ( button == BUTTON_LEFT )
+                                    if ( button == BUTTON_LEFT )  //левая кнопка мыши
                                     {
                                         if ( mask[mx][my].split_unit||mask[mx][my].split_okay ) {
                                             action_queue_split( cur_unit, cur_split_str, mx, my, mask[mx][my].split_unit );
@@ -2757,22 +2754,22 @@ static void engine_check_events(int *reinit)
                                     }
                                 break;
                             case STATUS_UNIT_MENU:
-                                if ( button == BUTTON_RIGHT )
+                                if ( button == BUTTON_RIGHT )  //правая кнопка мыши
                                     engine_hide_unit_menu();
                                 break;
-                            case STATUS_SCEN_INFO:
+                            case STATUS_SCEN_INFO:  //показать информацию о сценарии
                                 engine_set_status( STATUS_NONE );
                                 frame_hide( gui->sinfo, 1 );
                                 old_mx = old_my = -1;
                                 break;
-                            case STATUS_INFO:
+                            case STATUS_INFO:   //показать полную информацию об юните
                                 engine_set_status( STATUS_NONE );
                                 frame_hide( gui->finfo, 1 );
                                 old_mx = old_my = -1;
                                 break;
-                            case STATUS_NONE:
+                            case STATUS_NONE:   //действия, которые разделены на разные фазы
                                 switch ( button ) {
-                                    case BUTTON_LEFT:
+                                    case BUTTON_LEFT:  //левая кнопка мыши
                                         if ( cur_unit ) {
                                             /* обрабатывать текущий блок */
                                             if ( cur_unit->x == mx && cur_unit->y == my && engine_get_prim_unit( mx, my, region ) == cur_unit )
@@ -2827,7 +2824,7 @@ static void engine_check_events(int *reinit)
 #endif
                                             }
                                         break;
-                                    case BUTTON_RIGHT:
+                                    case BUTTON_RIGHT:  //правая кнопка мыши
                                         if ( cur_unit == 0 ) {
                                             if ( mask[mx][my].spot && ( unit = engine_get_prim_unit( mx, my, region ) ) ) {
                                                 /* показать информацию об юните */
@@ -2870,7 +2867,7 @@ static void engine_check_events(int *reinit)
             }
         }
         else
-            if ( event_get_buttonup( &button, &cx, &cy ) ) {
+            if ( event_get_buttonup( &button, &cx, &cy ) ) {    //проверьте, была ли нажата кнопка, и верните ее значение и текущий положение мыши
                 if (status == STATUS_CAMP_BRIEFING) {
                      const char *result;
                      gui_handle_message_pane_event(camp_pane, cx, cy, button, 0);
@@ -2932,7 +2929,7 @@ static void engine_check_events(int *reinit)
                     keypressed = 1;
                 }
                 if ( !gui->message_dlg->edit_box->label->frame->img->bkgnd->hide ) {
-                    if ( event.key.keysym.sym == SDLK_RETURN ) {
+                    if ( event.key.keysym.sym == SDLK_RETURN ) {    //Enter клавиша
                         /* проверка различных чит-кодов */
                         if ( strspn( gui->message_dlg->edit_box->text, "/prestige" ) == 9  && cur_player != 0 )
                         {
@@ -3198,7 +3195,7 @@ static void engine_check_events(int *reinit)
                     }
                     else
                     {
-                        if ( event.key.keysym.sym != SDLK_BACKQUOTE )
+                        if ( event.key.keysym.sym != SDLK_BACKQUOTE )   //не нажата тильда
                         {
                             edit_handle_key( gui->message_dlg->edit_box, event.key.keysym.sym,
                                              event.key.keysym.mod, event.key.keysym.unicode );
@@ -3208,12 +3205,12 @@ static void engine_check_events(int *reinit)
                         }
                     }
                 } else if ( status == STATUS_NONE || status == STATUS_INFO || status == STATUS_UNIT_MENU ||
-                     status == STATUS_HEADQUARTERS ) {
+                     status == STATUS_HEADQUARTERS ) {  //вести диалог в штаб-квартире
                     int shiftPressed = event.key.keysym.mod&KMOD_LSHIFT||event.key.keysym.mod&KMOD_RSHIFT;
                     if ( (status != STATUS_UNIT_MENU) && (status != STATUS_HEADQUARTERS) &&
-                         (event.key.keysym.sym == SDLK_n ||
-                         (event.key.keysym.sym == SDLK_f&&!shiftPressed) ||
-                         (event.key.keysym.sym == SDLK_m&&!shiftPressed) ) ) {
+                         (event.key.keysym.sym == SDLK_n || //клавиша n
+                         (event.key.keysym.sym == SDLK_f&&!shiftPressed) || //клавиша f
+                         (event.key.keysym.sym == SDLK_m&&!shiftPressed) ) ) {  //клавиша m
                         int stype = (event.key.keysym.sym==SDLK_n)?0:(event.key.keysym.sym==SDLK_f)?1:2;
                         /* выберите следующий отряд, у которого есть любое движение
                            или нападение осталось */
@@ -3338,7 +3335,7 @@ static void engine_check_events(int *reinit)
                             default: keypressed = 0; break;
                         }
                     }
-                } else if ( status == STATUS_CONF ) {
+                } else if ( status == STATUS_CONF ) {   //запустить окно подтверждения
                     if ( event.key.keysym.sym == SDLK_RETURN )
                         engine_handle_button(ID_OK);
                     else if ( event.key.keysym.sym == SDLK_ESCAPE )
@@ -3347,17 +3344,17 @@ static void engine_check_events(int *reinit)
                     if ( event.key.keysym.sym == SDLK_RETURN ) {
                         /* применять */
                         switch ( status ) {
-                            case STATUS_RENAME:
+                            case STATUS_RENAME: //переименовать блок
                                 strcpy_lt( cur_unit->name, gui->edit->text, 20 );
                                 hide_edit = 1;
                                 break;
-                            case STATUS_SAVE_EDIT:
+                            case STATUS_SAVE_EDIT:  //запуск сохранения редактирования
                                 if ( dir_check( gui->save_menu->lbox->items, gui->edit->text ) != -1 )
                                     engine_confirm_action( tr("Overwrite saved game?") );
                                 slot_save( gui->edit->text, gui->save_menu->subdir );
                                 hide_edit = 1;
                                 break;
-                            case STATUS_NEW_FOLDER:
+                            case STATUS_NEW_FOLDER: //создание нового имени папки
                                 dir_create( gui->edit->text, gui->save_menu->subdir );
                                 char path[MAX_PATH];
                                 sprintf( path, "%s/%s/Save", config.dir_name, config.mod_name );
@@ -3371,7 +3368,7 @@ static void engine_check_events(int *reinit)
                         keypressed = 1;
                     }
                     else
-                        if ( event.key.keysym.sym == SDLK_ESCAPE )
+                        if ( event.key.keysym.sym == SDLK_ESCAPE )  //Escape клавиша
                         {
                             hide_edit = 1;
                             if ( status == STATUS_NEW_FOLDER )
@@ -3518,7 +3515,7 @@ static int engine_capture_flag( Unit *unit ) {
 
 /*
 ====================================================================
-Deqeue следующее действие и выполнение его.
+Обработайте следующее действие и выполнение его.
 ====================================================================
 */
 static void engine_handle_next_action( int *reinit )
@@ -3535,18 +3532,18 @@ static void engine_handle_next_action( int *reinit )
         return;
     /* справиться */
     switch ( action->type ) {
-        case ACTION_START_SCEN:
+        case ACTION_START_SCEN: //запуск сценария
             camp_delete();
-            setup.type = SETUP_INIT_SCEN;
+            setup.type = SETUP_INIT_SCEN;   //используйте информацию о настройке, чтобы перезаписать настройки сценария по умолчанию
             *reinit = 1;
             end_scen = 1;
             break;
-        case ACTION_START_CAMP:
-            setup.type = SETUP_INIT_CAMP;
+        case ACTION_START_CAMP: //запуск компании
+            setup.type = SETUP_INIT_CAMP;   //загрузить всю кампанию и использовать значения по умолчанию для  сценарии
             *reinit = 1;
             end_scen = 1;
             break;
-        case ACTION_OVERWRITE:
+        case ACTION_OVERWRITE:  //перезапись игры
             status = STATUS_SAVE_EDIT;
             if (gui->save_menu->current_name)
             {
@@ -3561,13 +3558,13 @@ static void engine_handle_next_action( int *reinit )
             edit_show( gui->edit, name );
             scroll_block_keys = 1;
             break;
-        case ACTION_LOAD:
+        case ACTION_LOAD:   //загрузить игру
             setup.type = SETUP_LOAD_GAME;
             strcpy( setup.fname, gui->load_menu->current_name );
             *reinit = 1;
             end_scen = 1;
             break;
-        case ACTION_RESTART:
+        case ACTION_RESTART:    //рестарт
             strcpy( setup.fname, scen_info->fname );
             setup.type = SETUP_INIT_SCEN;
             *reinit = 1;
@@ -3575,11 +3572,11 @@ static void engine_handle_next_action( int *reinit )
             if (config.use_core_units && (camp_loaded != NO_CAMPAIGN) && !STRCMP(camp_cur_scen->id, camp_first))
                 camp_loaded = RESTART_CAMPAIGN;
             break;
-        case ACTION_QUIT:
+        case ACTION_QUIT:   //выйти из игры
             engine_set_status( STATUS_NONE );
             end_scen = 1;
             break;
-        case ACTION_CHANGE_MOD:
+        case ACTION_CHANGE_MOD: //сменить мод
             snprintf( config.mod_name, MAX_NAME, "%s", gui->mod_select_dlg->current_name );
             frame_hide( gui->qinfo1, 1 );
             frame_hide( gui->qinfo2, 1 );
@@ -3590,7 +3587,7 @@ static void engine_handle_next_action( int *reinit )
             setup.type = SETUP_RUN_TITLE;
             engine_set_status( STATUS_TITLE );
             break;
-        case ACTION_SET_VMODE:
+        case ACTION_SET_VMODE:  //сменить разрешение
             flags = SDL_SWSURFACE;
             if ( action->full ) flags |= SDL_FULLSCREEN;
             depth = SDL_VideoModeOK( action->w, action->h, 32, flags );
@@ -3635,14 +3632,14 @@ static void engine_handle_next_action( int *reinit )
                 config.fullscreen = flags & SDL_FULLSCREEN;
             }
             break;
-        case ACTION_SET_SPOT_MASK:
+        case ACTION_SET_SPOT_MASK:  //установка спот маски
             map_set_spot_mask();
             map_set_fog( F_SPOT );
             break;
-        case ACTION_DRAW_MAP:
+        case ACTION_DRAW_MAP:   //прорисовка карты
             draw_map = 1;
             break;
-        case ACTION_DEPLOY:
+        case ACTION_DEPLOY: //расстановка войск
             action->unit->delay = 0;
             action->unit->fresh_deploy = 0;
             action->unit->x = action->x;
@@ -3652,7 +3649,7 @@ static void engine_handle_next_action( int *reinit )
                 map_insert_unit( action->unit );
             scen_prep_unit( action->unit, SCEN_PREP_UNIT_DEPLOY );
             break;
-        case ACTION_EMBARK_SEA:
+        case ACTION_EMBARK_SEA: //высадка на сушу из морского транспорта
             if ( map_check_unit_embark( action->unit, action->x, action->y, EMBARK_SEA, 0 ) ) {
                 map_embark_unit( action->unit, action->x, action->y, EMBARK_SEA, &enemy_spotted );
                 if ( enemy_spotted ) engine_clear_backup();
@@ -3660,7 +3657,7 @@ static void engine_handle_next_action( int *reinit )
                     engine_select_unit( action->unit );
             }
             break;
-        case ACTION_DEBARK_SEA:
+        case ACTION_DEBARK_SEA: //погрузка в морской транспорт
             if ( map_check_unit_debark( action->unit, action->x, action->y, EMBARK_SEA, 0 ) ) {
                 map_debark_unit( action->unit, action->x, action->y, EMBARK_SEA, &enemy_spotted );
                 if ( enemy_spotted ) engine_clear_backup();
@@ -3673,7 +3670,7 @@ static void engine_handle_next_action( int *reinit )
                 }
             }
             break;
-        case ACTION_MERGE:
+        case ACTION_MERGE:  //объединение юнита
             if ( unit_check_merge( action->unit, action->target ) ) {
                 unit_merge( action->unit, action->target );
                 engine_remove_unit( action->target );
@@ -3682,7 +3679,7 @@ static void engine_handle_next_action( int *reinit )
                     engine_select_unit( action->unit );
             }
             break;
-        case ACTION_SPLIT:
+        case ACTION_SPLIT:  //разделение юнита
             if ( map_check_unit_split(action->unit,action->str,action->x,action->y,action->target) )
             {
                 if (action->target)
@@ -3711,14 +3708,14 @@ static void engine_handle_next_action( int *reinit )
                 }
             }
             break;
-        case ACTION_REPLACE:
+        case ACTION_REPLACE:    //пополнение юнита
             if ( unit_check_replacements( action->unit,REPLACEMENTS ) ) {
                 unit_replace( action->unit,REPLACEMENTS );
                 if ( cur_ctrl == PLAYER_CTRL_HUMAN )
                     engine_select_unit( action->unit );
             }
             break;
-        case ACTION_ELITE_REPLACE:
+        case ACTION_ELITE_REPLACE:  //элитное пополнение юнита
             if ( unit_check_replacements( action->unit,ELITE_REPLACEMENTS ) ) {
                 unit_replace( action->unit,ELITE_REPLACEMENTS );
                 if ( cur_ctrl == PLAYER_CTRL_HUMAN )
@@ -4439,20 +4436,20 @@ static void engine_update( int ms )
 static void engine_main_loop( int *reinit )
 {
     int ms;
-    if ( status == STATUS_TITLE && !term_game ) {
-        engine_draw_bkgnd();
-        engine_show_game_menu(10,40);
-        refresh_screen( 0, 0, 0, 0 );
+    if ( status == STATUS_TITLE && !term_game ) {   //показать фон и нет команды завершить игру
+        engine_draw_bkgnd();    //нарисуйте обои и фон
+        engine_show_game_menu(10,40);   //показать игровое меню
+        refresh_screen( 0, 0, 0, 0 );   //обновить прямоугольник (0,0,0,0) -> полноэкранный режим
     }
-    else if ( status == STATUS_CAMP_BRIEFING )
+    else if ( status == STATUS_CAMP_BRIEFING )  //запустить информационный диалог кампании
         ;
     else
-        engine_begin_turn( cur_player, setup.type == SETUP_LOAD_GAME /* пропустить подготовку юнита тогда */ );
-    gui_get_bkgnds();
+        engine_begin_turn( cur_player, setup.type == SETUP_LOAD_GAME /* пропустить подготовку юнита тогда */ ); //ход юнита
+    gui_get_bkgnds();   //скрыть / нарисовать с экрана/на экран
     *reinit = 0;
-    reset_timer();
-    while( !end_scen && !term_game ) {
-        engine_begin_frame();
+    reset_timer();  //сбросить таймер
+    while( !end_scen && !term_game ) {  //если сценарий не завершен и игра не прервана
+        engine_begin_frame();   //скрыть все анимированные окна верхнего уровня
         /* проверить события ввода / процессора и поставить в очередь действий */
         engine_check_events(reinit);
         /* обрабатывать действия в очереди */

@@ -330,6 +330,8 @@ static void save_unit( FILE *file, Unit *unit )
     save_int(file, unit->x);
     /* y */
     save_int(file, unit->y);
+    /* отла */
+    save_int(file, unit->str);
     /* сила */
     save_int(file, unit->str);
     /* окопанность */
@@ -948,7 +950,7 @@ int slot_load( char *name )
     scen_file_name = load_string( file );
     if ( store_version < StoreNewFolderStructure )
         snprintf( scen_file_name, strlen( scen_file_name ), "%s", strrchr( scen_file_name, '/' ) );
-    if ( !scen_load( scen_file_name ) )
+    if ( !scen_load( scen_file_name ) ) //загрузка сценария
     {
         free( scen_file_name );
         fclose(file);

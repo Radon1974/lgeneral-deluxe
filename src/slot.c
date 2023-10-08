@@ -859,8 +859,6 @@ int slot_save( char *name, char *subdir )
     save_int( file, units->count );
     for ( i = 0; i < units->count; i++ )
         save_unit( file, list_next( units ) );
-    //fclose( file ); //Вставлена для отладки
-
     /* подкрепление */
     list_reset( reinf );
     save_int( file, reinf->count );
@@ -911,7 +909,7 @@ int slot_load( char *name )
     /* проверить порядок байтов */
     endian_need_swap = !!(store_version & 0xFFFF0000);
     if (endian_need_swap)
-        store_version = SDL_Swap32(store_version);
+        store_version = SDL_Swap32(store_version);  //store_version = SDL_Swap32(store_version);
 
     /* отклонить игру, если она слишком новая */
     if (store_version > StoreHighestSupportedVersion) {
@@ -948,7 +946,7 @@ int slot_load( char *name )
     scen_file_name = load_string( file );
     if ( store_version < StoreNewFolderStructure )
         snprintf( scen_file_name, strlen( scen_file_name ), "%s", strrchr( scen_file_name, '/' ) );
-    if ( !scen_load( scen_file_name ) )
+    if ( !scen_load( scen_file_name ) ) //загрузка сценария
     {
         free( scen_file_name );
         fclose(file);

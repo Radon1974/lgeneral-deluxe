@@ -1074,7 +1074,7 @@
 	<stdio.h>
 	"list.h"
 
-1690470920 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\config.c
+1695584987 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\config.c
 	<SDL.h>
 	<stdlib.h>
 	<stdio.h>
@@ -1097,7 +1097,7 @@
 	"misc.h"
 	"localize.h"
 
-1694454575 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\engine.c
+1696687464 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\engine.c
 	<dlfcn.h>
 	<math.h>
 	"lgeneral.h"
@@ -1233,7 +1233,7 @@
 	<stdlib.h>
 	"list.h"
 
-1611511742 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\main.c
+1695586977 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\main.c
 	"../config.h"
 	<assert.h>
 	<stdarg.h>
@@ -1345,7 +1345,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1611561177 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\sdl.c
+1696677690 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\sdl.c
 	"sdl.h"
 	"SDL_image.h"
 	"misc.h"
@@ -1360,7 +1360,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1692552088 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\slot.c
+1696708949 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\slot.c
 	<assert.h>
 	<math.h>
 	<dirent.h>
