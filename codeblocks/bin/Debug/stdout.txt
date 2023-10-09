@@ -11,4 +11,9 @@ AI Initialized
 *** DEPLOY ***
 *** END TURN ***
 AI Finalized
+AI Turn: Allies
+AI Initialized
+*** DEPLOY ***
+*** END TURN ***
+AI Finalized
 SDL finalized

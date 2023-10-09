@@ -2,174 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="..\src\parser.h" open="0" top="0" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6356" topLine="97" />
-		</Cursor>
-	</File>
 	<File name="..\src\action.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="4923" topLine="84" />
-		</Cursor>
-	</File>
-	<File name="..\src\gui.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="11928" topLine="315" />
-		</Cursor>
-	</File>
-	<File name="..\src\action.c" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5805" topLine="157" />
-		</Cursor>
-	</File>
-	<File name="..\src\sdl.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1900" topLine="60" />
-		</Cursor>
-	</File>
-	<File name="..\src\scenario.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2377" topLine="29" />
-		</Cursor>
-	</File>
-	<File name="..\util\localize.c" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6296" topLine="195" />
-		</Cursor>
-	</File>
-	<File name="..\src\config.c" open="0" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3623" topLine="91" />
-		</Cursor>
-	</File>
-	<File name="..\src\scenario.c" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="86365" topLine="1924" />
-		</Cursor>
-	</File>
-	<File name="..\src\terrain.c" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="31512" topLine="699" />
-		</Cursor>
-	</File>
-	<File name="..\src\misc.c" open="0" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5173" topLine="144" />
-		</Cursor>
-	</File>
-	<File name="..\src\ai.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1205" topLine="11" />
-		</Cursor>
-	</File>
-	<File name="..\src\player.c" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5010" topLine="134" />
-		</Cursor>
-	</File>
-	<File name="..\src\engine.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2416" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="..\src\main.c" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2153" topLine="58" />
-		</Cursor>
-	</File>
-	<File name="..\src\audio.c" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4239" topLine="115" />
-		</Cursor>
-	</File>
-	<File name="..\src\campaign.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1197" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="..\src\map.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="36942" topLine="887" />
-		</Cursor>
-	</File>
-	<File name="..\src\ai.c" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="32234" topLine="720" />
-		</Cursor>
-	</File>
-	<File name="..\src\gui.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="43436" topLine="883" />
-		</Cursor>
-	</File>
-	<File name="..\src\list.c" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="10328" topLine="253" />
-		</Cursor>
-	</File>
-	<File name="..\src\unit_lib.c" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="41819" topLine="955" />
-		</Cursor>
-	</File>
-	<File name="..\src\engine.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="137705" topLine="2878" />
-		</Cursor>
-	</File>
-	<File name="..\src\sdl.c" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="11774" topLine="961" />
-		</Cursor>
-	</File>
-	<File name="..\util\localize.h" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3280" topLine="36" />
-		</Cursor>
-	</File>
-	<File name="..\src\FPGE\pg.c" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5929" topLine="147" />
-		</Cursor>
-	</File>
-	<File name="..\src\ai_group.c" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="19548" topLine="406" />
-		</Cursor>
-	</File>
-	<File name="..\src\slot.c" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5962" topLine="123" />
-		</Cursor>
-	</File>
-	<File name="..\src\misc.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1375" topLine="20" />
-		</Cursor>
-	</File>
-	<File name="..\src\map.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="11529" topLine="181" />
-		</Cursor>
-	</File>
-	<File name="..\src\unit.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1601" topLine="23" />
-		</Cursor>
-	</File>
-	<File name="..\src\parser.c" open="0" top="0" tabpos="27" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="23034" topLine="553" />
-		</Cursor>
-	</File>
-	<File name="..\src\event.h" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2143" topLine="42" />
-		</Cursor>
-	</File>
-	<File name="..\src\config.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2798" topLine="40" />
 		</Cursor>
 	</File>
 	<File name="..\src\event.c" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -177,9 +12,184 @@
 			<Cursor1 position="5191" topLine="130" />
 		</Cursor>
 	</File>
+	<File name="..\src\nation.c" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6209" topLine="176" />
+		</Cursor>
+	</File>
+	<File name="..\util\localize.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6445" topLine="203" />
+		</Cursor>
+	</File>
+	<File name="..\src\campaign.h" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1221" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="..\src\misc.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3547" topLine="101" />
+		</Cursor>
+	</File>
+	<File name="..\src\ai_group.c" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="19548" topLine="406" />
+		</Cursor>
+	</File>
+	<File name="..\src\list.c" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1980" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="..\src\event.h" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2143" topLine="42" />
+		</Cursor>
+	</File>
+	<File name="..\src\parser.h" open="0" top="0" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6356" topLine="97" />
+		</Cursor>
+	</File>
+	<File name="..\src\config.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2798" topLine="40" />
+		</Cursor>
+	</File>
+	<File name="..\src\action.c" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5805" topLine="157" />
+		</Cursor>
+	</File>
+	<File name="..\util\localize.h" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3280" topLine="36" />
+		</Cursor>
+	</File>
+	<File name="..\src\player.c" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2093" topLine="43" />
+		</Cursor>
+	</File>
+	<File name="..\src\unit.h" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1601" topLine="23" />
+		</Cursor>
+	</File>
+	<File name="..\src\sdl.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1900" topLine="60" />
+		</Cursor>
+	</File>
+	<File name="..\src\gui.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="11928" topLine="315" />
+		</Cursor>
+	</File>
+	<File name="..\src\sdl.c" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="11774" topLine="961" />
+		</Cursor>
+	</File>
+	<File name="..\src\campaign.c" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="30311" topLine="730" />
+		</Cursor>
+	</File>
+	<File name="..\src\audio.c" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4239" topLine="115" />
+		</Cursor>
+	</File>
+	<File name="..\src\main.c" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2153" topLine="58" />
+		</Cursor>
+	</File>
+	<File name="..\src\gui.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="43436" topLine="883" />
+		</Cursor>
+	</File>
+	<File name="..\src\FPGE\pg.c" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5929" topLine="147" />
+		</Cursor>
+	</File>
+	<File name="..\src\parser.c" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="20477" topLine="504" />
+		</Cursor>
+	</File>
+	<File name="..\src\map.c" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8993" topLine="278" />
+		</Cursor>
+	</File>
 	<File name="..\src\terrain.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="3472" topLine="50" />
+		</Cursor>
+	</File>
+	<File name="..\src\engine.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="155911" topLine="3168" />
+		</Cursor>
+	</File>
+	<File name="..\src\engine.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2416" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="..\src\map.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="11529" topLine="181" />
+		</Cursor>
+	</File>
+	<File name="..\src\terrain.c" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="31412" topLine="682" />
+		</Cursor>
+	</File>
+	<File name="..\src\config.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2167" topLine="35" />
+		</Cursor>
+	</File>
+	<File name="..\src\misc.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2420" topLine="50" />
+		</Cursor>
+	</File>
+	<File name="..\src\unit_lib.c" open="1" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="24843" topLine="844" />
+		</Cursor>
+	</File>
+	<File name="..\src\slot.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="37503" topLine="931" />
+		</Cursor>
+	</File>
+	<File name="..\src\unit.c" open="1" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="20539" topLine="432" />
+		</Cursor>
+	</File>
+	<File name="..\src\scenario.c" open="1" top="1" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="72309" topLine="1434" />
+		</Cursor>
+	</File>
+	<File name="..\intl\localealias.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7079" topLine="214" />
+		</Cursor>
+	</File>
+	<File name="..\src\file.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="31187" topLine="758" />
 		</Cursor>
 	</File>
 	<File name="..\dependencies\include\libintl.h" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -187,5 +197,20 @@
 			<Cursor1 position="11444" topLine="290" />
 		</Cursor>
 	</File>
-	<EditorTabsLayout layout="081fb3706521b8e900001c0200000002=0;lgeneral:..\src\engine.c,*1;lgeneral:..\src\slot.c@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=856;besth=385;minw=856;minh=385;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=081fb3706521b8e900001c0200000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=202|" />
+	<File name="..\src\ai.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1205" topLine="11" />
+		</Cursor>
+	</File>
+	<File name="..\src\scenario.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2377" topLine="29" />
+		</Cursor>
+	</File>
+	<File name="..\src\ai.c" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="32234" topLine="720" />
+		</Cursor>
+	</File>
+	<EditorTabsLayout layout="081301206523c14f00002fe900000002=0;lgeneral:..\src\engine.c,1;lgeneral:..\src\slot.c,2;lgeneral:..\src\config.c,3;lgeneral:..\src\file.c,4;lgeneral:..\src\misc.c,5;lgeneral:..\src\misc.h,6;lgeneral:..\util\localize.c,7;lgeneral:..\intl\localealias.c,8;lgeneral:..\src\map.c,*9;lgeneral:..\src\scenario.c,10;lgeneral:..\src\nation.c,11;lgeneral:..\src\parser.c,12;lgeneral:..\src\campaign.c,13;lgeneral:..\src\terrain.c,14;lgeneral:..\src\unit.h,15;lgeneral:..\src\list.c,16;lgeneral:..\src\campaign.h,17;lgeneral:..\src\unit_lib.c,18;lgeneral:..\src\player.c,19;lgeneral:..\src\unit.c@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=856;besth=399;minw=856;minh=399;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=081301206523c14f00002fe900000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=202|" />
 </CodeBlocks_layout_file>

@@ -330,8 +330,6 @@ static void save_unit( FILE *file, Unit *unit )
     save_int(file, unit->x);
     /* y */
     save_int(file, unit->y);
-    /* отла */
-    save_int(file, unit->str);
     /* сила */
     save_int(file, unit->str);
     /* окопанность */
@@ -816,7 +814,9 @@ int slot_save( char *name, char *subdir )
     /* получить имя файла */
     sprintf( path, "%s/%s/Save/%s/%s", get_gamedir(), config.mod_name, subdir, name );
     /* открыть файл */
-    if ( ( file = fopen( path, "w" ) ) == 0 ) {
+    //"w"	Создает файл для записи (по умолчанию файл открывается как текстовый).
+    //"wb"	Создает двоичный файл для записи.
+    if ( ( file = fopen( path, "wb" ) ) == 0 ) {
         fprintf( stderr, tr("%s: not found\n"), path );
         return 0;
     }
@@ -861,8 +861,6 @@ int slot_save( char *name, char *subdir )
     save_int( file, units->count );
     for ( i = 0; i < units->count; i++ )
         save_unit( file, list_next( units ) );
-    //fclose( file ); //Вставлена для отладки
-
     /* подкрепление */
     list_reset( reinf );
     save_int( file, reinf->count );
@@ -913,7 +911,7 @@ int slot_load( char *name )
     /* проверить порядок байтов */
     endian_need_swap = !!(store_version & 0xFFFF0000);
     if (endian_need_swap)
-        store_version = SDL_Swap32(store_version);
+        store_version = SDL_Swap32(store_version);  //store_version = SDL_Swap32(store_version);
 
     /* отклонить игру, если она слишком новая */
     if (store_version > StoreHighestSupportedVersion) {

@@ -1752,7 +1752,9 @@ static void engine_update_info( int mx, int my, int region )
     }
     else
     {
-        snprintf( str, MAX_LINE, tr("Prestige: %d"), cur_player->cur_prestige );	/*FIXME Показать престиж вместо мода  snprintf( str, MAX_NAME, tr("Mod: %s"), config.mod_name ) */
+
+        //snprintf( str, MAX_LINE, tr("Prestige: %d"), cur_player->cur_prestige );   /*FIXME Показать престиж вместо мода   */
+        snprintf( str, MAX_NAME, tr("Mod: %s"), config.mod_name );
         label_write( gui->label_left, gui->font_std, str );
         sprintf( str, "%s (%i,%i)", map[mx][my].name, mx, my );
         label_write( gui->label_center, gui->font_status, str );

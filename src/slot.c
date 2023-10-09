@@ -814,7 +814,9 @@ int slot_save( char *name, char *subdir )
     /* получить имя файла */
     sprintf( path, "%s/%s/Save/%s/%s", get_gamedir(), config.mod_name, subdir, name );
     /* открыть файл */
-    if ( ( file = fopen( path, "w" ) ) == 0 ) {
+    //fopen( path, "w" )	Создает файл для записи (по умолчанию файл открывается как текстовый).
+    //fopen( path, "wb" )	Создает двоичный файл для записи.
+    if ( ( file = fopen( path, "wb" ) ) == 0 ) {
         fprintf( stderr, tr("%s: not found\n"), path );
         return 0;
     }
@@ -894,11 +896,13 @@ int slot_load( char *name )
     /* получить имя файла */
     sprintf( path, "%s/%s/Save/%s", get_gamedir(), config.mod_name, name );
     /* открыть файл */
-#ifdef WIN32
+    //fopen( path, "r" )    Открывает файл для чтения (по умолчанию файл открывается как текстовый).
+    //fopen( path, "rb" )   Открывает двоичный файл для чтения.
+//#ifdef WIN32
     if ( ( file = fopen( path, "rb" ) ) == 0 ) {
-#else
-    if ( ( file = fopen( path, "r" ) ) == 0 ) {
-#endif
+//#else
+//    if ( ( file = fopen( path, "r" ) ) == 0 ) {
+//#endif
         fprintf( stderr, tr("%s: not found\n"), path );
         return 0;
     }

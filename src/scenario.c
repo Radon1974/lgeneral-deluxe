@@ -1074,25 +1074,25 @@ int scen_load_lgdscn( const char *fname, const char *path )
             /* создать игрока */
             pl = calloc( 1, sizeof( Player ) );
 
-            pl->id = strdup( tokens[0] );
-            pl->name = strdup( tokens[1] );
+            pl->id = strdup( tokens[0] );               //номер
+            pl->name = strdup( tokens[1] );             //имя
 
             /* ограничение юнита (0 = без ограничения) */
-            pl->unit_limit = atoi( tokens[2] );
+            pl->unit_limit = atoi( tokens[2] );         //лимит юнитов
 
             if ((camp_loaded != NO_CAMPAIGN) && config.use_core_units)
             {
-                pl->core_limit = atoi( tokens[3] );
+                pl->core_limit = atoi( tokens[3] );     //лимит основных юнитов
             }
             else
                 pl->core_limit = -1;
 
-            if ( strcmp( tokens[4], "right" ) == 0 ) /* все они еще не реализованы */
+            if ( strcmp( tokens[4], "right" ) == 0 ) /* все они еще не реализованы */   //ориентация
                 pl->orient = UNIT_ORIENT_RIGHT;
             else
                 pl->orient = UNIT_ORIENT_LEFT;
 
-            if ( strcmp( tokens[5], "cpu" ) == 0 )
+            if ( strcmp( tokens[5], "cpu" ) == 0 )      //управление
             {
                 pl->ctrl = PLAYER_CTRL_CPU;
                 pl->core_limit = -1;
@@ -1101,16 +1101,16 @@ int scen_load_lgdscn( const char *fname, const char *path )
                 pl->ctrl = PLAYER_CTRL_HUMAN;
 
             pl->ai_fname = strdup( "default" );
-            pl->strat = atoi( tokens[6] );
-            pl->strength_row = atoi( tokens[7] );
+            pl->strat = atoi( tokens[6] );              //стратегия
+            pl->strength_row = atoi( tokens[7] );       //уровень силы
 
-            pl->air_trsp = unit_lib_find( tokens[8] );
-            pl->air_trsp_count = atoi( tokens[9] );
-            pl->sea_trsp = unit_lib_find( tokens[10] );
-            pl->sea_trsp_count = atoi( tokens[11] );
+            pl->air_trsp = unit_lib_find( tokens[8] );  //тип воздушного транспорта
+            pl->air_trsp_count = atoi( tokens[9] );     //количество воздушного транспорта
+            pl->sea_trsp = unit_lib_find( tokens[10] ); //тип морского транспорта
+            pl->sea_trsp_count = atoi( tokens[11] );    //количество морского транспорта
 
-            player_add( pl );
-            cur_player_count++;
+            player_add( pl );   //добавить игрока в список игроков
+            cur_player_count++; //следующий игрок (счетчик)
         }
 
         //Block#3 союзные игроки
@@ -1134,7 +1134,7 @@ int scen_load_lgdscn( const char *fname, const char *path )
 				goto failure;
 			}
 			for ( i = 1; i <= token; i++ ) {
-				pl->prestige_per_turn[i - 1] = atoi( tokens[i] );
+				pl->prestige_per_turn[i - 1] = atoi( tokens[i] );   //получение престижа на каждом ходу
 			}
 			pl->cur_prestige = 0; /* будет скорректировано в начале хода */
 
@@ -1161,14 +1161,14 @@ int scen_load_lgdscn( const char *fname, const char *path )
                 sprintf( log_str, tr("Loading Flags") );
                 write_line( sdl.screen, log_font, log_str, log_x, &log_y ); refresh_screen( 0, 0, 0, 0 );
             }
-            x = atoi( tokens[0] );
-            y = atoi( tokens[1] );
-            nation = nation_find( tokens[2] );
+            x = atoi( tokens[0] );  //координата флага x
+            y = atoi( tokens[1] );  //координата флага y
+            nation = nation_find( tokens[2] );  //флаг нации
             map[x][y].nation = nation;
             map[x][y].player = player_get_by_nation( nation );
             if ( map[x][y].nation )
                 map[x][y].deploy_center = 1;
-            map[x][y].obj = atoi( tokens[3] );
+            map[x][y].obj = atoi( tokens[3] );  //флаг цели
             cur_flag++;
         }
 
@@ -1351,61 +1351,61 @@ int scen_load_lgdscn( const char *fname, const char *path )
                 vis_units = list_create( LIST_NO_AUTO_DELETE, LIST_NO_CALLBACK );
             }
             /* тип юнита */
-            if ( ( unit_prop = unit_lib_find( tokens[0] ) ) == 0 ) {
-                fprintf( stderr, tr("%s: unit entry not found\n"), tokens[0] );
+            if ( ( unit_prop = unit_lib_find( tokens[0] ) ) == 0 ) {    //поиск юнита по базе и загрузка его свойств
+                fprintf( stderr, tr("%s: unit entry not found\n"), tokens[0] ); //юнит не найден
                 goto failure;
             }
             memset( &unit_base, 0, sizeof( Unit ) );
             /* нация и игрок */
-            if ( ( unit_base.nation = nation_find( tokens[1] ) ) == 0 ) {
+            if ( ( unit_base.nation = nation_find( tokens[1] ) ) == 0 ) {   //поиск нации и ее загрузка
                 fprintf( stderr, tr("%s: not a nation\n"), tokens[1] );
                 goto failure;
             }
-            if ( ( unit_base.player = player_get_by_nation( unit_base.nation ) ) == 0 ) {
+            if ( ( unit_base.player = player_get_by_nation( unit_base.nation ) ) == 0 ) {   //контролирует игрок нацию?
                 fprintf( stderr, tr("%s: no player controls this nation\n"), unit_base.nation->name );
                 goto failure;
             }
             /* имя */
-            unit_set_generic_name( &unit_base, unit_ref + 1, unit_prop->name );
+            unit_set_generic_name( &unit_base, unit_ref + 1, unit_prop->name ); //дайте единице общее имя
             /* задержка */
             unit_base.delay = 0;
             /* позиция */
-            unit_base.x = atoi( tokens[2] );
-            unit_base.y = atoi( tokens[3] );
-            if ( !unit_delayed && ( unit_base.x <= 0 || unit_base.y <= 0 || unit_base.x >= map_w - 1 || unit_base.y >= map_h - 1 ) ) {
+            unit_base.x = atoi( tokens[2] );    //коордтната юнита x
+            unit_base.y = atoi( tokens[3] );    //коордтната юнита y
+            if ( !unit_delayed && ( unit_base.x <= 0 || unit_base.y <= 0 || unit_base.x >= map_w - 1 || unit_base.y >= map_h - 1 ) ) {  //выходит ли юнит за пределы карты?
                 fprintf( stderr, tr("%s: out of map: ignored\n"), unit_base.name );
                 continue;
             }
-            /* strength, entrenchment, experience */
-            unit_base.str = atoi( tokens[4] );
+            /* сила, окопанность, опыт */
+            unit_base.str = atoi( tokens[4] );      //сила
             if (unit_base.str > 10 )
                 unit_base.max_str = 10;
             else
                 unit_base.max_str = unit_base.str;
-            unit_base.entr = atoi( tokens[5] );
-            unit_base.exp_level = atoi( tokens[6] );
+            unit_base.entr = atoi( tokens[5] );     //окопанность
+            unit_base.exp_level = atoi( tokens[6] );//опыт
             /* транспортер */
             trsp_prop = 0;
             land_trsp_prop = 0;
-            if ( strcmp( tokens[7], "none" ) != 0 )
+            if ( strcmp( tokens[7], "none" ) != 0 ) //нет собственного транспорта
             {
-                if ( strcmp( tokens[8], "none" ) != 0 )
+                if ( strcmp( tokens[8], "none" ) != 0 ) //нет воздушного или морского транспорта
                 {
-                    trsp_prop = unit_lib_find( tokens[8] );
-                    land_trsp_prop = unit_lib_find( tokens[7] );
+                    trsp_prop = unit_lib_find( tokens[8] ); //загрузка свойств воздушного или морского транспорта
+                    land_trsp_prop = unit_lib_find( tokens[7] ); //загрузка свойств собственного транспорта
                 }
                 else
-                    trsp_prop = unit_lib_find( tokens[7] );
+                    trsp_prop = unit_lib_find( tokens[7] ); //загрузка свойств собственного транспорта
             }
             else
                 if ( strcmp( tokens[8], "none" ) != 0 )
-                    trsp_prop = unit_lib_find( tokens[8] );
+                    trsp_prop = unit_lib_find( tokens[8] ); //загрузка свойств воздушного или морского транспорта
             /* ядро */
-            unit_base.core = atoi( tokens[9] );
+            unit_base.core = atoi( tokens[9] ); //основной юнит
             if ( !config.use_core_units )
                 unit_base.core = 0;
             /* ориентация */
-            unit_base.orient = unit_base.player->orient;
+            unit_base.orient = unit_base.player->orient;    //ориентация юнита
             /* тег если установлен */
             unit_base.tag[0] = 0;
             if ( strcmp( tokens[10], "0" ) != 0 )
@@ -1430,9 +1430,8 @@ int scen_load_lgdscn( const char *fname, const char *path )
                    ( (camp_loaded != NO_CAMPAIGN) && STRCMP(camp_cur_scen->id, camp_first) && config.use_core_units ) )
             {
                 unit = unit_create( unit_prop, trsp_prop, land_trsp_prop, &unit_base );
-
-
-
+            //если управление игроком и вспомогательные юниты не превышают лимит юнитов в сценарии
+            //или идет компания и сценарии  совпадают (первый сценарий компании) и разрешены основные юниты - тогда создаются новые юниты
 
                 /* поместите юнит в список активных или подкреплений или список доступных юнитов */
                 if ( !unit_delayed ) {
@@ -1440,10 +1439,12 @@ int scen_load_lgdscn( const char *fname, const char *path )
                     /* добавить юнит на карту */
                     map_insert_unit( unit );
                 }
-            }
+               //стояла }
             else if (config.purchase == NO_PURCHASE) /* нет фиксированных reinfs с включенной покупкой */
                 list_add( reinf, unit );
             /* отрегулируйте количество транспортеров */
+
+            //при загрузке миссии из компании вылетает
             if ( unit->embark == EMBARK_SEA ) {
                 unit->player->sea_trsp_count++;
                 unit->player->sea_trsp_used++;
@@ -1457,6 +1458,7 @@ int scen_load_lgdscn( const char *fname, const char *path )
             if (unit_base.player->ctrl == PLAYER_CTRL_HUMAN)
                 auxiliary_units_count++;
             cur_unit++;
+            }
         }
     }
 
