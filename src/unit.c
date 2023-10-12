@@ -1465,6 +1465,34 @@ Unit *unit_duplicate( Unit *unit, int generate_new_name )
     return new;
 }
 
+transferredUnitProp *unit_create_transfer_props( Unit *unit )
+{
+	transferredUnitProp *result = calloc( 1, sizeof( transferredUnitProp ) );
+
+	/* копировать основные структуры свойств
+	 * В СЛЕДУЮЩЕМ СЦЕНАРИИ ВСЕ УКАЗАТЕЛИ БУДУТ ПОВТОРЕНЫ И ПОВРЕЖДЕНЫ! */
+	memcpy(&result->prop, &unit->prop, sizeof(unit->prop));
+	memcpy(&result->trsp_prop, &unit->trsp_prop, sizeof(unit->trsp_prop));
+	memcpy(&result->land_trsp_prop, &unit->land_trsp_prop, sizeof(unit->land_trsp_prop));
+
+	snprintf( result->prop_id, sizeof(result->prop_id), "%s", unit->prop.id);
+	/* не держите временный воздух / море транспортер */
+	if( unit->trsp_prop.id && !( unit_has_flag( &unit->trsp_prop, "swimming" ) )
+					&& !( unit_has_flag( &unit->trsp_prop, "flying" ) ))
+		snprintf( result->trsp_prop_id,sizeof(result->trsp_prop_id),"%s",unit->trsp_prop.id );
+	else
+		snprintf( result->trsp_prop_id,sizeof(result->trsp_prop_id),"none" );
+
+
+	snprintf( result->name, sizeof(result->name),"%s", unit->name);
+	snprintf( result->nation_id, sizeof(result->nation_id), "%s",unit->nation->id);
+	snprintf( result->player_id, sizeof(result->player_id), "%s",unit->player->id);
+	result->str = unit->str;
+	result->exp = unit->exp;
+	snprintf( result->tag, sizeof(result->tag), "%s",unit->tag);
+	return result;
+}
+
 /*
 ====================================================================
 Проверьте, есть ли у юнита мало боеприпасов или топлива

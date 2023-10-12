@@ -69,6 +69,10 @@ extern char *camp_first;
 Данные сценария.
 ====================================================================
 */
+List *prev_scen_core_units = 0;	//список единиц, перемещаемых между сценариями
+                                //Тип: переданныйUnitProp в unit.h
+char *prev_scen_fname = 0;	//имя файла предыдущего сценария
+
 Setup setup;            /* настройка двигателя с информацией о сценарии */
 Scen_Info *scen_info = 0;
 int *weather = 0;       /* тип погоды для каждого поворота как id в weather_types */
@@ -266,6 +270,32 @@ void update_nations_purchase_flag()
 			nations[i].no_purchase = 0;
 		else
 			nations[i].no_purchase = 1;
+}
+
+/** Проверьте, возможен ли перенос основного блока. */
+static int core_transfer_allowed()
+{
+	if (!(camp_loaded == CONTINUE_CAMPAIGN))
+		return 0; /* передача только для кампании */
+	if (!prev_scen_core_units)
+		return 0; /* из последнего сценария не сохранились основные единицы */
+	if (prev_scen_core_units->count == 0)
+		return 0; /* нет единиц в списке */
+		//Нет в списке компании опции по передаче ядра (старая версия файла компании)
+	//if (strcmp(camp_cur_scen->core_transfer,"denied") == 0)
+	//	return 0; /* передача ядра всегда запрещена */
+	//if (strcmp(camp_cur_scen->core_transfer,"allowed") == 0)
+	//	return 1; /* передача ядра всегда разрешена */
+
+	/* основная передача в порядке, если сценарий (имя файла) совпадает
+* предложение from, например, from: pg / Poland */
+	//if (strncmp(camp_cur_scen->core_transfer,"from:",5))
+	//	return 0; /* не начинается с: */
+	//if (prev_scen_fname == 0)
+	//	return 0; /* отсутствует имя файла предыдущего сценария */
+	//if (strcmp(camp_cur_scen->core_transfer+5, prev_scen_fname) == 0)
+	//	return 1; /* предыдущие матчи сценария */
+	return 1;//return 0;
 }
 
 /*
@@ -1310,14 +1340,14 @@ int scen_load_lgdscn( const char *fname, const char *path )
         //Block#9 юниты
         if (block == 9 && strlen(line)>0)
         {
-            if ( cur_unit == 0 )
+            if ( cur_unit == 0 )    //загрузить юниты не из сценария
             {
                 sprintf( log_str, tr("Loading Units") );
                 write_line( sdl.screen, log_font, log_str, log_x, &log_y ); refresh_screen( 0, 0, 0, 0 );
                 units = list_create( LIST_AUTO_DELETE, unit_delete );
 
                 /* загрузить основные блоки из более раннего сценария или создать список повторных ссылок - статус блока проверяется в другом месте */
-                if (camp_loaded > 1 && config.use_core_units)
+                /*if (camp_loaded > 1 && config.use_core_units)
                 {
                     Unit *entry;
                     list_reset( reinf );
@@ -1339,23 +1369,26 @@ int scen_load_lgdscn( const char *fname, const char *path )
                             {
                                 unit = unit_duplicate( entry,0 );
                                 unit->killed = 2;
-                                /* поместить юнит в список доступных объектов */
+                                // поместить юнит в список доступных объектов
                                 list_add( units, unit );
                             }
                             entry->core = CORE;
                         }
                 }
-                else
-                    reinf = list_create( LIST_AUTO_DELETE, unit_delete );
+                else*/
+                reinf = list_create( LIST_AUTO_DELETE, unit_delete );
                 avail_units = list_create( LIST_AUTO_DELETE, unit_delete );
                 vis_units = list_create( LIST_NO_AUTO_DELETE, LIST_NO_CALLBACK );
+
+                if ( core_transfer_allowed() )
+                    unit_ref += scen_load_core_units(); /* переносить старые единицы */
             }
             /* тип юнита */
             if ( ( unit_prop = unit_lib_find( tokens[0] ) ) == 0 ) {    //поиск юнита по базе и загрузка его свойств
                 fprintf( stderr, tr("%s: unit entry not found\n"), tokens[0] ); //юнит не найден
                 goto failure;
             }
-            memset( &unit_base, 0, sizeof( Unit ) );
+            memset( &unit_base, 0, sizeof( Unit ) );    //очистка unit_base
             /* нация и игрок */
             if ( ( unit_base.nation = nation_find( tokens[1] ) ) == 0 ) {   //поиск нации и ее загрузка
                 fprintf( stderr, tr("%s: not a nation\n"), tokens[1] );
@@ -1424,24 +1457,25 @@ int scen_load_lgdscn( const char *fname, const char *path )
                                 vconds[i].subconds_or[j].count++;
                 }
             }
-            /* фактический юнит */
-            if ( !(unit_base.player->ctrl == PLAYER_CTRL_HUMAN && auxiliary_units_count >=
-                   unit_base.player->unit_limit - unit_base.player->core_limit) ||
-                   ( (camp_loaded != NO_CAMPAIGN) && STRCMP(camp_cur_scen->id, camp_first) && config.use_core_units ) )
-            {
+            /* фактический юнит (юнит который уйдет в текущий сценарий) */
+            //if ( !(unit_base.player->ctrl == PLAYER_CTRL_HUMAN && auxiliary_units_count <= unit_base.player->unit_limit - unit_base.player->core_limit) ||  ( (camp_loaded != NO_CAMPAIGN) && STRCMP(camp_cur_scen->id, camp_first) && config.use_core_units ) )
+            //{
                 unit = unit_create( unit_prop, trsp_prop, land_trsp_prop, &unit_base );
             //если управление игроком и вспомогательные юниты не превышают лимит юнитов в сценарии
             //или идет компания и сценарии  совпадают (первый сценарий компании) и разрешены основные юниты - тогда создаются новые юниты
 
+            /* добавить отряд в актив или список подкреплений */
+            if ( unit->core != 1 || ( !core_transfer_allowed() ) )  //если юнит не является основным
+                {
                 /* поместите юнит в список активных или подкреплений или список доступных юнитов */
                 if ( !unit_delayed ) {
-                    list_add( units, unit );
+                    list_add( units, unit );//добавить юнит для растановки на карту
                     /* добавить юнит на карту */
                     map_insert_unit( unit );
                 }
-               //стояла }
+
             else if (config.purchase == NO_PURCHASE) /* нет фиксированных reinfs с включенной покупкой */
-                list_add( reinf, unit );
+                list_add( reinf, unit );    //добавить юнит в список подкреплений (для расстановки игроком)
             /* отрегулируйте количество транспортеров */
 
             //при загрузке миссии из компании вылетает
@@ -1455,8 +1489,8 @@ int scen_load_lgdscn( const char *fname, const char *path )
                     unit->player->air_trsp_used++;
                 }
             unit_ref++;
-            if (unit_base.player->ctrl == PLAYER_CTRL_HUMAN)
-                auxiliary_units_count++;
+            //if (unit_base.player->ctrl == PLAYER_CTRL_HUMAN)
+            //    auxiliary_units_count++;
             cur_unit++;
             }
         }
@@ -1829,7 +1863,7 @@ void scen_delete()
         free( vconds ); vconds = 0;
         vcond_count = 0;
     }
-    if ( units )
+    /*if ( units )
     {
         if (camp_loaded == CONTINUE_CAMPAIGN)
         {
@@ -1850,7 +1884,7 @@ void scen_delete()
             }
         list_delete( units );
         units = 0;
-    }
+    }*/
     if ( vis_units ) {
         list_delete( vis_units );
         vis_units = 0;
@@ -2199,4 +2233,172 @@ void scen_create_random_weather( int start_water_level, int cur_period )
 */
     }
 //    fprintf(stderr, "\n", period_length);
+}
+
+/*
+====================================================================
+Добавьте в список основные единицы, которые будут использоваться в следующем сценарии.
+Количество возвращаемой единицы.
+====================================================================
+*/
+int scen_save_core_units( )
+{
+    int n_units = 0;		//сколько единиц мы сэкономили?
+    Unit * current;
+    transferredUnitProp * cur;	//локальная копия параметров агрегата
+
+	/* сохранить имя файла для ограниченной передачи ядра */
+#ifdef DEBUG_CORETRANSFER
+	printf("saving core units for %s\n", scen_info->fname);
+#endif
+	if (prev_scen_fname)
+		free(prev_scen_fname);
+	prev_scen_fname = strdup(scen_info->fname);
+
+    if ( !prev_scen_core_units && units )
+	prev_scen_core_units = list_create( LIST_AUTO_DELETE, LIST_NO_CALLBACK );
+    else if (prev_scen_core_units)
+	list_clear(prev_scen_core_units);
+
+    if ( units )
+	if ( !list_empty( units ) ) //есть юниты для передачи в основные
+	{
+	    current = list_first( units );
+	    do
+		//не передавайте убитые юниты
+		if ( current->core && !current->killed )    //основной юнит и не убитый
+		{
+		    cur = unit_create_transfer_props( current );
+		    list_add( prev_scen_core_units, cur);
+		    n_units++;
+		}
+	    while( (current = list_next( units )) );
+	}
+    if ( reinf )
+	if ( !list_empty( reinf ) )
+	{
+	    current = list_first( reinf );
+	    do
+		if ( current->core )
+		{
+		    cur = unit_create_transfer_props( current );
+		    list_add( prev_scen_core_units, cur);
+		    n_units++;
+		}
+	    while( (current = list_next( reinf )) );
+	}
+    if ( avail_units )
+	if ( !list_empty( avail_units ) )
+	{
+	    current = list_first( avail_units );
+	    do
+		if ( current->core )
+		{
+		    cur = unit_create_transfer_props( current );
+		    list_add( prev_scen_core_units, cur);
+		    n_units++;
+		}
+	    while( (current = list_next( avail_units )) );
+	}
+#ifdef DEBUG_CORETRANSFER
+	printf("saved %d core units\n", n_units);
+#endif
+    return n_units;
+}
+/*
+====================================================================
+Загрузить основные блоки из списка. Количество возвращаемой единицы.
+====================================================================
+*/
+int scen_load_core_units()
+{
+    int n_units = 0;
+    transferredUnitProp * current;
+    Unit_Lib_Entry *unit_prop=0, *trsp_prop = 0, *land_trsp_prop = 0;
+    Unit unit_base;
+    Unit * unit;
+
+    if ( prev_scen_core_units && !list_empty( prev_scen_core_units ) )
+    {
+	list_reset( prev_scen_core_units );
+	current = list_first( prev_scen_core_units );
+	do
+	{
+		/* исправить все указатели и настройки значков в свойствах */
+		unit_prop = unit_lib_find( current->prop_id );
+		current->prop.id = unit_prop->id;
+		current->prop.name = unit_prop->name;
+		current->prop.icon = unit_prop->icon;
+		current->prop.icon_tiny = unit_prop->icon_tiny;
+		current->prop.icon_type = unit_prop->icon_type;
+		current->prop.icon_w = unit_prop->icon_w;
+		current->prop.icon_h = unit_prop->icon_h;
+		current->prop.icon_tiny_w = unit_prop->icon_tiny_w;
+		current->prop.icon_tiny_h = unit_prop->icon_tiny_h;
+#ifdef WITH_SOUND
+		current->prop.wav_alloc = unit_prop->wav_alloc;
+		current->prop.wav_move = unit_prop->wav_move;
+#endif
+		trsp_prop = unit_lib_find( current->trsp_prop_id );
+		if (trsp_prop) {
+			current->trsp_prop.id = trsp_prop->id;
+			current->trsp_prop.name = trsp_prop->name;
+			current->trsp_prop.icon = trsp_prop->icon;
+			current->trsp_prop.icon_tiny = trsp_prop->icon_tiny;
+			current->trsp_prop.icon_type = trsp_prop->icon_type;
+			current->trsp_prop.icon_w = trsp_prop->icon_w;
+			current->trsp_prop.icon_h = trsp_prop->icon_h;
+			current->trsp_prop.icon_tiny_w = trsp_prop->icon_tiny_w;
+			current->trsp_prop.icon_tiny_h = trsp_prop->icon_tiny_h;
+#ifdef WITH_SOUND
+			current->trsp_prop.wav_alloc = trsp_prop->wav_alloc;
+			current->trsp_prop.wav_move = trsp_prop->wav_move;
+#endif
+        }
+		land_trsp_prop = unit_lib_find( current->land_trsp_prop_id );
+		if (land_trsp_prop) {
+			current->land_trsp_prop.id = land_trsp_prop->id;
+			current->land_trsp_prop.name = land_trsp_prop->name;
+			current->land_trsp_prop.icon = land_trsp_prop->icon;
+			current->land_trsp_prop.icon_tiny = land_trsp_prop->icon_tiny;
+			current->land_trsp_prop.icon_type = land_trsp_prop->icon_type;
+			current->land_trsp_prop.icon_w = land_trsp_prop->icon_w;
+			current->land_trsp_prop.icon_h = land_trsp_prop->icon_h;
+			current->land_trsp_prop.icon_tiny_w = land_trsp_prop->icon_tiny_w;
+			current->land_trsp_prop.icon_tiny_h = land_trsp_prop->icon_tiny_h;
+#ifdef WITH_SOUND
+			current->land_trsp_prop.wav_alloc = land_trsp_prop->wav_alloc;
+			current->land_trsp_prop.wav_move = land_trsp_prop->wav_move;
+#endif
+		}
+
+		/* создать базу единиц */
+		memset( &unit_base, 0, sizeof( Unit ) );
+		strcpy_lt( unit_base.name, current->name, 20 );
+		unit_base.core = 1;
+		unit_base.player = player_get_by_id( current->player_id );
+		unit_base.nation = nation_find( current->nation_id );
+		unit_base.str = current->str;
+		unit_base.orient = unit_base.player->orient;
+		strcpy_lt( unit_base.tag, current->tag, 31 );
+
+		/* создать единицу */
+		unit_prop = &current->prop;
+		if (trsp_prop)
+			trsp_prop = &current->trsp_prop;
+		unit = unit_create( unit_prop, trsp_prop, land_trsp_prop, &unit_base );
+
+		/* набор опыта */
+		unit_add_exp(unit, current->exp);
+
+		/* добавить к подкреплению */
+		list_add( reinf, unit );
+		n_units++;
+	}
+	while ( (current = list_next( prev_scen_core_units )) );
+    }
+#ifdef DEBUG_CORETRANSFER
+	printf("loaded %d core units\n", n_units);
+#endif
+    return n_units;
 }

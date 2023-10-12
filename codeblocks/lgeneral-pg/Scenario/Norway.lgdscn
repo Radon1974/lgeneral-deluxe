@@ -17,7 +17,7 @@ weather_zone	2
 																																																																																							
 # Players																																																																																							
 # id	name	unit_limit	core_limit	orientation	control	strategy	strength_row	air_trsp_unit	air_trsp_number	sea_trsp_unit	sea_trsp_number	ai_module																																																																											
-axis	Axis	37	27	left	human	1	0	28	3	298	26	default																																																																											
+axis	Axis	67	27	left	human	1	0	28	3	298	26	default																																																																											
 allies	Allies	40	-1	right	cpu	-1	2	353	1	290	4	default																																																																											
 																																																																																							
 # Allied_players																																																																																							

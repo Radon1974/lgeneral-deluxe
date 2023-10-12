@@ -64,6 +64,8 @@ extern char *camp_fname;
 extern char *camp_name;
 extern Camp_Entry *camp_cur_scen;
 extern Map_Tile **map;
+extern List *prev_scen_core_units;
+extern char *prev_scen_fname;
 
 char fname[256]; /* имя файла */
 
@@ -90,6 +92,7 @@ enum StorageVersion {
     StoreLandTransportData, /* сухопутный транспортник на морских судах сохранен */
     StoreCampaignEntryName, /* название кампании магазина */
     StoreAdditionalFlags, /* хранить дополнительную переменную флагов */
+    StoreCoreTransferList, /* предыдущие 'сценарии основные блоки для кампаний */
     /* вставьте новые версии перед этим комментарием */
     StoreMaxVersion,
     StoreHighestSupportedVersion = StoreMaxVersion - 1,
@@ -338,7 +341,7 @@ static void save_unit( FILE *file, Unit *unit )
     save_int(file, unit->exp);
     /* версия хранилища юнитов(было: exp_level) */
     //COMPILE_TIME_ASSERT_SYMBOL(unit->exp_level);
-    save_int(file, StoreUnitIsGuarding);
+    save_int(file, StoreCoreTransferList);
     /* задержка */
     save_int(file, unit->delay);
     /* садиться */
@@ -754,6 +757,94 @@ static void load_map_tile_flag( FILE *file, Nation **nation, Player **player )
     *player = player_get_by_id( str );
     free( str );
 }
+/* Загрузить / сохранить список передачи основного блока */
+static void save_prev_scen_core_units( FILE *file )
+{
+	int num = 0;
+	transferredUnitProp *prop;
+
+	/* сохранить количество записей */
+	if (prev_scen_core_units)
+		num = prev_scen_core_units->count;
+	save_int(file, num);
+	if (num == 0)
+		return; /* больше нет данных */
+
+	/* сохранить имя файла сценария */
+	save_string(file, prev_scen_fname);
+
+	/* сохранить записи */
+	list_reset(prev_scen_core_units);
+	while ((prop = list_next(prev_scen_core_units))) {
+		save_unit_lib_entry(file, &prop->prop);
+		save_unit_lib_entry(file, &prop->trsp_prop);
+		save_string(file, prop->prop_id);
+		save_string(file, prop->trsp_prop_id);
+		save_string(file, prop->name);
+		save_string(file, prop->player_id);
+		save_string(file, prop->nation_id);
+		save_int(file, prop->str);
+		save_int(file, prop->exp);
+		save_string(file, prop->tag);
+	}
+}
+static void load_prev_scen_core_units( FILE *file )
+{
+	int i, num;
+	transferredUnitProp *prop;
+	char *str;
+
+	/* номер загрузки */
+	num = load_int(file);
+	if (num == 0) {
+		if (prev_scen_core_units)
+			list_clear(prev_scen_core_units);
+		return; /* ничего не следует */
+	}
+
+	/* создать список, если еще не существует */
+	if (!prev_scen_core_units)
+		prev_scen_core_units = list_create( LIST_AUTO_DELETE, LIST_NO_CALLBACK );
+	else
+		list_clear(prev_scen_core_units);
+
+	/* прочитать имя файла сценария */
+	if (prev_scen_fname)
+		free(prev_scen_fname);
+	prev_scen_fname = load_string(file);
+
+	/* создавать и помещать записи в список */
+	for (i = 0; i < num; i++) {
+		prop = calloc( 1, sizeof( transferredUnitProp ) );
+
+		load_unit_lib_entry(file, &prop->prop);
+		load_unit_lib_entry(file, &prop->trsp_prop);
+
+		str = load_string(file);
+		snprintf( prop->prop_id, sizeof(prop->prop_id), "%s",str);
+		free(str);
+		str = load_string(file);
+		snprintf( prop->trsp_prop_id, sizeof(prop->trsp_prop_id), "%s",str);
+		free(str);
+		str = load_string(file);
+		snprintf( prop->name, sizeof(prop->name), "%s",str);
+		free(str);
+		str = load_string(file);
+		snprintf( prop->player_id, sizeof(prop->player_id), "%s",str);
+		free(str);
+		str = load_string(file);
+		snprintf( prop->nation_id, sizeof(prop->nation_id), "%s",str);
+		free(str);
+		prop->str = load_int(file);
+		prop->exp = load_int(file);
+		str = load_string(file);
+		snprintf( prop->tag, sizeof(prop->tag), "%s",str);
+		free(str);
+
+		list_add(prev_scen_core_units, prop);
+	}
+}
+
 
 /*
 ====================================================================
@@ -830,6 +921,7 @@ int slot_save( char *name, char *subdir )
         save_string( file, camp_fname );
         save_string( file, camp_name );
         save_string( file, camp_cur_scen->id );
+        save_prev_scen_core_units( file );
     }
     /*основные данные */
     /*имя сцерария */
@@ -944,6 +1036,10 @@ int slot_load( char *name )
         str = load_string( file );
         camp_set_cur( str );
         free( str );
+        if (store_version >= StoreCoreTransferList)
+            load_prev_scen_core_units( file );
+        else if (prev_scen_core_units)
+            list_clear(prev_scen_core_units);
     }
     /* загружаемый сейчас сценарий принадлежит к идентификатору сценария указанной выше кампании * /
     / * читать имя файла сценария */

@@ -257,4 +257,12 @@ http://www.panzercentral.com/forum/viewtopic.php?p=577467#p577467
 */
 void scen_create_random_weather( int start_water_level, int cur_period );
 
+/*
+====================================================================
+Сохранение / загрузка основных модулей для передачи между сценариями.
+====================================================================
+*/
+int scen_save_core_units( );
+int scen_load_core_units( );
+
 #endif

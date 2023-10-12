@@ -291,6 +291,8 @@ static void engine_finish_scenario()
     turn = scen_info->turn_limit;
     engine_set_status( STATUS_NONE );
     phase = PHASE_NONE;
+    if (camp_loaded == CONTINUE_CAMPAIGN)
+		scen_save_core_units(); /* храните основные блоки для следующего сценария */
 }
 
 /*
@@ -980,7 +982,7 @@ static void engine_select_player( Player *player, int skip_unit_prep )
         cur_ctrl = PLAYER_CTRL_NOBODY;
     if ( !skip_unit_prep ) {
         /* обновить доступное подкрепление */
-        engine_update_avail_reinf_list();
+        engine_update_avail_reinf_list();   	//отсортировать юниты в avail_units
         /* подготовить юниты к развороту - топливо, точки перемещения, вход, погода и т. д. */
         if (units)
         {
@@ -1039,7 +1041,7 @@ static void engine_select_player( Player *player, int skip_unit_prep )
         /* диалоговое окно подготовка развертывания при развертывании-хода */
         if ( deploy_turn
              && cur_player && cur_player->ctrl == PLAYER_CTRL_HUMAN )
-            engine_handle_button( ID_DEPLOY );
+            engine_handle_button( ID_DEPLOY );	//обработайте кнопку, которая была нажата
         else
             group_hide( gui->deploy_window, 1 );
 
@@ -1118,6 +1120,7 @@ static void engine_begin_turn( Player *forced_player, int skip_unit_prep )
             engine_select_player( 0, skip_unit_prep );
             engine_set_status( STATUS_NONE );
             phase = PHASE_NONE;
+            
             return;
         }
         else {
@@ -1752,7 +1755,9 @@ static void engine_update_info( int mx, int my, int region )
     }
     else
     {
-        snprintf( str, MAX_LINE, tr("Prestige: %d"), cur_player->cur_prestige );	/*FIXME Показать престиж вместо мода  snprintf( str, MAX_NAME, tr("Mod: %s"), config.mod_name ) */
+
+        //snprintf( str, MAX_LINE, tr("Prestige: %d"), cur_player->cur_prestige );   /*FIXME Показать престиж вместо мода   */
+        snprintf( str, MAX_NAME, tr("Mod: %s"), config.mod_name );
         label_write( gui->label_left, gui->font_std, str );
         sprintf( str, "%s (%i,%i)", map[mx][my].name, mx, my );
         label_write( gui->label_center, gui->font_status, str );
@@ -3722,13 +3727,13 @@ static void engine_handle_next_action( int *reinit )
                     engine_select_unit( action->unit );
             }
             break;
-        case ACTION_DISBAND:
+        case ACTION_DISBAND:    //расформировать юнита
             engine_remove_unit( action->unit );
             map_get_vis_units();
             if ( cur_ctrl == PLAYER_CTRL_HUMAN )
                 engine_select_unit(0);
             break;
-        case ACTION_EMBARK_AIR:
+        case ACTION_EMBARK_AIR: //погрузить в транспортный самолет
             if ( map_check_unit_embark( action->unit, action->x, action->y, EMBARK_AIR, 0 ) ) {
                 map_embark_unit( action->unit, action->x, action->y, EMBARK_AIR, &enemy_spotted );
                 if ( enemy_spotted ) engine_clear_backup();
@@ -3736,7 +3741,7 @@ static void engine_handle_next_action( int *reinit )
                     engine_select_unit( action->unit );
             }
             break;
-        case ACTION_DEBARK_AIR:
+        case ACTION_DEBARK_AIR: //выгрузить из транспортного самолета
             if ( map_check_unit_debark( action->unit, action->x, action->y, EMBARK_AIR, 0 ) ) {
                 if (action->id==1) /* нормальная посадка */
                     map_debark_unit( action->unit, action->x, action->y, EMBARK_AIR, &enemy_spotted );
@@ -3752,16 +3757,16 @@ static void engine_handle_next_action( int *reinit )
                 }
             }
             break;
-        case ACTION_SUPPLY:
+        case ACTION_SUPPLY: //пополнение топливом и боеприпасами
             if ( unit_check_supply( action->unit, UNIT_SUPPLY_ANYTHING, 0, 0 ) )
                 unit_supply( action->unit, UNIT_SUPPLY_ALL );
             break;
-        case ACTION_END_TURN:
+        case ACTION_END_TURN:   //конец хода
             engine_end_turn();
             if (!end_scen)
                 engine_begin_turn( 0, 0 );
             break;
-        case ACTION_MOVE:
+        case ACTION_MOVE:   //передвижение юнита
             cur_unit = action->unit;
             move_unit = action->unit;
             if ( move_unit->cur_mov == 0 ) {
@@ -3776,7 +3781,7 @@ static void engine_handle_next_action( int *reinit )
             if ( cur_ctrl == PLAYER_CTRL_HUMAN )
                 image_hide( gui->cursors, 1 );
             break;
-        case ACTION_ATTACK:
+        case ACTION_ATTACK: //атака юнита
             if ( !unit_check_attack( action->unit, action->target, UNIT_ACTIVE_ATTACK ) ) {
                 fprintf( stderr, tr("'%s' (%i,%i) can not attack '%s' (%i,%i)\n"),
                          action->unit->name, action->unit->x, action->unit->y,

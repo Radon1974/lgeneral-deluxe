@@ -78,6 +78,8 @@ extern char scen_message[128];
 extern VCond *vconds;
 extern int vcond_count;
 extern int cheat_endscn;
+extern List *prev_scen_core_units;
+extern char *prev_scen_fname;
 
 /*
 ====================================================================
@@ -291,6 +293,8 @@ static void engine_finish_scenario()
     turn = scen_info->turn_limit;
     engine_set_status( STATUS_NONE );
     phase = PHASE_NONE;
+    if (camp_loaded == CONTINUE_CAMPAIGN)
+		scen_save_core_units(); /* храните основные блоки для следующего сценария */
 }
 
 /*
@@ -980,7 +984,7 @@ static void engine_select_player( Player *player, int skip_unit_prep )
         cur_ctrl = PLAYER_CTRL_NOBODY;
     if ( !skip_unit_prep ) {
         /* обновить доступное подкрепление */
-        engine_update_avail_reinf_list();
+        engine_update_avail_reinf_list();   	//отсортировать юниты в avail_units
         /* подготовить юниты к развороту - топливо, точки перемещения, вход, погода и т. д. */
         if (units)
         {
@@ -1039,7 +1043,7 @@ static void engine_select_player( Player *player, int skip_unit_prep )
         /* диалоговое окно подготовка развертывания при развертывании-хода */
         if ( deploy_turn
              && cur_player && cur_player->ctrl == PLAYER_CTRL_HUMAN )
-            engine_handle_button( ID_DEPLOY );
+            engine_handle_button( ID_DEPLOY );	//обработайте кнопку, которая была нажата
         else
             group_hide( gui->deploy_window, 1 );
 
@@ -1118,6 +1122,8 @@ static void engine_begin_turn( Player *forced_player, int skip_unit_prep )
             engine_select_player( 0, skip_unit_prep );
             engine_set_status( STATUS_NONE );
             phase = PHASE_NONE;
+            if (camp_loaded == CONTINUE_CAMPAIGN)
+                scen_save_core_units(); /* храните основные блоки для следующего сценария */
             return;
         }
         else {
@@ -4561,6 +4567,10 @@ void engine_delete()
 {
     engine_shutdown();
     scen_clear_setup();
+    if (prev_scen_core_units)
+	list_delete(prev_scen_core_units);
+    if (prev_scen_fname)
+	free(prev_scen_fname);
     gui_delete();
 }
 
@@ -4602,6 +4612,10 @@ int engine_init()
             camp_set_cur( setup.scen_state );
             if ( !camp_cur_scen ) return 0;
             setup.type = SETUP_CAMP_BRIEFING;
+
+            /* новые кампании и так понятно, основной блок переноса списка если */
+		if (prev_scen_core_units)
+			list_clear(prev_scen_core_units);
             return 1;
         }
         else
