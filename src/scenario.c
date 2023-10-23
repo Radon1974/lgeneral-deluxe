@@ -1925,7 +1925,7 @@ void scen_prep_unit( Unit *unit, int type )
     /* ğàçğåøèòü äåéñòâèÿ */
     unit_unmount( unit );
     /* îòìåòüòå êíîïêó Instant_purchase è îñòàíîâèòå äåéñòâèå íåäàâíî ğàçìåùåííûõ şíèòîâ */
-    if (type == SCEN_PREP_UNIT_DEPLOY && config.purchase == INSTANT_PURCHASE)
+    if (type == SCEN_PREP_UNIT_DEPLOY && config.purchase == INSTANT_PURCHASE)   //şíèòû áûëè äîñòóïíû ê ğàñòàíîâêå ñğàçó ïîñëå ïîêóïêè
     {
         unit->cur_mov = 0;
         unit->cur_atk_count = 0;
@@ -2314,7 +2314,7 @@ int scen_load_core_units()
 {
     int n_units = 0;
     transferredUnitProp * current;
-    Unit_Lib_Entry *unit_prop=0, *trsp_prop = 0, *land_trsp_prop = 0;
+    Unit_Lib_Entry *unit_prop=0, *trsp_prop = 0, *land_trsp_prop = 0, *base = 0;
     Unit unit_base;
     Unit * unit;
 
@@ -2378,7 +2378,8 @@ int scen_load_core_units()
 		unit_base.core = 1;
 		unit_base.player = player_get_by_id( current->player_id );
 		unit_base.nation = nation_find( current->nation_id );
-		unit_base.str = current->str;
+		unit_base.str = 10;//unit_base.str = current->str;
+		unit_base.max_str = 10;
 		unit_base.orient = unit_base.player->orient;
 		strcpy_lt( unit_base.tag, current->tag, 31 );
 

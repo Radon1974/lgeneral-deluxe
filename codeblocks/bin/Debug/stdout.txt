@@ -6,4 +6,9 @@ Copyright 2001-2011 Michael Speck
 Published under GNU GPL
 ---
 Looking up data in: .
+AI Turn: Allies
+AI Initialized
+*** DEPLOY ***
+*** END TURN ***
+AI Finalized
 SDL finalized

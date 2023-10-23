@@ -51,6 +51,7 @@ enum {
     ID_MERGE,
     ID_UNDO,
     ID_RENAME,
+    ID_MODIFY,
     ID_DISBAND,
     ID_SPLIT,
     ID_REPLACEMENTS,
@@ -273,9 +274,9 @@ void gui_show_expected_losses( Unit *att, Unit *def, int att_dam, int def_dam );
 Нарисуйте фактические потери на этикетке.
 ====================================================================
 */
-void gui_show_actual_losses( Unit *att, Unit *def, 
+void gui_show_actual_losses( Unit *att, Unit *def,
     int att_suppr, int att_dam, int def_suppr, int def_dam );
-    
+
 /*
 ====================================================================
 Нарисуйте силу или подавление данного блока на данной метке

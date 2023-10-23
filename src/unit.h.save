@@ -159,6 +159,7 @@ typedef struct {
 	char player_id[32];
 	char nation_id[32];
 	int str;
+	
 	int exp;
 	char tag[32];
 } transferredUnitProp;

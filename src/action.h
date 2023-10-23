@@ -122,6 +122,7 @@ void action_queue_split( Unit *unit, int str, int x, int y, Unit *partner );
 void action_queue_replace( Unit *unit );
 void action_queue_elite_replace( Unit *unit );
 void action_queue_disband( Unit *unit );
+void action_queue_modify( Unit *unit );
 void action_queue_deploy( Unit *unit, int x, int y );
 void action_queue_draw_map();
 void action_queue_set_spot_mask();

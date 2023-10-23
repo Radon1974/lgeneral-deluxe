@@ -48,7 +48,9 @@ void purchase_dlg_get_bkgnd( PurchaseDlg *pdlg);
 int purchase_dlg_handle_motion( PurchaseDlg *pdlg, int cx, int cy);
 int purchase_dlg_handle_button( PurchaseDlg *pdlg, int bid, int cx, int cy,
 	Button **pbtn );
-
+//int modify_dlg_handle_button( PurchaseDlg *pdlg, int bid, int cx, int cy,
+//		Button **pbtn )
 void purchase_dlg_reset( PurchaseDlg *pdlg );
+
 
 #endif

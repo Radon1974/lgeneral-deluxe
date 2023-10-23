@@ -290,8 +290,8 @@ int gui_load( char *dir )
     group_hide( gui->confirm, 1 );
     /* кнопки устройства */
     search_file_name( path2, 0, "unit_buttons", dir, "Theme", 'i' );
-    if ( ( gui->unit_buttons = group_create( gui_create_frame( 30, 230 ), 160, load_surf( path2,
-                SDL_SWSURFACE, 0, 0, 0, 0 ), 24, 24, 9, ID_SUPPLY, sdl.screen, 0, 0 ) ) == 0 )
+    if ( ( gui->unit_buttons = group_create( gui_create_frame( 30, 260 ), 160, load_surf( path2,
+                SDL_SWSURFACE, 0, 0, 0, 0 ), 24, 24, 10, ID_SUPPLY, sdl.screen, 0, 0 ) ) == 0 )
         goto failure;
     sx = 3; sy = 3;
     group_add_button( gui->unit_buttons, ID_UNDO, sx, sy, 0, tr("Undo Turn [u]"), 2 ); sy += 40;
@@ -301,7 +301,8 @@ int gui_load( char *dir )
     group_add_button( gui->unit_buttons, ID_REPLACEMENTS, sx, sy, 0, tr("Replacements"), 2 ); sy += 30;
     group_add_button( gui->unit_buttons, ID_SPLIT, sx, sy, 0, tr("Split Unit [x+1..9]"), 2 );
     group_add_button( gui->unit_buttons, ID_ELITE_REPLACEMENTS, sx, sy, 0, tr("Elite Replacements"), 2 ); sy += 30;
-    group_add_button( gui->unit_buttons, ID_RENAME, sx, sy, 0, tr("Rename Unit"), 2 ); sy += 40;
+    group_add_button( gui->unit_buttons, ID_RENAME, sx, sy, 0, tr("Rename Unit"), 2 ); sy += 30;
+    group_add_button( gui->unit_buttons, ID_MODIFY, sx, sy, 0, tr("Modify Unit"), 2 ); sy += 40;
     group_add_button( gui->unit_buttons, ID_DISBAND, sx, sy, 0, tr("Disband Unit"), 2 );
     group_hide( gui->unit_buttons, 1 );
     /* разделенное меню */
@@ -1460,6 +1461,13 @@ void gui_show_unit_buttons( int x, int y )
 void gui_show_purchase_window()
 {
 	purchase_dlg_reset(gui->purchase_dlg);
+	purchase_dlg_hide(gui->purchase_dlg,0);
+}
+
+/** Показать диалог покупки юнита после его подготовки для текущего игрока. */
+void gui_show_modify_window()
+{
+	modify_dlg_reset(gui->purchase_dlg);
 	purchase_dlg_hide(gui->purchase_dlg,0);
 }
 

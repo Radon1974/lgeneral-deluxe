@@ -729,7 +729,7 @@
 
 1430590377 source:c:\users\user\onedrive\работа\программирование\lgeneral-deluxe-lgeneral-deluxe\codeblocks\lgeneral.rc
 
-1609855289 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\action.c
+1697389303 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\action.c
 	"lgeneral.h"
 	"unit.h"
 	"action.h"
@@ -966,7 +966,7 @@
 1623700607 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\config.h
 	<../config.h>
 
-1697151600 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\unit.h
+1697357043 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\unit.h
 	"unit_lib.h"
 	"nation.h"
 	"player.h"
@@ -985,7 +985,7 @@
 	"image.h"
 	"audio.h"
 
-1612020313 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\action.h
+1697387241 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\action.h
 
 1623702087 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\ai.c
 	"lgeneral.h"
@@ -1097,7 +1097,7 @@
 	"misc.h"
 	"localize.h"
 
-1697023314 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\engine.c
+1698063524 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\engine.c
 	<dlfcn.h>
 	<math.h>
 	"lgeneral.h"
@@ -1126,13 +1126,13 @@
 1610189375 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\windows.h
 	"image.h"
 
-1610215049 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.h
+1698069738 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.h
 
 1610209444 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\headquarters_dlg.h
 
 1610212727 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\message_dlg.h
 
-1609861779 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\gui.h
+1697369180 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\gui.h
 	"unit.h"
 	"windows.h"
 	"purchase_dlg.h"
@@ -1203,7 +1203,7 @@
 1430590377 c:\work\lgeneral-deluxe-lgeneral-deluxe\src\fpge\load.h
 	<stdio.h>
 
-1623608118 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\gui.c
+1698070372 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\gui.c
 	"lgeneral.h"
 	"event.h"
 	"parser.h"
@@ -1223,7 +1223,7 @@
 	"campaign.h"
 	"localize.h"
 
-1611511088 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\image.c
+1698061778 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\image.c
 	<SDL.h>
 	<stdlib.h>
 	"sdl.h"
@@ -1312,7 +1312,7 @@
 	"unit_lib.h"
 	"player.h"
 
-1623742306 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.c
+1698087023 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.c
 	<SDL.h>
 	<stdlib.h>
 	"lgeneral.h"
@@ -1330,7 +1330,7 @@
 	"file.h"
 	"campaign.h"
 
-1697147580 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\scenario.c
+1697899919 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\scenario.c
 	"lgeneral.h"
 	"parser.h"
 	"date.h"
@@ -1345,7 +1345,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1696677690 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\sdl.c
+1697898929 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\sdl.c
 	"sdl.h"
 	"SDL_image.h"
 	"misc.h"
@@ -1401,7 +1401,7 @@
 	"file.h"
 	"FPGE/pgf.h"
 
-1697142249 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\unit.c
+1697356840 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\unit.c
 	"lgeneral.h"
 	"list.h"
 	"unit.h"
@@ -1409,7 +1409,7 @@
 	"map.h"
 	"campaign.h"
 
-1694338066 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\unit_lib.c
+1697877658 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\unit_lib.c
 	"lgeneral.h"
 	"parser.h"
 	"unit_lib.h"
@@ -1421,7 +1421,7 @@
 	"unit.h"
 	"FPGE/pgf.h"
 
-1610274098 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\windows.c
+1697979184 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\windows.c
 	"lgeneral.h"
 	"file.h"
 	"event.h"

@@ -275,7 +275,7 @@ void update_nations_purchase_flag()
 /** Проверьте, возможен ли перенос основного блока. */
 static int core_transfer_allowed()
 {
-	if (!camp_loaded == CONTINUE_CAMPAIGN)
+	if (!(camp_loaded == CONTINUE_CAMPAIGN))
 		return 0; /* передача только для кампании */
 	if (!prev_scen_core_units)
 		return 0; /* из последнего сценария не сохранились основные единицы */
@@ -1863,7 +1863,7 @@ void scen_delete()
         free( vconds ); vconds = 0;
         vcond_count = 0;
     }
-    if ( units )
+    /*if ( units )
     {
         if (camp_loaded == CONTINUE_CAMPAIGN)
         {
@@ -1884,7 +1884,7 @@ void scen_delete()
             }
         list_delete( units );
         units = 0;
-    }
+    }*/
     if ( vis_units ) {
         list_delete( vis_units );
         vis_units = 0;
@@ -2314,7 +2314,7 @@ int scen_load_core_units()
 {
     int n_units = 0;
     transferredUnitProp * current;
-    Unit_Lib_Entry *unit_prop=0, *trsp_prop = 0, *land_trsp_prop = 0;
+    Unit_Lib_Entry *unit_prop=0, *trsp_prop = 0, *land_trsp_prop = 0, *base = 0;
     Unit unit_base;
     Unit * unit;
 
@@ -2335,6 +2335,8 @@ int scen_load_core_units()
 		current->prop.icon_h = unit_prop->icon_h;
 		current->prop.icon_tiny_w = unit_prop->icon_tiny_w;
 		current->prop.icon_tiny_h = unit_prop->icon_tiny_h;
+		unit_prop = unit_lib_find( current->prop_id );
+		current->max_str = unit_prop->icon_tiny_h;
 #ifdef WITH_SOUND
 		current->prop.wav_alloc = unit_prop->wav_alloc;
 		current->prop.wav_move = unit_prop->wav_move;
@@ -2378,7 +2380,7 @@ int scen_load_core_units()
 		unit_base.core = 1;
 		unit_base.player = player_get_by_id( current->player_id );
 		unit_base.nation = nation_find( current->nation_id );
-		unit_base.str = current->str;
+		unit_base.str = 10;//unit_base.str = current->str;
 		unit_base.orient = unit_base.player->orient;
 		strcpy_lt( unit_base.tag, current->tag, 31 );
 

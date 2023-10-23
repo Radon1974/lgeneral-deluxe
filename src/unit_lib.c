@@ -193,13 +193,13 @@ void unit_lib_eval_unit( Unit_Lib_Entry *unit )
        по категориям. Оценки добавляются разными
        веса. */
     /* Первая категория охватывает навыки атаки. */
-    if ( unit_has_flag( unit, "flying" ) ) {
+    if ( unit_has_flag( unit, "flying" ) ) {    //самолеты
         attack = unit->atks[0] + unit->atks[1] + /* земля */
                  2 * MAXIMUM( unit->atks[2], abs( unit->atks[2] ) / 2 ) + /* воздух */
                  unit->atks[3]; /* море */
     }
     else {
-        if ( unit_has_flag( unit, "swimming" ) ) {
+        if ( unit_has_flag( unit, "swimming" ) ) {  //корабли
             attack = unit->atks[0] + unit->atks[1] + /* земля */
                      unit->atks[2] + /* воздух */
                      2 * unit->atks[3]; /* море */
@@ -230,7 +230,7 @@ void unit_lib_eval_unit( Unit_Lib_Entry *unit )
         misc = MINIMUM( 12, unit->ammo ) + MINIMUM( unit->fuel, 80 ) / 5 + unit->mov / 2;
     else
         misc = MINIMUM( 12, unit->ammo ) + MINIMUM( unit->fuel, 60 ) / 4 + unit->mov;
-    /* summarize */
+    /* Подводить итоги */
     unit->eval_score = ( 2 * attack + 2 * defense + misc ) / 5;
 }
 
@@ -1196,10 +1196,10 @@ void relative_evaluate_units()
         best_sea = 0; /* используется для относительности оценок */
     list_reset( unit_lib );
     while ( ( unit = list_next( unit_lib ) ) ) {
-        if ( unit_has_flag( unit, "flying" ) )
+        if ( unit_has_flag( unit, "flying" ) )  //самолеты
             best_air = MAXIMUM( unit->eval_score, best_air );
         else {
-            if ( unit_has_flag( unit, "swimming" ) )
+            if ( unit_has_flag( unit, "swimming" ) )    //корабли
                 best_sea = MAXIMUM( unit->eval_score, best_sea );
             else
                 best_ground = MAXIMUM( unit->eval_score, best_ground );
@@ -1208,10 +1208,10 @@ void relative_evaluate_units()
     list_reset( unit_lib );
     while ( ( unit = list_next( unit_lib ) ) ) {
         unit->eval_score *= 1000;
-        if ( unit_has_flag( unit, "flying" ) )
+        if ( unit_has_flag( unit, "flying" ) )  //самолеты
             unit->eval_score /= best_air;
         else {
-            if ( unit_has_flag( unit, "swimming" ) )
+            if ( unit_has_flag( unit, "swimming" ) )    //корабли
                 unit->eval_score /= best_sea;
             else
                 unit->eval_score /= best_ground;

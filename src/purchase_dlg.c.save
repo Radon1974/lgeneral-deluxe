@@ -830,16 +830,14 @@ int purchase_dlg_handle_button( PurchaseDlg *pdlg, int bid, int cx, int cy,
 	if (lbox_handle_button(pdlg->nation_lbox,bid,cx,cy,pbtn,&item)) {
 		if ( item && item != pdlg->cur_nation ) {
 			pdlg->cur_nation = (Nation*)item;
-			if ( status == 15 ) update_modify_units(pdlg);
-			else update_purchasable_units(pdlg);
+			update_purchasable_units(pdlg);
 		}
 		return 0;
 	}
 	if (lbox_handle_button(pdlg->uclass_lbox,bid,cx,cy,pbtn,&item)) {
 		if ( item && item != pdlg->cur_uclass ) {
 			pdlg->cur_uclass = (Unit_Class*)item;
-			if ( status == 15 ) update_modify_units(pdlg);
-			else update_purchasable_units(pdlg);
+			update_purchasable_units(pdlg);
 		}
 		return 0;
 	}
@@ -921,7 +919,7 @@ void purchase_dlg_reset( PurchaseDlg *pdlg )
 
 /** Обновите списки (и очистите текущий выбор) для блока и транспортера
  * в соответствии с текущими настройками в @pdlg. */
-void update_modify_units( PurchaseDlg *pdlg )
+static void update_modify_units( PurchaseDlg *pdlg )
 {
         if ( ( ( nation_get_index( pdlg->cur_nation )) == cur_unit->prop.nation ) && ( units_id_class( pdlg->cur_uclass->id ) == cur_unit->prop.class ) ) {
         lbox_set_items(pdlg->unit_lbox, get_purchasable_unit_lib_entries(
@@ -951,78 +949,72 @@ void player_modify_unit( Player *player, Nation *nation, int type,
         //    fprintf( stderr, tr("Out of memory\n") );
         //    return;
         //}
-
-        strrem( cur_unit->name, cur_unit->prop.name );  //удаление части имени (оставить номер подразделения)
-        /* заплати за это */
-        player->cur_prestige = player->cur_prestige - ( unit_prop->cost - cur_unit->prop.cost );
-        if (trsp_prop)
-            player->cur_prestige = player->cur_prestige - ( trsp_prop->cost - cur_unit->trsp_prop.cost );
-
+        strrem( cur_unit->name, cur_unit->prop.name );
+        strcat( cur_unit->name, unit->prop.name );
         memcpy( &cur_unit->prop, unit_prop, sizeof( Unit_Lib_Entry ) );
-
-        strcat( cur_unit->name, cur_unit->prop.name );  //новое имя юнита
-
         if ( trsp_prop ) memcpy( &cur_unit->trsp_prop, trsp_prop, sizeof( Unit_Lib_Entry ) );
         //memcpy( &cur_unit->land_trsp_prop, 0, sizeof( Unit_Lib_Entry ) );
-
-
-
-
+        
+        
+        
+        
         //cur_unit->sel_prop = unit->sel_prop;
         //cur_unit->backup = unit->backup;
         //cur_unit->nation = unit->nation;
         //cur_unit->supply_level = unit->supply_level;
+        /* заплати за это */
+        player->cur_prestige = player->cur_prestige - ( unit_prop->cost - unit->prop.cost );
+        if (trsp_prop)
+            player->cur_prestige = player->cur_prestige - ( trsp_prop->cost - unit->trsp_prop.cost );
 
-
-
-
-
-
+            
+            
+            
     //if ( prop == 0 ) return 0;
 
     /* неглубокая копия собственности */
     //memcpy( &unit->prop, prop, sizeof( Unit_Lib_Entry ) );
-    //unit->sel_prop = &unit->prop;
-    //unit->embark = EMBARK_NONE;
+    unit->sel_prop = &unit->prop;
+    unit->embark = EMBARK_NONE;
     /* назначить пропущенный транспортер без проверки */
-    //if ( trsp_prop && !unit_has_flag( prop, "flying" ) && !unit_has_flag( prop, "swimming" ) ) {
-    //    memcpy( &unit->trsp_prop, trsp_prop, sizeof( Unit_Lib_Entry ) );
+    if ( trsp_prop && !unit_has_flag( prop, "flying" ) && !unit_has_flag( prop, "swimming" ) ) {
+        memcpy( &unit->trsp_prop, trsp_prop, sizeof( Unit_Lib_Entry ) );
         /* по умолчанию активен наземный транспортер море / воздух */
-        //if ( unit_has_flag( trsp_prop, "swimming" ) ) {
-            //unit->embark = EMBARK_SEA;
-           // unit->sel_prop = &unit->trsp_prop;
-           // if ( land_trsp_prop )
-                //memcpy( &unit->land_trsp_prop, land_trsp_prop, sizeof( Unit_Lib_Entry ) );
-        //}
-        //if ( unit_has_flag( trsp_prop, "flying" ) ) {
-            //unit->embark = EMBARK_AIR;
-            //unit->sel_prop = &unit->trsp_prop;
-        //}
-    //}
+        if ( unit_has_flag( trsp_prop, "swimming" ) ) {
+            unit->embark = EMBARK_SEA;
+            unit->sel_prop = &unit->trsp_prop;
+            if ( land_trsp_prop )
+                memcpy( &unit->land_trsp_prop, land_trsp_prop, sizeof( Unit_Lib_Entry ) );
+        }
+        if ( unit_has_flag( trsp_prop, "flying" ) ) {
+            unit->embark = EMBARK_AIR;
+            unit->sel_prop = &unit->trsp_prop;
+        }
+    }
     /* скопировать базовые значения */
-    //unit->delay = base->delay;
-    //unit->x = base->x; unit->y = base->y;
-    //unit->str = base->str; unit->entr = base->entr;
-    //unit->max_str = base->max_str;
+    unit->delay = base->delay;
+    unit->x = base->x; unit->y = base->y;
+    unit->str = base->str; unit->entr = base->entr;
+    unit->max_str = base->max_str;
 //    unit->cur_str_repl = 0;
-    //unit->player = base->player;
-    //unit->nation = base->nation;
-    //strcpy_lt( unit->name, base->name, 20 );
-    //unit_add_exp( unit, base->exp_level * 100 );
-    //unit->orient = base->orient;
-    //unit_adjust_icon( unit );
-    //unit->unused = 1;
-    cur_unit->supply_level = 100;
-    cur_unit->cur_ammo = cur_unit->prop.ammo;
-    cur_unit->cur_fuel = cur_unit->prop.fuel;
-    //unit->core = base->core;
-    //if ( unit->cur_fuel == 0 && unit->trsp_prop.id && unit->trsp_prop.fuel > 0 )
-        //unit->cur_fuel = unit->trsp_prop.fuel;
-    //strcpy_lt( unit->tag, base->tag, 31 );
+    unit->player = base->player;
+    unit->nation = base->nation;
+    strcpy_lt( unit->name, base->name, 20 );
+    unit_add_exp( unit, base->exp_level * 100 );
+    unit->orient = base->orient;
+    unit_adjust_icon( unit );
+    unit->unused = 1;
+    unit->supply_level = 100;
+    unit->cur_ammo = unit->prop.ammo;
+    unit->cur_fuel = unit->prop.fuel;
+    unit->core = base->core;
+    if ( unit->cur_fuel == 0 && unit->trsp_prop.id && unit->trsp_prop.fuel > 0 )
+        unit->cur_fuel = unit->trsp_prop.fuel;
+    strcpy_lt( unit->tag, base->tag, 31 );
     /* обновить свойства индикатора жизни */
-    //update_bar( unit );
+    update_bar( unit );
     /* выделить резервную память */
-    //unit->backup = calloc( 1, sizeof( Unit ) );
+    unit->backup = calloc( 1, sizeof( Unit ) );   
 }
 
 /** Ручка нажмите на кнопку покупки: Покупка юнита в соответствии с настройками в

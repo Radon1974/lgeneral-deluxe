@@ -178,7 +178,8 @@ enum {
     STATUS_GAME_MENU,          /* игровое меню */
     STATUS_DEPLOY_INFO,        /* полная информация об юните при развертывании */
     STATUS_STRAT_MAP,          /* показывая стратегическую карту */
-    STATUS_RENAME,             /* переименовать блок */
+    STATUS_RENAME,             /* переименовать юнит */
+    STATUS_MODIFY,             /* модифицировать юнит */
     STATUS_SAVE_EDIT,          /* запуск сохранения редактирования */
     STATUS_SAVE_MENU,          /* запуск меню сохранения */
     STATUS_LOAD_MENU,          /* запуск меню загрузки */
@@ -1734,7 +1735,7 @@ static void engine_update_info( int mx, int my, int region )
          !mask[mx][my].blocked )
         moveCost = mask[mx][my].moveCost;
     /* ввел новую плитку, поэтому обновите информацию о местности */
-    if (status == STATUS_PURCHASE) {
+    if (status == STATUS_PURCHASE || status == STATUS_MODIFY) {
         snprintf( str, MAX_LINE, tr("Prestige: %d"), cur_player->cur_prestige );
         label_write( gui->label_left, gui->font_std, str );
     }
@@ -1773,7 +1774,7 @@ static void engine_update_info( int mx, int my, int region )
     /* update the unit info */
     if ( !mask[mx][my].spot ) {
         if ( cur_unit )
-            gui_show_quick_info( gui->qinfo1, cur_unit );
+            gui_show_quick_info( gui->qinfo1, cur_unit );   //информация на иконке в левом нижнем углу
         else
             frame_hide( gui->qinfo1, 1 );
         frame_hide( gui->qinfo2, 1 );
@@ -2272,11 +2273,19 @@ static void engine_handle_button( int id )
             edit_show( gui->edit, cur_unit->name );
             scroll_block_keys = 1;
             break;
+		case ID_MODIFY:
+            engine_hide_unit_menu();
+            //engine_select_unit( 0 );
+            status = STATUS_MODIFY;
+            gui_show_modify_window();
+            //action_queue_modify(cur_unit);
+            draw_map = 1;
+            break;
         case ID_PURCHASE:
             engine_hide_game_menu();
             engine_select_unit( 0 );
-            gui_show_purchase_window();
             status = STATUS_PURCHASE;
+            gui_show_purchase_window();
             draw_map = 1;
             break;
         case ID_PURCHASE_EXIT:
@@ -3730,6 +3739,13 @@ static void engine_handle_next_action( int *reinit )
                     engine_select_unit( action->unit );
             }
             break;
+        /*case ACTION_MODIFY:  //модификация юнита
+            if ( unit_check_replacements( action->unit,ELITE_REPLACEMENTS ) ) {
+                unit_replace( action->unit,ELITE_REPLACEMENTS );
+                if ( cur_ctrl == PLAYER_CTRL_HUMAN )
+                    engine_select_unit( action->unit );
+            }
+            break;*/
         case ACTION_DISBAND:    //расформировать юнита
             engine_remove_unit( action->unit );
             map_get_vis_units();
