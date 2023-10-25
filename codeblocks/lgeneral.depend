@@ -1097,7 +1097,7 @@
 	"misc.h"
 	"localize.h"
 
-1698239124 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\engine.c
+1698244560 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\engine.c
 	<dlfcn.h>
 	<math.h>
 	"lgeneral.h"
@@ -1312,7 +1312,7 @@
 	"unit_lib.h"
 	"player.h"
 
-1698216625 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.c
+1698246714 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.c
 	<SDL.h>
 	<stdlib.h>
 	"lgeneral.h"

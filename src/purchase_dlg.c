@@ -1016,12 +1016,16 @@ void player_modify_unit( Player *player, Nation *nation, int type,
     //unit->core = base->core;
     if ( cur_unit->cur_fuel == 0 && cur_unit->trsp_prop.id && cur_unit->trsp_prop.fuel > 0 )
         cur_unit->cur_fuel = cur_unit->trsp_prop.fuel;
+
     //strcpy_lt( unit->tag, base->tag, 31 );
     /* обновить свойства индикатора жизни */
     //update_bar( unit );
     /* выделить резервную память */
     //unit->backup = calloc( 1, sizeof( Unit ) );
-    unit_set_as_used(cur_unit);
+    if ( trsp_prop ) cur_unit->cur_mov = cur_unit->trsp_prop.mov;
+    else cur_unit->cur_mov = cur_unit->prop.mov;
+
+    if ( turn != 0 ) unit_set_as_used(cur_unit);
 }
 
 /** Ручка нажмите на кнопку покупки: Покупка юнита в соответствии с настройками в

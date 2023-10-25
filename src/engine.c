@@ -2296,6 +2296,7 @@ static void engine_handle_button( int id )
         case ID_PURCHASE_EXIT:
             purchase_dlg_hide( gui->purchase_dlg, 1 );
             engine_set_status( STATUS_NONE );
+            engine_select_unit( 0 );
             draw_map = 1;
             break;
         case ID_DEPLOY:
