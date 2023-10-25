@@ -608,6 +608,11 @@ static void engine_check_unit_buttons()
         else
             group_set_active( gui->unit_buttons, ID_ELITE_REPLACEMENTS, 0 );
     }
+    /* модификация */
+    if ( unit_check_modify( cur_unit ))
+        group_set_active( gui->unit_buttons, ID_MODIFY, 1 );
+    else
+        group_set_active( gui->unit_buttons, ID_MODIFY, 0 );
     /* отменить */
     if ( move_backup.used )
         group_set_active( gui->unit_buttons, ID_UNDO, 1 );
@@ -2291,6 +2296,7 @@ static void engine_handle_button( int id )
         case ID_PURCHASE_EXIT:
             purchase_dlg_hide( gui->purchase_dlg, 1 );
             engine_set_status( STATUS_NONE );
+            draw_map = 1;
             break;
         case ID_DEPLOY:
             if ( avail_units->count > 0 || deploy_turn )

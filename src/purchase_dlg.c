@@ -959,9 +959,7 @@ void player_modify_unit( Player *player, Nation *nation, int type,
             player->cur_prestige = player->cur_prestige - ( trsp_prop->cost - cur_unit->trsp_prop.cost );
 
         memcpy( &cur_unit->prop, unit_prop, sizeof( Unit_Lib_Entry ) );
-
         strcat( cur_unit->name, cur_unit->prop.name );  //новое имя юнита
-
         if ( trsp_prop ) memcpy( &cur_unit->trsp_prop, trsp_prop, sizeof( Unit_Lib_Entry ) );
         //memcpy( &cur_unit->land_trsp_prop, 0, sizeof( Unit_Lib_Entry ) );
 
@@ -1016,13 +1014,14 @@ void player_modify_unit( Player *player, Nation *nation, int type,
     cur_unit->cur_ammo = cur_unit->prop.ammo;
     cur_unit->cur_fuel = cur_unit->prop.fuel;
     //unit->core = base->core;
-    //if ( unit->cur_fuel == 0 && unit->trsp_prop.id && unit->trsp_prop.fuel > 0 )
-        //unit->cur_fuel = unit->trsp_prop.fuel;
+    if ( cur_unit->cur_fuel == 0 && cur_unit->trsp_prop.id && cur_unit->trsp_prop.fuel > 0 )
+        cur_unit->cur_fuel = cur_unit->trsp_prop.fuel;
     //strcpy_lt( unit->tag, base->tag, 31 );
     /* обновить свойства индикатора жизни */
     //update_bar( unit );
     /* выделить резервную память */
     //unit->backup = calloc( 1, sizeof( Unit ) );
+    unit_set_as_used(cur_unit);
 }
 
 /** Ручка нажмите на кнопку покупки: Покупка юнита в соответствии с настройками в

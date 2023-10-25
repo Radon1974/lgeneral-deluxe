@@ -42,6 +42,7 @@ extern Map_Tile **map;
 extern int camp_loaded;
 extern Camp_Entry *camp_cur_scen;
 extern Player *cur_player;
+extern int turn;
 
 /*
 ====================================================================
@@ -1145,6 +1146,27 @@ int unit_check_replacements( Unit *unit, int type )
     /* юнит получает 0 силы по расчетам */
     if ( unit_get_replacement_strength(unit,type) < 1 ) return 0;
     /* пока не провалился: разрешить замену */
+    return 1;
+}
+
+/*
+====================================================================
+Проверьте, можно ли модернизировать юнит.
+====================================================================
+*/
+int unit_check_modify( Unit *unit )
+{
+    /* установка не должна быть погружена в море / воздух */
+    if ( unit->embark != EMBARK_NONE ) return 0;
+    /* юнит не должен был перемещаться так далеко */
+    if ( !unit->unused ) return 0;
+    /* юнит находится в воздухе, а не на аэродроме */
+    if ( unit_has_flag( &unit->prop, "flying" ) && ( map_is_allied_depot(&map[unit->x][unit->y],unit) == 0 ) ) return 0;
+    /* подразделение военно-морское, а не в порту */
+    if ( unit_has_flag( &unit->prop, "swimming" ) && ( map_is_allied_depot(&map[unit->x][unit->y],unit) == 0 ) ) return 0;
+    /* подразделения все */
+    if ( ( turn != 0 ) && ( map_is_allied_depot(&map[unit->x][unit->y],unit) == 0 ) ) return 0;
+
     return 1;
 }
 
