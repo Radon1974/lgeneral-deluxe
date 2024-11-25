@@ -388,6 +388,7 @@ static void update_unit_purchase_info( PurchaseDlg *pdlg )
 		render_unit_lib_entry_info( unit_entry, contents, 10, 10 ); //вывод информации о выбранном юните
 		total_cost += unit_entry->cost;
 
+
 		/* если транспортер не разрешен, очистите список транспортеров. если позволено
 		 * но список пуст, заполните его. */
 		if (reinf_unit)
@@ -405,24 +406,24 @@ static void update_unit_purchase_info( PurchaseDlg *pdlg )
 
 	/* информация о транспортере */
 	if (trsp_entry) {
-		render_unit_lib_entry_info( trsp_entry, contents, 10, 155 ); //вывод информации о транспорте выбранного юнита
+		render_unit_lib_entry_info( trsp_entry, contents, 10, 155 );
 		total_cost += trsp_entry->cost;
 	}
 
 	/* показать стоимость, если есть выбор; отметить красным, если нет возможности покупки */
-	if ( total_cost > 0 ) {
+    if ( total_cost > 0 ) {
 		char str[128];
 		Font *font = gui->font_std;
 		int y = group_get_height( pdlg->main_group ) - 10;
-
 		snprintf( str, 128, tr("Total Cost: %d"), total_cost );
+
 		if (!reinf_unit && !player_can_purchase_unit(cur_player,
 						unit_entry, trsp_entry)) {
 			font = gui->font_error;
 			total_cost = 0; /* здесь указывается "не подлежит покупке". */
 		}
 		font->align = ALIGN_X_LEFT | ALIGN_Y_BOTTOM;
-		write_text( font, contents, 10, y, str, 255 );
+		write_text( font, contents, 10, y, str, 255 );  //записать текст (шрифт, место записи, x, y, строка для записи, альфа)
 
 		if (total_cost > 0) {
 			font->align = ALIGN_X_RIGHT | ALIGN_Y_BOTTOM;
@@ -433,10 +434,10 @@ static void update_unit_purchase_info( PurchaseDlg *pdlg )
 	}
 
 	/* если общая стоимость установлена, то возможна покупка */
-	if (total_cost > 0)
-		group_set_active( pdlg->main_group, ID_PURCHASE_OK, 1 );
-	else
-		group_set_active( pdlg->main_group, ID_PURCHASE_OK, 0 );
+        if (total_cost > 0)
+            group_set_active( pdlg->main_group, ID_PURCHASE_OK, 1 );
+        else
+            group_set_active( pdlg->main_group, ID_PURCHASE_OK, 0 );
 
 	/* нанесите содержимое */
 	frame_apply( pdlg->main_group->frame ); //выведите все на экран информации юнита
@@ -553,7 +554,8 @@ static void handle_purchase_button( PurchaseDlg *pdlg )
             update_purchase_unit_limit( pdlg, 1, reinf_unit->core );
         }
 	lbox_set_items( pdlg->reinf_lbox, get_reinf_units() );
-	update_unit_purchase_info( pdlg );
+	if ( status == 15 ) update_unit_modify_info( pdlg );
+			else update_unit_purchase_info( pdlg );
 }
 
 /** Покупка юнита для игрока @player. @nation - это нация юнита (должна совпадать
@@ -847,7 +849,8 @@ int purchase_dlg_handle_button( PurchaseDlg *pdlg, int bid, int cx, int cy,
 		if (item) {
 			/* очистите выбор reinf, так как мы делимся информационным окном */
 			lbox_clear_selected_item( pdlg->reinf_lbox );
-			update_unit_purchase_info( pdlg );
+			if ( status == 15 ) update_unit_modify_info( pdlg );
+			else update_unit_purchase_info( pdlg );
 		}
 		return 0;
 	}
@@ -857,7 +860,8 @@ int purchase_dlg_handle_button( PurchaseDlg *pdlg, int bid, int cx, int cy,
 				lbox_clear_selected_item( pdlg->trsp_lbox );
 			/* очистите выбор reinf, так как мы делимся информационным окном */
 			lbox_clear_selected_item( pdlg->reinf_lbox );
-			update_unit_purchase_info( pdlg );
+			if ( status == 15 ) update_unit_modify_info( pdlg );
+			else update_unit_purchase_info( pdlg );
 		}
 		return 0;
 	}
@@ -866,7 +870,9 @@ int purchase_dlg_handle_button( PurchaseDlg *pdlg, int bid, int cx, int cy,
 			/* очистите выбор юнита, так как мы делимся информационным окном */
 			lbox_clear_selected_item( pdlg->unit_lbox );
 			lbox_clear_items( pdlg->trsp_lbox );
-			update_unit_purchase_info( pdlg );
+			if ( status == 15 ) update_unit_modify_info( pdlg );
+			else update_unit_purchase_info( pdlg );
+
 		}
 		return 0;
 	}
@@ -928,7 +934,7 @@ void update_modify_units( PurchaseDlg *pdlg )
                     pdlg->cur_nation->id, pdlg->cur_uclass->id,
                     (const Date*)&scen_info->start_date));
         lbox_clear_items(pdlg->trsp_lbox);  //удалите старый список элементов
-        update_unit_purchase_info(pdlg); /* очистить информацию */
+        update_unit_modify_info(pdlg); /* очистить информацию */
         }
 }
 
@@ -957,6 +963,7 @@ void player_modify_unit( Player *player, Nation *nation, int type,
         player->cur_prestige = player->cur_prestige - ( unit_prop->cost - cur_unit->prop.cost );
         if (trsp_prop)
             player->cur_prestige = player->cur_prestige - ( trsp_prop->cost - cur_unit->trsp_prop.cost );
+        else player->cur_prestige = player->cur_prestige + cur_unit->trsp_prop.cost;
 
         memcpy( &cur_unit->prop, unit_prop, sizeof( Unit_Lib_Entry ) );
         strcat( cur_unit->name, cur_unit->prop.name );  //новое имя юнита
@@ -1084,14 +1091,15 @@ void modify_dlg_reset( PurchaseDlg *pdlg )
         pdlg->cur_core_unit_limit = player_get_purchase_unit_limit( cur_player, CORE );
 
 	//lbox_set_items( pdlg->reinf_lbox, get_reinf_units() );
-	update_purchasable_units(pdlg);
-    if (config.use_core_units)
-        update_purchase_unit_limit(pdlg, 0, CORE);
-    update_purchase_unit_limit(pdlg, 0, AUXILIARY);
+	update_modify_units(pdlg);
+    //if (config.use_core_units)
+        //update_purchase_unit_limit(pdlg, 0, CORE);
+    //update_purchase_unit_limit(pdlg, 0, AUXILIARY);
 
     lbox_clear_items ( pdlg->reinf_lbox );  //очистить юниты в окне покупок
     lbox_clear_items ( pdlg->unit_lbox );  //очистить юниты в окне юнитов
     lbox_clear_items ( pdlg->trsp_lbox );  //очистить юниты в окне транспорта юнитов
+
     //lbox_clear_selected_item ( pdlg->reinf_lbox );
     //lbox_clear_selected_item ( pdlg->unit_lbox );
     //PurchaseDlg *pdlg = NULL;
@@ -1103,4 +1111,84 @@ void modify_dlg_reset( PurchaseDlg *pdlg )
 
 }
 
+/** Визуализация информации о выбранной единице измерения (единица измерения, транспортер, общая стоимость, ... )
+ * и включить/отключить кнопку покупки в зависимости от того, достаточно ли престижа
+ * и емкость. */
+void update_unit_modify_info( PurchaseDlg *pdlg )
+{
+	int total_cost = 0;
+	SDL_Surface *contents = pdlg->main_group->frame->contents;
+	Unit_Lib_Entry *unit_entry = NULL, *trsp_entry = NULL;
+	Unit *reinf_unit = NULL;
+
+	SDL_FillRect( contents, 0, 0x0 );
+
+	/* получить выбранные объекты */
+	//reinf_unit = lbox_get_selected_item( pdlg->reinf_lbox );
+	//if (reinf_unit) {
+		//unit_entry = &reinf_unit->prop;
+		//if (reinf_unit->trsp_prop.id)
+			//trsp_entry = &reinf_unit->trsp_prop;
+	//} else {
+		unit_entry = lbox_get_selected_item( pdlg->unit_lbox );
+		trsp_entry = lbox_get_selected_item( pdlg->trsp_lbox );
+	//}
+
+	/* информация об юните */
+	if (unit_entry) {
+		render_unit_lib_entry_info( unit_entry, contents, 10, 10 ); //вывод информации о выбранном юните
+		total_cost = unit_entry->cost - cur_unit->prop.cost;
+
+        if(!unit_has_flag( unit_entry, "ground_trsp_ok" )) {
+			lbox_clear_items(pdlg->trsp_lbox);
+			trsp_entry = NULL;
+		} else if (lbox_is_empty(pdlg->trsp_lbox) && pdlg->trsp_uclass)
+			lbox_set_items(pdlg->trsp_lbox,	get_purchasable_unit_lib_entries(pdlg->cur_nation->id, pdlg->trsp_uclass->id, (const Date*)&scen_info->start_date));
+
+		/* если транспортер не разрешен, очистите список транспортеров. если позволено
+		 * но список пуст, заполните его. */
+		//if (reinf_unit)
+			//; /* unit/trsp уже очищен */
+		//else if(!unit_has_flag( unit_entry, "ground_trsp_ok" )) {
+			//lbox_clear_items(pdlg->trsp_lbox);
+			//trsp_entry = NULL;
+		//} else if (lbox_is_empty(pdlg->trsp_lbox) && pdlg->trsp_uclass)
+			//lbox_set_items(pdlg->trsp_lbox,
+					//get_purchasable_unit_lib_entries(
+					//pdlg->cur_nation->id,
+					//pdlg->trsp_uclass->id,
+					//(const Date*)&scen_info->start_date));
+	}
+
+	/* информация о транспортере */
+	if (trsp_entry) {   //если покупается транспорт
+		render_unit_lib_entry_info( trsp_entry, contents, 10, 155 ); //вывод информации о транспорте выбранного юнита
+        total_cost += trsp_entry->cost - cur_unit->trsp_prop.cost;
+	} else total_cost -= cur_unit->trsp_prop.cost; //если не покупается транспорт, но у юнита он был
+
+
+
+
+	/* показать стоимость, если есть выбор; отметить красным, если нет возможности покупки */
+
+		char str[128];
+		Font *font = gui->font_std;
+		int y = group_get_height( pdlg->main_group ) - 10;
+		snprintf( str, 128, tr("Total Cost: %d"), total_cost );
+
+
+		font->align = ALIGN_X_LEFT | ALIGN_Y_BOTTOM;
+		write_text( font, contents, 10, y, str, 255 );  //записать текст (шрифт, место записи, x, y, строка для записи, альфа)
+
+
+
+	/* если общая стоимость установлена, то возможна покупка */
+        if (total_cost > cur_player->cur_prestige)
+            group_set_active( pdlg->main_group, ID_PURCHASE_OK, 0 );
+        else
+            group_set_active( pdlg->main_group, ID_PURCHASE_OK, 1 );
+
+	/* нанесите содержимое */
+	frame_apply( pdlg->main_group->frame ); //выведите все на экран информации юнита
+}
 

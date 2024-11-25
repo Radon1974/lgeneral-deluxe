@@ -1097,7 +1097,7 @@
 	"misc.h"
 	"localize.h"
 
-1698244560 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\engine.c
+1698246928 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\engine.c
 	<dlfcn.h>
 	<math.h>
 	"lgeneral.h"
@@ -1312,7 +1312,7 @@
 	"unit_lib.h"
 	"player.h"
 
-1698246714 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.c
+1698432059 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\purchase_dlg.c
 	<SDL.h>
 	<stdlib.h>
 	"lgeneral.h"
@@ -1330,7 +1330,7 @@
 	"file.h"
 	"campaign.h"
 
-1697899919 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\scenario.c
+1698301935 source:c:\work\lgeneral-deluxe-lgeneral-deluxe\src\scenario.c
 	"lgeneral.h"
 	"parser.h"
 	"date.h"

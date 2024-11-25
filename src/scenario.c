@@ -1012,7 +1012,7 @@ int scen_load_lgdscn( const char *fname, const char *path )
             if (strcmp(tokens[0],"year")==0)
                 scen_info->start_date.year=atoi(tokens[1]);
             if (strcmp(tokens[0],"month")==0)
-                scen_info->start_date.month=atoi(tokens[1]) - 1;
+                scen_info->start_date.month=atoi(tokens[1]);
             if (strcmp(tokens[0],"day")==0)
                 scen_info->start_date.day=atoi(tokens[1]);
             if (strcmp(tokens[0],"turns_per_day")==0)
